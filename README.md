@@ -1,4 +1,4 @@
-# Unraid Docker Templates
+# fgrfn Unraid Templates
 
 Willkommen im zentralen Repository für alle meine persönlich gepflegten **Unraid Docker Templates**.
 
@@ -55,4 +55,3 @@ Pull Requests willkommen – oder schreib mir direkt!
 
 Alle Vorlagen basieren auf frei zugänglichen Projekten.  
 Die Templates selbst stehen unter der MIT-Lizenz.
-"""
