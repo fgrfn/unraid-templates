@@ -1,49 +1,67 @@
-# Unraid Templates by fgrfn
+from pathlib import Path
 
-Dies ist eine Sammlung meiner persönlichen Docker-Templates für Unraid.
+# Neue README mit beiden Templates: CoreControl & NMController
+combined_readme = """# fgrfn Unraid Templates
 
-## 📦 CoreControl
+Willkommen im zentralen Repository für alle meine persönlich gepflegten **Unraid Docker Templates**.
 
-**CoreControl** ist eine moderne Web-App zur Überwachung und Steuerung von CPU-Funktionen und Energiemanagement auf Linux-Systemen.  
-Sie basiert auf **Next.js**, **Node.js** und **Prisma** und ist vollständig containerisiert.
-
-### 🖥️ WebUI
-
-- Adresse: [http://[Unraid-IP]:3000](http://[Unraid-IP]:3000)
-- Port: `3000` (konfigurierbar)
-
-### ⚙️ Docker Template Info
-
-| Feld             | Beschreibung                                                                 |
-|------------------|------------------------------------------------------------------------------|
-| Repository       | `fgrfn/corecontrol:latest`                                                   |
-| Netzwerk         | `bridge` (Standard)                                                          |
-| Port             | `3000:3000`                                                                  |
-| Umgebungsvariable| `DATABASE_URL` (optional – z. B. PostgreSQL-Verbindung)                      |
-| Icon             | ![icon](https://raw.githubusercontent.com/crocofied/CoreControl/main/public/icon.png) |
-| Originalprojekt  | [github.com/crocofied/CoreControl](https://github.com/crocofied/CoreControl) |
-
-### 🛠️ Installation
-
-1. Datei `corecontrol.xml` in folgenden Pfad kopieren:  
-   `/boot/config/plugins/dockerMan/templates-user/`
-
-2. Im Unraid WebUI → **Docker → Add Container → Template: CoreControl**
-
-## 📂 Struktur
-
-```plaintext
-corecontrol/
-├── corecontrol.xml      # Unraid Template
-```
+Diese Templates lassen sich bequem über die Unraid-GUI laden und automatisch aktualisieren – bereitgestellt über GitHub Pages.
 
 ---
 
-## 💬 Kontakt
+## 📦 Verfügbare Templates
 
-Fragen, Feedback oder PRs willkommen:  
-📬 [github.com/fgrfn](https://github.com/fgrfn)
+### 🧠 CoreControl
 
-## 🧑‍💻 Lizenz
+- **Beschreibung:** Web-App zur Anzeige und Steuerung von CPU-Management und Systemwerten. Basierend auf Next.js & Prisma.
+- **Template XML:** [`my-corecontrol.xml`](https://fgrfn.github.io/unraid-templates/my-corecontrol.xml)
+- **Docker Image:** [`fgrfn/corecontrol`](https://hub.docker.com/r/fgrfn/corecontrol)
+- **WebUI Port:** 3000
+- **Originalprojekt:** [crocofied/CoreControl](https://github.com/crocofied/CoreControl)
 
-Dieses Repository basiert teilweise auf [crocofied/CoreControl](https://github.com/crocofied/CoreControl) und steht unter der gleichen Lizenz (AGPL-3.0).
+---
+
+### 🔧 NMController
+
+- **Beschreibung:** Flask-basierte Weboberfläche zur Steuerung von NMController-basierten Minern
+- **Template XML:** [`my-nmcontroller.xml`](https://fgrfn.github.io/unraid-templates/my-nmcontroller.xml)
+- **Docker Image:** [`fgrfn/nmcontroller`](https://hub.docker.com/r/fgrfn/nmcontroller)
+- **WebUI Port:** 5000
+- **Originalprojekt:** [NMminer1024/NMController_web](https://github.com/NMminer1024/NMController_web)
+
+---
+
+## 🌐 GitHub Pages Übersicht
+
+Zentrale Landing-Page mit Link-Index:  
+➡️ [`https://fgrfn.github.io/unraid-templates/`](https://fgrfn.github.io/unraid-templates/)
+
+---
+
+## 🛠️ Nutzung in Unraid
+
+1. Öffne in Unraid: **Docker → Container hinzufügen**
+2. Wähle oben: **Template von URL hinzufügen**
+3. Füge den gewünschten XML-Link ein (z. B. `my-corecontrol.xml` oder `my-nmcontroller.xml`)
+4. Klicke auf **„Template hinzufügen“**, dann auf **„Erstellen“**
+
+---
+
+## ✍️ Mitwirken
+
+Du möchtest ein Template hinzufügen oder verbessern?  
+Pull Requests willkommen – oder schreib mir direkt!
+
+---
+
+## 📄 Lizenz
+
+Alle Vorlagen basieren auf frei zugänglichen Projekten.  
+Die Templates selbst stehen unter der MIT-Lizenz.
+"""
+
+# Speichern
+readme_combined_path = Path("/mnt/data/README-unraid-templates-final.md")
+readme_combined_path.write_text(combined_readme, encoding="utf-8")
+
+readme_combined_path.name

@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<Container version="2">
+  <Name>nmcontroller</Name>
+  <Repository>fgrfn/nmcontroller:latest</Repository>
+  <Network>bridge</Network>
+  <Shell>sh</Shell>
+  <Privileged>false</Privileged>
+  <Support>https://github.com/NMminer1024/NMController_web/issues</Support>
+  <Project>https://github.com/NMminer1024/NMController_web</Project>
+  <Overview>Flask-basierte Weboberfläche für NMController Miner Management.</Overview>
+  <Category>Tools:Utility:Web</Category>
+  <WebUI>http://[IP]:[PORT:5000]</WebUI>
+  <Icon>https://raw.githubusercontent.com/NMminer1024/NMController_web/main/static/icon.png</Icon>
+  <TemplateURL>https://fgrfn.github.io/NMController_web/nmcontroller/my-nmcontroller.xml</TemplateURL>
+  <Config Name="WebUI Port" Target="5000" Default="5000" Mode="tcp" Description="Port für die Weboberfläche" Type="Port" Display="always" Required="true" Mask="false">5000</Config>
+</Container>
