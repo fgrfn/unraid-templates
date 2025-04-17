@@ -11,7 +11,7 @@ Diese Templates lassen sich bequem über die Unraid-GUI laden und automatisch ak
 ### 🧠 CoreControl
 
 - **Beschreibung:** Web-App zur Anzeige und Steuerung von CPU-Management und Systemwerten. Basierend auf Next.js & Prisma.
-- **Template XML:** [`my-corecontrol.xml`](https://fgrfn.github.io/unraid-templates/my-corecontrol.xml)
+- **Template XML:** [`my-corecontrol.xml`](https://fgrfn.github.io/unraid-templates/corecontrol/my-corecontrol.xml)
 - **Docker Image:** [`fgrfn/corecontrol`](https://hub.docker.com/r/fgrfn/corecontrol)
 - **WebUI Port:** 3000
 - **Originalprojekt:** [crocofied/CoreControl](https://github.com/crocofied/CoreControl)
@@ -21,7 +21,7 @@ Diese Templates lassen sich bequem über die Unraid-GUI laden und automatisch ak
 ### 🔧 NMController
 
 - **Beschreibung:** Flask-basierte Weboberfläche zur Steuerung von NMController-basierten Minern
-- **Template XML:** [`my-nmcontroller.xml`](https://fgrfn.github.io/unraid-templates/my-nmcontroller.xml)
+- **Template XML:** [`my-nmcontroller.xml`](https://fgrfn.github.io/unraid-templates/nmcontroller/my-nmcontroller.xml)
 - **Docker Image:** [`fgrfn/nmcontroller`](https://hub.docker.com/r/fgrfn/nmcontroller)
 - **WebUI Port:** 5000
 - **Originalprojekt:** [NMminer1024/NMController_web](https://github.com/NMminer1024/NMController_web)
