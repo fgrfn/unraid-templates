@@ -3,13 +3,61 @@
 <head>
   <meta charset="UTF-8">
   <title>fgrfn Unraid Templates</title>
+  <style>
+    body {
+      font-family: system-ui, sans-serif;
+      background-color: #f9f9f9;
+      color: #222;
+      margin: 0;
+      padding: 2rem;
+    }
+    h1 {
+      color: #007acc;
+      margin-bottom: 0.5rem;
+    }
+    .template-box {
+      background: #fff;
+      padding: 1rem;
+      margin: 1rem 0;
+      border-radius: 6px;
+      border: 1px solid #ddd;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+    }
+    .template-box h2 {
+      margin-top: 0;
+      color: #333;
+    }
+    .template-box p {
+      margin-bottom: 0.5rem;
+    }
+    .template-box a {
+      color: #007acc;
+      text-decoration: none;
+    }
+    footer {
+      margin-top: 3rem;
+      font-size: 0.9rem;
+      color: #888;
+    }
+  </style>
 </head>
 <body>
-  <h1>fgrfn Unraid Templates</h1>
-  <p>Hier findest du meine Unraid Docker Templates:</p>
-  <ul>
-    <li><a href="corecontrol/my-corecontrol.xml">CoreControl Template (XML)</a></li>
-  </ul>
-  <p><em>Diese Seite wird automatisch über GitHub Pages bereitgestellt.</em></p>
+  <h1>🧰 fgrfn Unraid Templates</h1>
+  <p>Willkommen! Hier findest du meine persönlich gepflegten Docker-Templates für Unraid.</p>
+
+  <div class="template-box">
+    <h2>CoreControl</h2>
+    <p>Web-App zur Anzeige und Steuerung von CPU-Management und Systemwerten. Basierend auf Next.js & Prisma.</p>
+    <ul>
+      <li><strong>WebUI Port:</strong> 3000</li>
+      <li><strong>Repository:</strong> <a href="https://github.com/fgrfn/CoreControl" target="_blank">fgrfn/CoreControl</a></li>
+      <li><strong>Originalprojekt:</strong> <a href="https://github.com/crocofied/CoreControl" target="_blank">crocofied/CoreControl</a></li>
+      <li><strong>Template XML:</strong> <a href="corecontrol/corecontrol.xml" target="_blank">corecontrol.xml</a></li>
+    </ul>
+  </div>
+
+  <footer>
+    Bereitgestellt via GitHub Pages · &copy; fgrfn
+  </footer>
 </body>
 </html>
