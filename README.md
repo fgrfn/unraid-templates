@@ -1,7 +1,4 @@
-from pathlib import Path
-
-# Neue README mit beiden Templates: CoreControl & NMController
-combined_readme = """# fgrfn Unraid Templates
+# Unraid Docker Templates
 
 Willkommen im zentralen Repository für alle meine persönlich gepflegten **Unraid Docker Templates**.
 
@@ -59,9 +56,3 @@ Pull Requests willkommen – oder schreib mir direkt!
 Alle Vorlagen basieren auf frei zugänglichen Projekten.  
 Die Templates selbst stehen unter der MIT-Lizenz.
 """
-
-# Speichern
-readme_combined_path = Path("/mnt/data/README-unraid-templates-final.md")
-readme_combined_path.write_text(combined_readme, encoding="utf-8")
-
-readme_combined_path.name
