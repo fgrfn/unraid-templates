@@ -2,17 +2,17 @@
 <Container version="2">
   <Name>corecontrol</Name>
   <Repository>fgrfn/corecontrol:latest</Repository>
-  <Network>bridge</Network>
+  <Network>Host</Network>
   <Shell>sh</Shell>
   <Privileged>false</Privileged>
   <Support>https://github.com/fgrfn/CoreControl/issues</Support>
   <Project>https://github.com/crocofied/CoreControl</Project>
-  <Overview>CoreControl ist eine webbasierte Plattform zur Anzeige und Steuerung von CPU- und Energiemanagement-Informationen. Basierend auf Next.js, Node.js und Prisma. Projekt Link: https://github.com/crocofied/CoreControl</Overview>
+<Overview>CoreControl is a web-based platform for displaying and managing CPU and power management information. Built with Next.js, Node.js, and Prisma. Project link: https://github.com/crocofied/CoreControl</Overview>
   <Category>Tools:Utility:Web</Category>
   <WebUI>http://[IP]:[PORT:3000]</WebUI>
   <Icon>https://raw.githubusercontent.com/crocofied/CoreControl/main/public/icon.png</Icon>
   <TemplateURL>https://raw.githubusercontent.com/fgrfn/unraid-templates/main/corecontrol.xml</TemplateURL>
-  <Config Name="WebUI Port" Target="3000" Default="3000" Mode="tcp" Description="Port für die CoreControl Weboberfläche" Type="Port" Display="always" Required="true" Mask="false">3000</Config>
+  <Config Name="WebUI Port" Target="3000" Default="3000" Mode="tcp" Description="WebUI" Type="Port" Display="always" Required="true" Mask="false">3000</Config>
   <Config Name="DATABASE_URL" Target="DATABASE_URL" Default="postgres://user:password@ip:5432/corecontrol" Mode="rw" Description="PostgreSQL-Database" Type="Variable" Display="advanced" Required="false" Mask="false">postgres://corecontrol:password@192.168.1.100:5432/corecontrol</Config>
   <Config Name="JWT_SECRET" Target="JWT_SECRET" Default="set_a_secure_random_string_here" Mode="rw" Description="Geheimer Schlüssel zur Signierung von JWT-Tokens (Pflichtwert für Login-Funktion!)" Type="Variable" Display="always" Required="true" Mask="true">set_a_secure_random_string_here</Config>
 </Container>
