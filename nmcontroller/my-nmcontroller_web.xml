@@ -9,8 +9,8 @@
   <Project>https://github.com/NMminer1024/NMController_web</Project>
   <Overview>Flask-basierte Weboberfläche für NMController Miner Management.</Overview>
   <Category>Tools:Utility:Web</Category>
-  <WebUI>http://[IP]:[PORT:5000]</WebUI>
+  <WebUI>http://[IP]:[PORT:7877]</WebUI>
   <Icon>https://raw.githubusercontent.com/fgrfn/nmcontroller_web/main/pic/logo.png</Icon>
   <TemplateURL>https://fgrfn.github.io/nmcontroller_web/my-nmcontroller.xml</TemplateURL>
-  <Config Name="WebUI Port" Target="5000" Default="5000" Mode="tcp" Description="Port für die Weboberfläche" Type="Port" Display="always" Required="true" Mask="false">5000</Config>
+  <Config Name="WebUI Port" Target="7877" Default="7877" Mode="tcp" Description="Port für die Weboberfläche" Type="Port" Display="always" Required="true" Mask="false">5000</Config>
 </Container>
