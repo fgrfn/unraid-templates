@@ -2,15 +2,17 @@
 <Container version="2">
   <Name>NMController_web</Name>
   <Repository>fgrfn/nmcontroller_web:latest</Repository>
-  <Network>bridge</Network>
+  <Network>host</Network>
   <Shell>sh</Shell>
   <Privileged>false</Privileged>
   <Support>https://github.com/NMminer1024/NMController_web/issues</Support>
   <Project>https://github.com/NMminer1024/NMController_web</Project>
-  <Overview>Flask-basierte Weboberfläche für NMController Miner Management.</Overview>
+  <Overview>Lightweight Flask-based dashboard for monitoring and managing NMController-compatible Bitcoin miners via a simple web interface.</Overview>
   <Category>Tools:Utility:Web</Category>
   <WebUI>http://[IP]:[PORT:7877]</WebUI>
   <Icon>https://raw.githubusercontent.com/fgrfn/nmcontroller_web/main/pic/logo.png</Icon>
-  <TemplateURL>https://fgrfn.github.io/nmcontroller_web/my-nmcontroller.xml</TemplateURL>
-  <Config Name="WebUI Port" Target="7877" Default="7877" Mode="tcp" Description="Port für die Weboberfläche" Type="Port" Display="always" Required="true" Mask="false">5000</Config>
+  <TemplateURL>https://raw.githubusercontent.com/fgrfn/unraid-templates/NMController_web/main/nmcontroller_web.xml</TemplateURL>
+<Config Name="data" Target="/app" Default="/mnt/user/appdata/nmcontroller-web" Mode="rw" Description="Data directory for configuration and runtime files" Type="Path" Display="always" Required="true" Mask="false">/mnt/cache/appdata/nmcontroller-web</Config>
+<Config Name="Port WebUI" Target="7877" Default="7877" Mode="tcp" Description="HTTP access to the web interface" Type="Port" Display="always" Required="true" Mask="false">7877</Config>
 </Container>
+
