@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <Container version="2">
-  <Name>nmcontroller</Name>
-  <Repository>fgrfn/nmcontroller:latest</Repository>
+  <Name>NMController_web</Name>
+  <Repository>fgrfn/NMController_web:latest</Repository>
   <Network>bridge</Network>
   <Shell>sh</Shell>
   <Privileged>false</Privileged>
