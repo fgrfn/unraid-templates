@@ -13,7 +13,7 @@
   <WebUI>http://[IP]:[PORT:7877]</WebUI>
   <Icon>https://raw.githubusercontent.com/fgrfn/nmcontroller_web/main/pic/logo.png</Icon>
   <TemplateURL>https://raw.githubusercontent.com/fgrfn/unraid-templates/NMController_web/main/nmcontroller_web.xml</TemplateURL>
-<Config Name="data" Target="/app" Default="/mnt/user/appdata/nmcontroller-web" Mode="rw" Description="Data directory for configuration and runtime files" Type="Path" Display="always" Required="true" Mask="false">/mnt/cache/appdata/nmcontroller-web</Config>
+<Config Name="data" Target="/app" Default="/mnt/user/appdata/nmcontroller_web" Mode="rw" Description="Data directory for configuration and runtime files" Type="Path" Display="always" Required="true" Mask="false">/mnt/cache/appdata/nmcontroller-web</Config>
 <Config Name="Port WebUI" Target="7877" Default="7877" Mode="tcp" Description="HTTP access to the web interface" Type="Port" Display="always" Required="true" Mask="false">7877</Config>
 </Container>
 
