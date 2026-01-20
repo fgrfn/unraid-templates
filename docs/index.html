@@ -230,6 +230,12 @@
       position: relative;
     }
     
+    .code-box strong {
+      display: block;
+      margin-bottom: 8px;
+      color: #667eea;
+    }
+    
     footer {
       text-align: center;
       color: white;
@@ -317,8 +323,12 @@
           </div>
           
           <div class="code-box">
-            <strong>Quick Install URL:</strong><br>
+            <strong>Quick Install (Unraid GUI):</strong>
             https://fgrfn.github.io/unraid-templates/Bambuddy/my-Bambuddy.xml
+            
+            <strong style="margin-top: 12px;">wget Install (SSH/Terminal):</strong>
+            wget -P /boot/config/plugins/dockerMan/templates-user/ \<br>
+            &nbsp;&nbsp;https://raw.githubusercontent.com/fgrfn/unraid-templates/main/Bambuddy/my-Bambuddy.xml
           </div>
         </div>
       </div>
@@ -367,8 +377,12 @@
           </div>
           
           <div class="code-box">
-            <strong>Raw URL:</strong><br>
+            <strong>Raw URL:</strong>
             https://raw.githubusercontent.com/fgrfn/unraid-templates/main/blank-template.xml
+            
+            <strong style="margin-top: 12px;">wget Install (SSH/Terminal):</strong>
+            wget -P /boot/config/plugins/dockerMan/templates-user/ \<br>
+            &nbsp;&nbsp;https://raw.githubusercontent.com/fgrfn/unraid-templates/main/blank-template.xml
           </div>
         </div>
       </div>
@@ -405,17 +419,8 @@
       
       <div class="install-method">
         <h3>Method 3: Manual Download (wget)</h3>
-        <p>Download directly via SSH/Terminal:</p>
-        <div class="code-box" style="margin-top: 12px;">
-# Bambuddy<br>
-wget -P /boot/config/plugins/dockerMan/templates-user/ \<br>
-&nbsp;&nbsp;https://raw.githubusercontent.com/fgrfn/unraid-templates/main/Bambuddy/my-Bambuddy.xml<br>
-<br>
-# Blank Template<br>
-wget -P /boot/config/plugins/dockerMan/templates-user/ \<br>
-&nbsp;&nbsp;https://raw.githubusercontent.com/fgrfn/unraid-templates/main/blank-template.xml
-        </div>
-        <p style="margin-top: 12px;">Then refresh the Docker page in Unraid to see the new templates.</p>
+        <p>Each template card above includes its own wget command for quick terminal installation.</p>
+        <p style="margin-top: 8px;">After running wget, refresh the Docker page in Unraid to see the new templates.</p>
       </div>
       
     </div>
