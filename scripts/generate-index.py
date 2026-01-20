@@ -548,7 +548,7 @@ def main():
         for t in templates:
             print(f"   - {t['metadata']['name']} ({t['path']})")
     
-    print("\n�� Generating HTML...")
+    print("\n🔨 Generating HTML...")
     
     # Generate template cards
     template_cards = '\n'.join([generate_template_card(t) for t in templates])
