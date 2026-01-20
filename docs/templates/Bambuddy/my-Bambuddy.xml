@@ -1,0 +1,37 @@
+<?xml version="1.0"?>
+<Container version="2">
+  <Name>Bambuddy</Name>
+  <Repository>ghcr.io/maziggy/bambuddy:latest</Repository>
+  <Registry>https://github.com/maziggy/bambuddy</Registry>
+  <Network>host</Network>
+  <MyIP></MyIP>
+  <Shell>bash</Shell>
+  <Privileged>false</Privileged>
+  <Support>https://github.com/maziggy/bambuddy/issues</Support>
+  <Project>https://github.com/maziggy/bambuddy</Project>
+  <ReadMe/>
+  <Overview>    Self-hosted print archive and management system for Bambu Lab 3D printers.
+    This template follows the official docker-compose recommendations including:
+     - host networking for discovery and camera streaming
+     - named volumes for data + logs
+     - bind-mounted virtual_printer certificates
+
+    Bridge mode with explicit port mapping (discovery disabled). Add printers by IP.</Overview>
+  <Category/>
+  <WebUI>http://[IP]:8000</WebUI>
+  <TemplateURL/>
+  <Icon>https://github.com/maziggy/bambuddy/blob/main/static/img/apple-touch-icon.png?raw=true</Icon>
+  <ExtraParams>--restart=unless-stopped</ExtraParams>
+  <PostArgs/>
+  <CPUset/>
+  <DateInstalled>1768827373</DateInstalled>
+  <DonateText/>
+  <DonateLink/>
+  <Requires/>
+  <Config Name="WebUI" Target="8000" Default="8000" Mode="tcp" Description="Port of the Web UI" Type="Port" Display="always" Required="{7}" Mask="{8}">8000</Config>
+  <Config Name="Data Volume" Target="/app/data" Default="/mnt/user/appdata/bambuddy/data" Mode="rw" Description="App data" Type="Path" Display="always" Required="{7}" Mask="{8}">/mnt/user/appdata/bambuddy/data</Config>
+  <Config Name="Logs Volume" Target="/app/logs" Default="/mnt/user/appdata/bambuddy/logs" Mode="rw" Description="Logs" Type="Path" Display="always" Required="{7}" Mask="{8}">/mnt/user/appdata/bambuddy/logs</Config>
+  <Config Name="Virtual Printer Certificates" Target="/app/data/virtual_printer" Default="/mnt/user/appdata/bambuddy/virtual_printer" Mode="rw" Description="Certificates for the Virtual Printer" Type="Path" Display="always" Required="{7}" Mask="{8}">/mnt/user/appdata/bambuddy/virtual_printer</Config>
+  <Config Name="TZ" Target="TZ" Default="Europe/Berlin" Mode="env" Description="Timezone" Type="Variable" Display="always" Required="{7}" Mask="{8}">Europe/Berlin</Config>
+  <TailscaleStateDir/>
+</Container>
