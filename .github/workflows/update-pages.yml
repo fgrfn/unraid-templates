@@ -5,8 +5,7 @@ on:
     branches: 
       - main
     paths:
-      - '*/**/*.xml'
-      - 'blank-template.xml'
+      - 'templates/**/*.xml'
   workflow_dispatch:
 
 jobs:
