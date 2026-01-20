@@ -29,9 +29,9 @@
   <DonateLink/>
   <Requires/>
   <Config Name="WebUI" Target="8000" Default="8000" Mode="tcp" Description="Port of the Web UI" Type="Port" Display="always" Required="{7}" Mask="{8}">8000</Config>
-  <Config Name="Data Volume" Target="/app/data" Default="/mnt/user/appdata/bambuddy/data" Mode="rw" Description="App data" Type="Path" Display="always" Required="{7}" Mask="{8}">/mnt/user/appda>
-  <Config Name="Logs Volume" Target="/app/logs" Default="/mnt/user/appdata/bambuddy/logs" Mode="rw" Description="Logs" Type="Path" Display="always" Required="{7}" Mask="{8}">/mnt/user/appdata/b>
-  <Config Name="Virtual Printer Certificates" Target="/app/data/virtual_printer" Default="/mnt/user/appdata/bambuddy/virtual_printer" Mode="rw" Description="Certificates for the Virtual Printer>
+  <Config Name="Data Volume" Target="/app/data" Default="/mnt/user/appdata/bambuddy/data" Mode="rw" Description="App data" Type="Path" Display="always" Required="{7}" Mask="{8}">/mnt/user/appdata/bambuddy/data</Config>
+  <Config Name="Logs Volume" Target="/app/logs" Default="/mnt/user/appdata/bambuddy/logs" Mode="rw" Description="Logs" Type="Path" Display="always" Required="{7}" Mask="{8}">/mnt/user/appdata/bambuddy/logs</Config>
+  <Config Name="Virtual Printer Certificates" Target="/app/data/virtual_printer" Default="/mnt/user/appdata/bambuddy/virtual_printer" Mode="rw" Description="Certificates for the Virtual Printer" Type="Path" Display="always" Required="{7}" Mask="{8}">/mnt/user/appdata/bambuddy/virtual_printer</Config>
   <Config Name="TZ" Target="TZ" Default="Europe/Berlin" Mode="env" Description="Timezone" Type="Variable" Display="always" Required="{7}" Mask="{8}">Europe/Berlin</Config>
   <TailscaleStateDir/>
 </Container>

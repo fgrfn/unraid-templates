@@ -1,4 +1,130 @@
-<!DOCTYPE html>
+#!/usr/bin/env python3
+"""
+Automatically generates an index.html for GitHub Pages
+based on available XML templates in the repository.
+"""
+
+import xml.etree.ElementTree as ET
+from pathlib import Path
+import re
+
+def parse_template(xml_path):
+    """Parse XML template and extract metadata"""
+    try:
+        tree = ET.parse(xml_path)
+        root = tree.getroot()
+        
+        return {
+            'name': root.findtext('Name', 'Unknown'),
+            'description': root.findtext('Overview', 'No description available'),
+            'repository': root.findtext('Repository', ''),
+            'webui': root.findtext('WebUI', ''),
+            'project': root.findtext('Project', ''),
+            'icon': root.findtext('Icon', ''),
+            'network': root.findtext('Network', 'bridge'),
+        }
+    except Exception as e:
+        print(f"Error parsing {xml_path}: {e}")
+        return None
+
+def find_templates():
+    """Find all XML templates in the repository"""
+    templates = []
+    repo_root = Path(__file__).parent.parent
+    
+    # Find all .xml files except blank-template.xml
+    for xml_file in repo_root.rglob('*.xml'):
+        if 'blank-template' in xml_file.name or 'docs/' in str(xml_file):
+            continue
+            
+        relative_path = xml_file.relative_to(repo_root)
+        metadata = parse_template(xml_file)
+        
+        if metadata:
+            templates.append({
+                'path': str(relative_path).replace('\\', '/'),
+                'filename': xml_file.name,
+                'metadata': metadata
+            })
+    
+    return templates
+
+def generate_template_card(template):
+    """Generate HTML for a single template card"""
+    meta = template['metadata']
+    port = meta['webui'].split(':')[-1].replace(']', '') if meta['webui'] else 'N/A'
+    image = meta['repository'].split(':')[0] if meta['repository'] else 'N/A'
+    
+    # Generate both URLs
+    github_pages_url = f"https://fgrfn.github.io/unraid-templates/{template['path']}"
+    raw_url = f"https://raw.githubusercontent.com/fgrfn/unraid-templates/main/{template['path']}"
+    
+    icon_html = ''
+    if meta['icon']:
+        icon_html = f'<img src="{meta["icon"]}" alt="{meta["name"]}" class="template-icon">'
+    else:
+        icon_html = '<div style="width: 60px; height: 60px; border-radius: 12px; margin-bottom: 12px; background: white; padding: 15px; box-shadow: 0 3px 10px rgba(0,0,0,0.15); display: flex; align-items: center; justify-content: center; font-size: 2em;">📦</div>'
+    
+    project_button = ''
+    if meta['project']:
+        project_button = f'''
+            <a href="{meta['project']}" class="btn btn-secondary" target="_blank">
+              📂 Original Project
+            </a>
+            <a href="{meta['project']}/issues" class="btn btn-link" target="_blank">
+              🛟 Support
+            </a>'''
+    
+    return f'''
+      <!-- {meta['name']} -->
+      <div class="template-card">
+        <div class="template-header">
+          {icon_html}
+          <h2>{meta['name']}</h2>
+          <div class="subtitle">{meta['name']} Container</div>
+        </div>
+        
+        <div class="template-body">
+          <p class="template-description">
+            {meta['description'][:280]}{'...' if len(meta['description']) > 280 else ''}
+          </p>
+          
+          <div class="template-info">
+            <div class="info-row">
+              <span class="info-label">🌐 WebUI Port:</span>
+              <span class="info-value">{port}</span>
+            </div>
+            <div class="info-row">
+              <span class="info-label">📦 Image:</span>
+              <span class="info-value">{image}</span>
+            </div>
+            <div class="info-row">
+              <span class="info-label">🔧 Network:</span>
+              <span class="info-value">{meta['network']}</span>
+            </div>
+          </div>
+          
+          <div class="button-group">
+            <a href="{github_pages_url}" class="btn btn-primary" download>
+              ⬇️ Download Template
+            </a>
+            {project_button}
+          </div>
+          
+          <div class="code-box">
+            <strong>Quick Install (Unraid GUI):</strong>
+            {github_pages_url}
+            
+            <strong style="margin-top: 12px;">wget Install (SSH/Terminal):</strong>
+            wget -P /boot/config/plugins/dockerMan/templates-user/ \\<br>
+            &nbsp;&nbsp;{raw_url}
+          </div>
+        </div>
+      </div>'''
+
+def get_html_template():
+    """Return the complete HTML template with CSS"""
+    return '''<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -302,116 +428,7 @@
     </header>
     
     <div class="template-grid">
-      
-      <!-- Bambuddy -->
-      <div class="template-card">
-        <div class="template-header">
-          <img src="https://github.com/maziggy/bambuddy/blob/main/static/img/apple-touch-icon.png?raw=true" alt="Bambuddy" class="template-icon">
-          <h2>Bambuddy</h2>
-          <div class="subtitle">Bambuddy Container</div>
-        </div>
-        
-        <div class="template-body">
-          <p class="template-description">
-                Self-hosted print archive and management system for Bambu Lab 3D printers.
-    This template follows the official docker-compose recommendations including:
-     - host networking for discovery and camera streaming
-     - named volumes for data + logs
-     - bind-mounted virtu...
-          </p>
-          
-          <div class="template-info">
-            <div class="info-row">
-              <span class="info-label">🌐 WebUI Port:</span>
-              <span class="info-value">8000</span>
-            </div>
-            <div class="info-row">
-              <span class="info-label">📦 Image:</span>
-              <span class="info-value">ghcr.io/maziggy/bambuddy</span>
-            </div>
-            <div class="info-row">
-              <span class="info-label">🔧 Network:</span>
-              <span class="info-value">host</span>
-            </div>
-          </div>
-          
-          <div class="button-group">
-            <a href="https://fgrfn.github.io/unraid-templates/Bambuddy/my-Bambuddy.xml" class="btn btn-primary" download>
-              ⬇️ Download Template
-            </a>
-            
-            <a href="https://github.com/maziggy/bambuddy" class="btn btn-secondary" target="_blank">
-              📂 Original Project
-            </a>
-            <a href="https://github.com/maziggy/bambuddy/issues" class="btn btn-link" target="_blank">
-              🛟 Support
-            </a>
-          </div>
-          
-          <div class="code-box">
-            <strong>Quick Install (Unraid GUI):</strong>
-            https://fgrfn.github.io/unraid-templates/Bambuddy/my-Bambuddy.xml
-            
-            <strong style="margin-top: 12px;">wget Install (SSH/Terminal):</strong>
-            wget -P /boot/config/plugins/dockerMan/templates-user/ \<br>
-            &nbsp;&nbsp;https://raw.githubusercontent.com/fgrfn/unraid-templates/main/Bambuddy/my-Bambuddy.xml
-          </div>
-        </div>
-      </div>
-
-      <!-- Blank Template -->
-      <div class="template-card">
-        <div class="template-header">
-          <div style="width: 60px; height: 60px; border-radius: 12px; margin-bottom: 12px; background: white; padding: 15px; box-shadow: 0 3px 10px rgba(0,0,0,0.15); display: flex; align-items: center; justify-content: center; font-size: 2em;">
-            📝
-          </div>
-          <h2>Blank Template</h2>
-          <div class="subtitle">Starter Template</div>
-        </div>
-        
-        <div class="template-body">
-          <p class="template-description">
-            Comprehensive starter template with all essential fields, examples, and documentation. 
-            Perfect for converting Docker-Compose files or creating custom Unraid templates from scratch.
-          </p>
-          
-          <div class="template-info">
-            <div class="info-row">
-              <span class="info-label">📋 Includes:</span>
-              <span class="info-value">Ports, Volumes, Env Vars</span>
-            </div>
-            <div class="info-row">
-              <span class="info-label">🎯 Use Case:</span>
-              <span class="info-value">Template Creation</span>
-            </div>
-            <div class="info-row">
-              <span class="info-label">📖 Documentation:</span>
-              <span class="info-value">Inline Comments</span>
-            </div>
-          </div>
-          
-          <div class="button-group">
-            <a href="https://raw.githubusercontent.com/fgrfn/unraid-templates/main/blank-template.xml" class="btn btn-primary" download>
-              ⬇️ Download Template
-            </a>
-            <a href="https://github.com/fgrfn/unraid-templates/blob/main/blank-template.xml" class="btn btn-secondary" target="_blank">
-              👁️ View on GitHub
-            </a>
-            <a href="https://github.com/fgrfn/unraid-templates" class="btn btn-link" target="_blank">
-              📚 Documentation
-            </a>
-          </div>
-          
-          <div class="code-box">
-            <strong>Raw URL:</strong>
-            https://raw.githubusercontent.com/fgrfn/unraid-templates/main/blank-template.xml
-            
-            <strong style="margin-top: 12px;">wget Install (SSH/Terminal):</strong>
-            wget -P /boot/config/plugins/dockerMan/templates-user/ \<br>
-            &nbsp;&nbsp;https://raw.githubusercontent.com/fgrfn/unraid-templates/main/blank-template.xml
-          </div>
-        </div>
-      </div>
+      {TEMPLATE_CARDS}
     </div>
     
     <div class="quick-install">
@@ -462,4 +479,91 @@
     </footer>
   </div>
 </body>
-</html>
+</html>'''
+
+def generate_blank_template_card():
+    """Generate the blank template card"""
+    return '''
+      <!-- Blank Template -->
+      <div class="template-card">
+        <div class="template-header">
+          <div style="width: 60px; height: 60px; border-radius: 12px; margin-bottom: 12px; background: white; padding: 15px; box-shadow: 0 3px 10px rgba(0,0,0,0.15); display: flex; align-items: center; justify-content: center; font-size: 2em;">
+            📝
+          </div>
+          <h2>Blank Template</h2>
+          <div class="subtitle">Starter Template</div>
+        </div>
+        
+        <div class="template-body">
+          <p class="template-description">
+            Comprehensive starter template with all essential fields, examples, and documentation. 
+            Perfect for converting Docker-Compose files or creating custom Unraid templates from scratch.
+          </p>
+          
+          <div class="template-info">
+            <div class="info-row">
+              <span class="info-label">📋 Includes:</span>
+              <span class="info-value">Ports, Volumes, Env Vars</span>
+            </div>
+            <div class="info-row">
+              <span class="info-label">🎯 Use Case:</span>
+              <span class="info-value">Template Creation</span>
+            </div>
+            <div class="info-row">
+              <span class="info-label">📖 Documentation:</span>
+              <span class="info-value">Inline Comments</span>
+            </div>
+          </div>
+          
+          <div class="button-group">
+            <a href="https://raw.githubusercontent.com/fgrfn/unraid-templates/main/blank-template.xml" class="btn btn-primary" download>
+              ⬇️ Download Template
+            </a>
+            <a href="https://github.com/fgrfn/unraid-templates/blob/main/blank-template.xml" class="btn btn-secondary" target="_blank">
+              👁️ View on GitHub
+            </a>
+            <a href="https://github.com/fgrfn/unraid-templates" class="btn btn-link" target="_blank">
+              📚 Documentation
+            </a>
+          </div>
+          
+          <div class="code-box">
+            <strong>Raw URL:</strong>
+            https://raw.githubusercontent.com/fgrfn/unraid-templates/main/blank-template.xml
+            
+            <strong style="margin-top: 12px;">wget Install (SSH/Terminal):</strong>
+            wget -P /boot/config/plugins/dockerMan/templates-user/ \\<br>
+            &nbsp;&nbsp;https://raw.githubusercontent.com/fgrfn/unraid-templates/main/blank-template.xml
+          </div>
+        </div>
+      </div>'''
+
+def main():
+    """Main function"""
+    print("🔍 Searching for templates...")
+    templates = find_templates()
+    print(f"✅ Found {len(templates)} template(s)")
+    
+    if templates:
+        for t in templates:
+            print(f"   - {t['metadata']['name']} ({t['path']})")
+    
+    print("\n🔨 Generating HTML...")
+    
+    # Generate template cards
+    template_cards = '\n'.join([generate_template_card(t) for t in templates])
+    template_cards += '\n' + generate_blank_template_card()
+    
+    # Generate complete HTML
+    html = get_html_template().replace('{TEMPLATE_CARDS}', template_cards)
+    
+    # Write to docs/index.html
+    docs_dir = Path(__file__).parent.parent / 'docs'
+    docs_dir.mkdir(exist_ok=True)
+    
+    output_file = docs_dir / 'index.html'
+    output_file.write_text(html, encoding='utf-8')
+    print(f"✅ Generated: {output_file}")
+
+if __name__ == '__main__':
+    main()
