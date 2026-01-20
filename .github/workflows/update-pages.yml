@@ -26,6 +26,11 @@ jobs:
       - name: Install dependencies
         run: |
           pip install lxml
+      
+      - name: Copy templates to docs folder
+        run: |
+          mkdir -p docs/templates
+          rsync -av --delete templates/ docs/templates/
           
       - name: Generate template index
         run: |
