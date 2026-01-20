@@ -11,14 +11,14 @@ These templates can be conveniently loaded and automatically updated via the Unr
 ### 🖨️ Bambuddy
 
 - **Description:** Self-hosted print archive and management system for Bambu Lab 3D printers
-- **Template XML:** [`my-Bambuddy.xml`](https://fgrfn.github.io/unraid-templates/Bambuddy/my-Bambuddy.xml)
+- **Template XML:** [`my-Bambuddy.xml`](https://fgrfn.github.io/unraid-templates/templates/Bambuddy/my-Bambuddy.xml)
 - **Docker Image:** [`ghcr.io/maziggy/bambuddy`](https://github.com/maziggy/bambuddy)
 - **WebUI Port:** 8000
 - **Original Project:** [maziggy/bambuddy](https://github.com/maziggy/bambuddy)
 
 **Quick Install:**
 ```
-https://fgrfn.github.io/unraid-templates/Bambuddy/my-Bambuddy.xml
+https://fgrfn.github.io/unraid-templates/templates/Bambuddy/my-Bambuddy.xml
 ```
 
 ---
@@ -27,7 +27,7 @@ https://fgrfn.github.io/unraid-templates/Bambuddy/my-Bambuddy.xml
 
 A **template file** is available for quickly creating new templates:
 
-- **Template:** [`blank-template.xml`](https://github.com/fgrfn/unraid-templates/blob/main/blank-template.xml)
+- **Template:** [`blank-template.xml`](https://github.com/fgrfn/unraid-templates/blob/main/templates/blank-template.xml)
 - Contains all important fields with examples for ports, volumes, and environment variables
 - Perfect for converting Docker-Compose files to Unraid templates
 
@@ -76,10 +76,10 @@ Open Unraid terminal or SSH and run:
 
 ```bash
 # For Bambuddy template: 
-wget -P /boot/config/plugins/dockerMan/templates-user/ https://raw.githubusercontent.com/fgrfn/unraid-templates/main/Bambuddy/my-Bambuddy.xml
+wget -P /boot/config/plugins/dockerMan/templates-user/ https://raw.githubusercontent.com/fgrfn/unraid-templates/main/templates/Bambuddy/my-Bambuddy.xml
 
 # For blank template:
-wget -P /boot/config/plugins/dockerMan/templates-user/ https://raw.githubusercontent.com/fgrfn/unraid-templates/main/blank-template.xml
+wget -P /boot/config/plugins/dockerMan/templates-user/ https://raw.githubusercontent.com/fgrfn/unraid-templates/main/templates/blank-template.xml
 ```
 
 Then refresh the Docker page in Unraid to see the new template.
@@ -91,7 +91,7 @@ Then refresh the Docker page in Unraid to see the new template.
 Want to add or improve a template?  
 Pull requests are welcome – or contact me directly!
 
-Use [`blank-template.xml`](https://github.com/fgrfn/unraid-templates/blob/main/blank-template.xml) as a starting point for new templates.
+Use [`blank-template.xml`](https://github.com/fgrfn/unraid-templates/blob/main/templates/blank-template.xml) as a starting point for new templates.
 
 ---
 

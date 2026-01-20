@@ -31,21 +31,23 @@ def find_templates():
     """Find all XML templates in the repository"""
     templates = []
     repo_root = Path(__file__).parent.parent
+    templates_dir = repo_root / 'templates'
     
-    # Find all .xml files except blank-template.xml
-    for xml_file in repo_root.rglob('*.xml'):
-        if 'blank-template' in xml_file.name or 'docs/' in str(xml_file):
-            continue
+    # Find all .xml files in templates directory
+    if templates_dir.exists():
+        for xml_file in templates_dir.rglob('*.xml'):
+            if 'blank-template' in xml_file.name:
+                continue
+                
+            relative_path = xml_file.relative_to(repo_root)
+            metadata = parse_template(xml_file)
             
-        relative_path = xml_file.relative_to(repo_root)
-        metadata = parse_template(xml_file)
-        
-        if metadata:
-            templates.append({
-                'path': str(relative_path).replace('\\', '/'),
-                'filename': xml_file.name,
-                'metadata': metadata
-            })
+            if metadata:
+                templates.append({
+                    'path': str(relative_path).replace('\\', '/'),
+                    'filename': xml_file.name,
+                    'metadata': metadata
+                })
     
     return templates
 
@@ -516,10 +518,10 @@ def generate_blank_template_card():
           </div>
           
           <div class="button-group">
-            <a href="https://raw.githubusercontent.com/fgrfn/unraid-templates/main/blank-template.xml" class="btn btn-primary" download>
+            <a href="https://raw.githubusercontent.com/fgrfn/unraid-templates/main/templates/blank-template.xml" class="btn btn-primary" download>
               ⬇️ Download Template
             </a>
-            <a href="https://github.com/fgrfn/unraid-templates/blob/main/blank-template.xml" class="btn btn-secondary" target="_blank">
+            <a href="https://github.com/fgrfn/unraid-templates/blob/main/templates/blank-template.xml" class="btn btn-secondary" target="_blank">
               👁️ View on GitHub
             </a>
             <a href="https://github.com/fgrfn/unraid-templates" class="btn btn-link" target="_blank">
@@ -529,11 +531,11 @@ def generate_blank_template_card():
           
           <div class="code-box">
             <strong>Raw URL:</strong>
-            https://raw.githubusercontent.com/fgrfn/unraid-templates/main/blank-template.xml
+            https://raw.githubusercontent.com/fgrfn/unraid-templates/main/templates/blank-template.xml
             
             <strong style="margin-top: 12px;">wget Install (SSH/Terminal):</strong>
             wget -P /boot/config/plugins/dockerMan/templates-user/ \\<br>
-            &nbsp;&nbsp;https://raw.githubusercontent.com/fgrfn/unraid-templates/main/blank-template.xml
+            &nbsp;&nbsp;https://raw.githubusercontent.com/fgrfn/unraid-templates/main/templates/blank-template.xml
           </div>
         </div>
       </div>'''
