@@ -1,13 +1,64 @@
 <!DOCTYPE html>
-<html lang="de">
+<html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>fgrfn Unraid Templates</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unraid Templates</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(to right, #00c6ff, #0072ff);
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            max-width: 1200px;
+            margin: auto;
+            padding: 20px;
+            color: #fff;
+        }
+        .card {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px 0;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            transition: transform 0.2s;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+        }
+        h2 {
+            color: #fff;
+        }
+        @media (max-width: 600px) {
+            .card {
+                padding: 15px;
+            }
+        }
+    </style>
 </head>
 <body>
-  <h1>🧰 fgrfn Unraid Templates</h1>
-  <ul>
-    <li><a href="nmcontroller/my-nmcontroller.xml">NMController Template (XML)</a></li>
-  </ul>
+    <div class="container">
+        <h1>Welcome to Unraid Templates</h1>
+        <div class="card">
+            <h2>Bambuddy</h2>
+            <p>Installation Instructions:</p>
+            <ol>
+                <li>Download the Bambuddy template.</li>
+                <li>Import into Unraid.</li>
+                <li>Configure settings as needed.</li>
+            </ol>
+        </div>
+        <div class="card">
+            <h2>Blank Template</h2>
+            <p>Installation Instructions:</p>
+            <ol>
+                <li>Download the Blank Template.</li>
+                <li>Import into Unraid.</li>
+                <li>Configure settings as needed.</li>
+            </ol>
+        </div>
+    </div>
 </body>
 </html>
