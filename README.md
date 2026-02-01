@@ -21,6 +21,19 @@ These templates can be conveniently loaded and automatically updated via the Unr
 https://fgrfn.github.io/unraid-templates/templates/Bambuddy/my-Bambuddy.xml
 ```
 
+### 🖨️ Scan2Target
+
+- **Description:** Modern web-based scan server for network and USB scanners
+- **Template XML:** [`my-Scan2Target.xml`](https://fgrfn.github.io/unraid-templates/templates/Scan2Target/my-Scan2Target.xml)
+- **Docker Image:** [`ghcr.io/fgrfn/scan2target`](https://github.com/fgrfn/Scan2Target)
+- **WebUI Port:** 8000
+- **Project:** [fgrfn/Scan2Target](https://github.com/fgrfn/Scan2Target)
+
+**Quick Install:**
+```
+https://fgrfn.github.io/unraid-templates/templates/Scan2Target/my-Scan2Target.xml
+```
+
 ---
 
 ## 📝 Blank Template
@@ -77,6 +90,9 @@ Open Unraid terminal or SSH and run:
 ```bash
 # For Bambuddy template: 
 wget -P /boot/config/plugins/dockerMan/templates-user/ https://raw.githubusercontent.com/fgrfn/unraid-templates/main/templates/Bambuddy/my-Bambuddy.xml
+
+# For Scan2Target template:
+wget -P /boot/config/plugins/dockerMan/templates-user/ https://raw.githubusercontent.com/fgrfn/unraid-templates/main/templates/Scan2Target/my-Scan2Target.xml
 
 # For blank template:
 wget -P /boot/config/plugins/dockerMan/templates-user/ https://raw.githubusercontent.com/fgrfn/unraid-templates/main/templates/blank-template.xml

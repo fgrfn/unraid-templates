@@ -1,0 +1,46 @@
+<?xml version="1.0"?>
+<Container version="2">
+  <Name>Scan2Target</Name>
+  <Repository>ghcr.io/fgrfn/scan2target:latest</Repository>
+  <Registry>https://github.com/fgrfn/Scan2Target</Registry>
+  <Network>host</Network>
+  <MyIP></MyIP>
+  <Shell>bash</Shell>
+  <Privileged>false</Privileged>
+  <Support>https://github.com/fgrfn/Scan2Target/issues</Support>
+  <Project>https://github.com/fgrfn/Scan2Target</Project>
+  <ReadMe/>
+  <Overview>Modern web-based scan server for network and USB scanners. Control scanners remotely and route documents to SMB shares, email, cloud storage, or webhooks.
+
+Features:
+- Auto-Discovery for USB and network scanners (SANE/eSCL)
+- 9 Target Types: SMB, SFTP, Email, Paperless-ngx, Webhooks, Google Drive, Dropbox, OneDrive, Nextcloud
+- Multi-Language support (English/German)
+- Statistics dashboard with comprehensive analytics
+- Secure encrypted credentials (Fernet AES-128)
+- Auto-Retry for failed uploads
+- PWA support - Install as native app
+- Real-Time WebSocket updates
+
+Default Login: admin / admin (change immediately!)
+
+IMPORTANT: Host network mode is required for scanner discovery (mDNS/Avahi)</Overview>
+  <Category>Productivity:</Category>
+  <WebUI>http://[IP]:8000</WebUI>
+  <TemplateURL/>
+  <Icon>https://raw.githubusercontent.com/fgrfn/Scan2Target/main/static/favicon.ico</Icon>
+  <ExtraParams>--restart=unless-stopped</ExtraParams>
+  <PostArgs/>
+  <CPUset/>
+  <DateInstalled>1738427363</DateInstalled>
+  <DonateText/>
+  <DonateLink/>
+  <Requires/>
+  <Config Name="WebUI" Target="8000" Default="8000" Mode="tcp" Description="Port of the Web UI" Type="Port" Display="always" Required="true" Mask="false">8000</Config>
+  <Config Name="Data" Target="/data/" Default="/mnt/user/appdata/Scan2Target/" Mode="rw" Description="Persistent storage for database and scans" Type="Path" Display="always" Required="true" Mask="false">/mnt/user/appdata/Scan2Target/</Config>
+  <Config Name="USB Devices" Target="/dev/bus/usb" Default="/dev/bus/usb" Mode="rw" Description="USB device access for scanners" Type="Path" Display="always" Required="true" Mask="false">/dev/bus/usb</Config>
+  <Config Name="SCAN2TARGET_SECRET_KEY" Target="SCAN2TARGET_SECRET_KEY" Default="" Mode="env" Description="Encryption key for credentials (generate with: openssl rand -base64 32)" Type="Variable" Display="always" Required="true" Mask="true"></Config>
+  <Config Name="SCAN2TARGET_REQUIRE_AUTH" Target="SCAN2TARGET_REQUIRE_AUTH" Default="true" Mode="env" Description="Force authentication" Type="Variable" Display="always" Required="false" Mask="false">true</Config>
+  <Config Name="TZ" Target="TZ" Default="Europe/Berlin" Mode="env" Description="Timezone" Type="Variable" Display="always" Required="false" Mask="false">Europe/Berlin</Config>
+  <TailscaleStateDir/>
+</Container>
