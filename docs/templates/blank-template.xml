@@ -25,7 +25,7 @@
        - Project logo with ?raw=true: https://github.com/user/repo/blob/main/logo.png?raw=true
        - Organization avatar: https://avatars.githubusercontent.com/u/12345678
        IMPORTANT: Always include an icon - it displays on both the Unraid UI and GitHub Pages -->
-  <Icon></Icon>
+  <Icon>https://raw.githubusercontent.com/user/repo/main/icon.png</Icon>
   
   <!-- Docker Parameters -->
   <ExtraParams></ExtraParams>
