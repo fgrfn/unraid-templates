@@ -186,8 +186,6 @@ def get_html_template():
       display: flex;
       flex-direction: column;
       height: 100%;
-      min-height: 750px;
-      max-height: 750px;
     }
     
     .template-card:hover {
@@ -228,7 +226,6 @@ def get_html_template():
       display: flex;
       flex-direction: column;
       flex: 1;
-      overflow: hidden;
     }
     
     .template-description {
