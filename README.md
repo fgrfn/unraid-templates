@@ -138,7 +138,13 @@ When creating or updating templates, please ensure:
 
 2. **Test the icon URL** - Verify the URL is accessible and returns an image before submitting
 
-3. **Run the generation script** - After updating templates, run:
+3. **Validate your template** - Run the validation script to check for issues:
+   ```bash
+   python scripts/validate-templates.py
+   ```
+   This ensures your template meets all requirements (including icon URLs).
+
+4. **Run the generation script** - After updating templates, run:
    ```bash
    python scripts/generate-index.py
    ```
