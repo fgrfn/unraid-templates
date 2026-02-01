@@ -12,7 +12,23 @@ from pathlib import Path
 import sys
 
 def validate_template(xml_path):
-    """Validate a single XML template"""
+    """
+    Validate a single XML template for compliance with template standards.
+    
+    Args:
+        xml_path: Path to the XML template file
+        
+    Returns:
+        tuple: (errors, warnings) where:
+            - errors: List of critical validation failures that must be fixed
+            - warnings: List of non-critical issues that should be reviewed
+            
+    Validation checks:
+        - Icon URL is present and non-empty (error if missing)
+        - Icon URL uses HTTPS protocol (warning if not)
+        - Name field is present and non-empty (error if missing)
+        - Repository field is present and non-empty (error if missing)
+    """
     errors = []
     warnings = []
     
@@ -22,19 +38,19 @@ def validate_template(xml_path):
         
         # Check for Icon field
         icon = root.findtext('Icon', '')
-        if not icon or icon.strip() == '':
-            errors.append(f"Missing or empty Icon URL")
+        if not icon.strip():
+            errors.append("Missing or empty Icon URL")
         elif not icon.startswith('https://'):
             warnings.append(f"Icon URL should use HTTPS: {icon}")
         
         # Check for other important fields
         name = root.findtext('Name', '')
-        if not name or name.strip() == '':
-            errors.append(f"Missing or empty Name field")
+        if not name.strip():
+            errors.append("Missing or empty Name field")
             
         repository = root.findtext('Repository', '')
-        if not repository or repository.strip() == '':
-            errors.append(f"Missing or empty Repository field")
+        if not repository.strip():
+            errors.append("Missing or empty Repository field")
         
         return errors, warnings
         
