@@ -41,6 +41,8 @@ IMPORTANT: Host network mode is required for scanner discovery (mDNS/Avahi)</Ove
   <Config Name="USB Devices" Target="/dev/bus/usb" Default="/dev/bus/usb" Mode="rw" Description="USB device access for scanners" Type="Path" Display="always" Required="true" Mask="false">/dev/bus/usb</Config>
   <Config Name="SCAN2TARGET_SECRET_KEY" Target="SCAN2TARGET_SECRET_KEY" Default="" Mode="env" Description="Encryption key for credentials (generate with: openssl rand -base64 32)" Type="Variable" Display="always" Required="true" Mask="true"></Config>
   <Config Name="SCAN2TARGET_REQUIRE_AUTH" Target="SCAN2TARGET_REQUIRE_AUTH" Default="true" Mode="env" Description="Force authentication" Type="Variable" Display="always" Required="false" Mask="false">true</Config>
+  <Config Name="SCAN2TARGET_DATA_DIR" Target="SCAN2TARGET_DATA_DIR" Default="/data" Mode="env" Description="Path to data directory (default: /data)" Type="Variable" Display="advanced" Required="false" Mask="false">/data</Config>
+  <Config Name="SCAN2TARGET_DATABASE_PATH" Target="SCAN2TARGET_DATABASE_PATH" Default="/data/db/scan2target.db" Mode="env" Description="Database file path (default: /data/db/scan2target.db)" Type="Variable" Display="advanced" Required="false" Mask="false">/data/db/scan2target.db</Config>
   <Config Name="TZ" Target="TZ" Default="Europe/Berlin" Mode="env" Description="Timezone" Type="Variable" Display="always" Required="false" Mask="false">Europe/Berlin</Config>
   <TailscaleStateDir/>
 </Container>
