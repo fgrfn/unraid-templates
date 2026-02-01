@@ -10,9 +10,7 @@
   <Support>https://github.com/AKVorrat/netzbremse-measurement/issues</Support>
   <Project>https://github.com/AKVorrat/netzbremse-measurement</Project>
   <ReadMe/>
-  <Overview>Automated speedtest runner using Puppeteer to periodically test peering bottlenecks from your Deutsche Telekom internet connection.
-
-This tool runs headless speedtests in the background to support the netzbremse.de campaign with anonymized real-world measurements.
+  <Overview>Automated speedtest runner using Puppeteer to periodically test peering bottlenecks from your Deutsche Telekom internet connection. Supports the netzbremse.de campaign with anonymized real-world measurements running in the background.
 
 Features:
 - Periodic automated speedtests (configurable interval, default: 1 hour)
