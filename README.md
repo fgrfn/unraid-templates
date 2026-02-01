@@ -125,6 +125,25 @@ Pull requests are welcome – or contact me directly!
 
 Use [`blank-template.xml`](https://github.com/fgrfn/unraid-templates/blob/main/templates/blank-template.xml) as a starting point for new templates.
 
+### 📋 Template Guidelines
+
+When creating or updating templates, please ensure:
+
+1. **Always include an icon** - Icons display in both Unraid UI and on the GitHub Pages website
+   - Use HTTPS URLs pointing to image files (PNG, ICO, or SVG)
+   - Sources can include:
+     - Project favicon: `https://raw.githubusercontent.com/user/repo/main/static/favicon.ico`
+     - Project logo (use `?raw=true`): `https://github.com/user/repo/blob/main/logo.png?raw=true`
+     - Organization/user avatar: `https://avatars.githubusercontent.com/u/12345678`
+
+2. **Test the icon URL** - Verify the URL is accessible and returns an image before submitting
+
+3. **Run the generation script** - After updating templates, run:
+   ```bash
+   python scripts/generate-index.py
+   ```
+   This updates the GitHub Pages site with your changes.
+
 ---
 
 ## 📄 License
