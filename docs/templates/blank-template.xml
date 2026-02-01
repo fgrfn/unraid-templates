@@ -19,6 +19,12 @@
   <Category></Category>
   <WebUI></WebUI>
   <TemplateURL></TemplateURL>
+  <!-- Icon: Use HTTPS URL to an image file (PNG, ICO, or SVG recommended)
+       Examples:
+       - Project favicon: https://raw.githubusercontent.com/user/repo/main/static/favicon.ico
+       - Project logo with ?raw=true: https://github.com/user/repo/blob/main/logo.png?raw=true
+       - Organization avatar: https://avatars.githubusercontent.com/u/12345678
+       IMPORTANT: Always include an icon - it displays on both the Unraid UI and GitHub Pages -->
   <Icon></Icon>
   
   <!-- Docker Parameters -->
