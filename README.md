@@ -34,6 +34,19 @@ https://fgrfn.github.io/unraid-templates/templates/Bambuddy/my-Bambuddy.xml
 https://fgrfn.github.io/unraid-templates/templates/Scan2Target/my-Scan2Target.xml
 ```
 
+### 📊 Netzbremse
+
+- **Description:** Automated speedtest runner for testing peering bottlenecks from Deutsche Telekom connections
+- **Template XML:** [`my-Netzbremse.xml`](https://fgrfn.github.io/unraid-templates/templates/Netzbremse/my-Netzbremse.xml)
+- **Docker Image:** [`ghcr.io/akvorrat/netzbremse-measurement`](https://github.com/AKVorrat/netzbremse-measurement)
+- **WebUI Port:** N/A (headless)
+- **Original Project:** [AKVorrat/netzbremse-measurement](https://github.com/AKVorrat/netzbremse-measurement)
+
+**Quick Install:**
+```
+https://fgrfn.github.io/unraid-templates/templates/Netzbremse/my-Netzbremse.xml
+```
+
 ---
 
 ## 📝 Blank Template
@@ -93,6 +106,9 @@ wget -P /boot/config/plugins/dockerMan/templates-user/ https://raw.githubusercon
 
 # For Scan2Target template:
 wget -P /boot/config/plugins/dockerMan/templates-user/ https://raw.githubusercontent.com/fgrfn/unraid-templates/main/templates/Scan2Target/my-Scan2Target.xml
+
+# For Netzbremse template:
+wget -P /boot/config/plugins/dockerMan/templates-user/ https://raw.githubusercontent.com/fgrfn/unraid-templates/main/templates/Netzbremse/my-Netzbremse.xml
 
 # For blank template:
 wget -P /boot/config/plugins/dockerMan/templates-user/ https://raw.githubusercontent.com/fgrfn/unraid-templates/main/templates/blank-template.xml

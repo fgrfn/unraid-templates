@@ -412,6 +412,63 @@ Features:
         </div>
       </div>
 
+      <!-- Netzbremse -->
+      <div class="template-card">
+        <div class="template-header">
+          <div style="width: 60px; height: 60px; border-radius: 12px; margin-bottom: 12px; background: white; padding: 15px; box-shadow: 0 3px 10px rgba(0,0,0,0.15); display: flex; align-items: center; justify-content: center; font-size: 2em;">📦</div>
+          <h2>Netzbremse</h2>
+          <div class="subtitle">Netzbremse Container</div>
+        </div>
+        
+        <div class="template-body">
+          <p class="template-description">
+            Automated speedtest runner using Puppeteer to periodically test peering bottlenecks from your Deutsche Telekom internet connection.
+
+This tool runs headless speedtests in the background to support the netzbremse.de campaign with anonymized real-world measurements.
+
+Features:
+- Pe...
+          </p>
+          
+          <div class="template-info">
+            <div class="info-row">
+              <span class="info-label">🌐 WebUI Port:</span>
+              <span class="info-value">N/A</span>
+            </div>
+            <div class="info-row">
+              <span class="info-label">📦 Image:</span>
+              <span class="info-value">ghcr.io/akvorrat/netzbremse-measurement</span>
+            </div>
+            <div class="info-row">
+              <span class="info-label">🔧 Network:</span>
+              <span class="info-value">bridge</span>
+            </div>
+          </div>
+          
+          <div class="button-group">
+            <a href="https://fgrfn.github.io/unraid-templates/templates/Netzbremse/my-Netzbremse.xml" class="btn btn-primary" download>
+              ⬇️ Download Template
+            </a>
+            
+            <a href="https://github.com/AKVorrat/netzbremse-measurement" class="btn btn-secondary" target="_blank">
+              📂 Original Project
+            </a>
+            <a href="https://github.com/AKVorrat/netzbremse-measurement/issues" class="btn btn-link" target="_blank">
+              🛟 Support
+            </a>
+          </div>
+          
+          <div class="code-box">
+            <strong>Quick Install (Unraid GUI):</strong>
+            https://fgrfn.github.io/unraid-templates/templates/Netzbremse/my-Netzbremse.xml
+            
+            <strong style="margin-top: 12px;">wget Install (SSH/Terminal):</strong>
+            wget -P /boot/config/plugins/dockerMan/templates-user/ \<br>
+            &nbsp;&nbsp;https://raw.githubusercontent.com/fgrfn/unraid-templates/main/templates/Netzbremse/my-Netzbremse.xml
+          </div>
+        </div>
+      </div>
+
       <!-- Blank Template -->
       <div class="template-card">
         <div class="template-header">

@@ -1,0 +1,48 @@
+<?xml version="1.0"?>
+<Container version="2">
+  <Name>Netzbremse</Name>
+  <Repository>ghcr.io/akvorrat/netzbremse-measurement:latest</Repository>
+  <Registry>https://github.com/AKVorrat/netzbremse-measurement</Registry>
+  <Network>bridge</Network>
+  <MyIP></MyIP>
+  <Shell>bash</Shell>
+  <Privileged>false</Privileged>
+  <Support>https://github.com/AKVorrat/netzbremse-measurement/issues</Support>
+  <Project>https://github.com/AKVorrat/netzbremse-measurement</Project>
+  <ReadMe/>
+  <Overview>Automated speedtest runner using Puppeteer to periodically test peering bottlenecks from your Deutsche Telekom internet connection.
+
+This tool runs headless speedtests in the background to support the netzbremse.de campaign with anonymized real-world measurements.
+
+Features:
+- Periodic automated speedtests (configurable interval, default: 1 hour)
+- Local JSON result storage for data visualization
+- Anonymized result submission to netzbremse.de
+- Retry mechanism for failed tests
+- Timeout protection to prevent hanging
+- Compatible with community dashboard (netzbremse-dashboard)
+
+IMPORTANT: You must accept the privacy policy at https://netzbremse.de/speed and Cloudflare terms at https://www.cloudflare.com/privacypolicy/ by setting NB_SPEEDTEST_ACCEPT_POLICY to "true".
+
+Default configuration runs tests every hour and stores results locally. Configure resource limits if needed (1 CPU core, 1GB RAM recommended).</Overview>
+  <Category>Tools:</Category>
+  <WebUI></WebUI>
+  <TemplateURL/>
+  <Icon></Icon>
+  <ExtraParams>--restart=unless-stopped</ExtraParams>
+  <PostArgs/>
+  <CPUset/>
+  <DateInstalled>1738429659</DateInstalled>
+  <DonateText/>
+  <DonateLink/>
+  <Requires/>
+  <Config Name="Data Volume" Target="/app/json-results" Default="/mnt/user/appdata/netzbremse/json-results" Mode="rw" Description="Local storage for speedtest results (JSON files)" Type="Path" Display="always" Required="true" Mask="false">/mnt/user/appdata/netzbremse/json-results</Config>
+  <Config Name="NB_SPEEDTEST_ACCEPT_POLICY" Target="NB_SPEEDTEST_ACCEPT_POLICY" Default="false" Mode="env" Description="Accept privacy policy and Cloudflare terms (set to 'true' after reading https://netzbremse.de/speed)" Type="Variable" Display="always" Required="true" Mask="false">false</Config>
+  <Config Name="NB_SPEEDTEST_JSON_OUT_DIR" Target="NB_SPEEDTEST_JSON_OUT_DIR" Default="./json-results" Mode="env" Description="Directory path inside container for JSON results" Type="Variable" Display="always" Required="false" Mask="false">./json-results</Config>
+  <Config Name="NB_SPEEDTEST_INTERVAL" Target="NB_SPEEDTEST_INTERVAL" Default="3600" Mode="env" Description="Interval between speedtests in seconds (default: 3600 = 1 hour, set to 0 for one-shot mode)" Type="Variable" Display="advanced" Required="false" Mask="false">3600</Config>
+  <Config Name="NB_SPEEDTEST_TIMEOUT" Target="NB_SPEEDTEST_TIMEOUT" Default="3600" Mode="env" Description="Maximum duration for each speedtest in seconds (default: 3600 = 1 hour)" Type="Variable" Display="advanced" Required="false" Mask="false">3600</Config>
+  <Config Name="NB_SPEEDTEST_RETRY_INTERVAL" Target="NB_SPEEDTEST_RETRY_INTERVAL" Default="900" Mode="env" Description="Delay between retries after failures in seconds (default: 900 = 15 minutes)" Type="Variable" Display="advanced" Required="false" Mask="false">900</Config>
+  <Config Name="NB_SPEEDTEST_RETRY_COUNT" Target="NB_SPEEDTEST_RETRY_COUNT" Default="3" Mode="env" Description="Maximum number of consecutive failures before exiting (default: 3)" Type="Variable" Display="advanced" Required="false" Mask="false">3</Config>
+  <Config Name="TZ" Target="TZ" Default="Europe/Berlin" Mode="env" Description="Timezone" Type="Variable" Display="always" Required="false" Mask="false">Europe/Berlin</Config>
+  <TailscaleStateDir/>
+</Container>
