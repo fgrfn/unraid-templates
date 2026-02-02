@@ -1,0 +1,57 @@
+<?xml version="1.0"?>
+<Container version="2">
+  <Name>RedditWSBCrawler</Name>
+  <Repository>ghcr.io/fgrfn/reddit-wsb-crawler:latest</Repository>
+  <Registry>https://github.com/fgrfn/reddit-wsb-crawler</Registry>
+  <Network>bridge</Network>
+  <MyIP></MyIP>
+  <Shell>bash</Shell>
+  <Privileged>false</Privileged>
+  <Support>https://github.com/fgrfn/reddit-wsb-crawler/issues</Support>
+  <Project>https://github.com/fgrfn/reddit-wsb-crawler</Project>
+  <ReadMe/>
+  <Overview>Automatic early warning system for Reddit stock hypes. Crawls r/wallstreetbets for ticker mentions, analyzes trends, and sends Discord alerts for unusual activity.
+
+Features:
+- Smart crawling of configurable subreddits (wallstreetbets, wallstreetbetsGER, etc.)
+- Regex-based ticker detection in posts and comments
+- Parallel processing for fast analysis
+- Live stock prices from Yahoo Finance
+- Trend analysis (1h, 24h, 7d price changes)
+- News integration via NewsAPI
+- Discord notifications for unusual activity
+- Configurable thresholds and cooldown periods
+- Production-ready Docker support
+
+IMPORTANT: Requires Reddit API credentials, NewsAPI key, and Discord webhook URL. See project documentation for setup instructions.</Overview>
+  <Category>Tools:</Category>
+  <WebUI></WebUI>
+  <TemplateURL/>
+  <Icon>https://github.com/fgrfn/reddit-wsb-crawler/raw/main/logo.png</Icon>
+  <ExtraParams>--restart=unless-stopped</ExtraParams>
+  <PostArgs/>
+  <CPUset/>
+  <DateInstalled></DateInstalled>
+  <DonateText/>
+  <DonateLink/>
+  <Requires/>
+  <Config Name="Data Volume" Target="/app/data" Default="/mnt/user/appdata/reddit-wsb-crawler/data" Mode="rw" Description="Persistent data (ticker lists, caches, crawl results)" Type="Path" Display="always" Required="true" Mask="false">/mnt/user/appdata/reddit-wsb-crawler/data</Config>
+  <Config Name="Logs Volume" Target="/app/logs" Default="/mnt/user/appdata/reddit-wsb-crawler/logs" Mode="rw" Description="Log files" Type="Path" Display="always" Required="true" Mask="false">/mnt/user/appdata/reddit-wsb-crawler/logs</Config>
+  <Config Name="Config Volume" Target="/app/config" Default="/mnt/user/appdata/reddit-wsb-crawler/config" Mode="rw" Description="Configuration files (.env)" Type="Path" Display="always" Required="true" Mask="false">/mnt/user/appdata/reddit-wsb-crawler/config</Config>
+  <Config Name="REDDIT_CLIENT_ID" Target="REDDIT_CLIENT_ID" Default="" Mode="env" Description="Reddit API Client ID (get from reddit.com/prefs/apps)" Type="Variable" Display="always" Required="true" Mask="true"></Config>
+  <Config Name="REDDIT_CLIENT_SECRET" Target="REDDIT_CLIENT_SECRET" Default="" Mode="env" Description="Reddit API Client Secret (get from reddit.com/prefs/apps)" Type="Variable" Display="always" Required="true" Mask="true"></Config>
+  <Config Name="REDDIT_USER_AGENT" Target="REDDIT_USER_AGENT" Default="python:wsb-crawler:v1.0.0 (by /u/yourusername)" Mode="env" Description="Reddit User Agent string" Type="Variable" Display="always" Required="true" Mask="false">python:wsb-crawler:v1.0.0 (by /u/yourusername)</Config>
+  <Config Name="NEWSAPI_KEY" Target="NEWSAPI_KEY" Default="" Mode="env" Description="NewsAPI key (get from newsapi.org/register)" Type="Variable" Display="always" Required="true" Mask="true"></Config>
+  <Config Name="DISCORD_WEBHOOK_URL" Target="DISCORD_WEBHOOK_URL" Default="" Mode="env" Description="Discord Webhook URL for alerts" Type="Variable" Display="always" Required="true" Mask="true"></Config>
+  <Config Name="SUBREDDITS" Target="SUBREDDITS" Default="wallstreetbets,wallstreetbetsGER" Mode="env" Description="Comma-separated list of subreddits to crawl" Type="Variable" Display="always" Required="false" Mask="false">wallstreetbets,wallstreetbetsGER</Config>
+  <Config Name="NEWSAPI_LANG" Target="NEWSAPI_LANG" Default="en" Mode="env" Description="Language for news (en, de, etc.)" Type="Variable" Display="advanced" Required="false" Mask="false">en</Config>
+  <Config Name="NEWSAPI_WINDOW_HOURS" Target="NEWSAPI_WINDOW_HOURS" Default="48" Mode="env" Description="Time window for news in hours" Type="Variable" Display="advanced" Required="false" Mask="false">48</Config>
+  <Config Name="ALERT_MIN_ABS" Target="ALERT_MIN_ABS" Default="20" Mode="env" Description="Minimum mentions for new tickers to trigger alert" Type="Variable" Display="advanced" Required="false" Mask="false">20</Config>
+  <Config Name="ALERT_MIN_DELTA" Target="ALERT_MIN_DELTA" Default="10" Mode="env" Description="Minimum mention increase for known tickers" Type="Variable" Display="advanced" Required="false" Mask="false">10</Config>
+  <Config Name="ALERT_RATIO" Target="ALERT_RATIO" Default="2.0" Mode="env" Description="Minimum ratio increase for alerts (e.g., 2.0 = 200%)" Type="Variable" Display="advanced" Required="false" Mask="false">2.0</Config>
+  <Config Name="ALERT_MIN_PRICE_MOVE" Target="ALERT_MIN_PRICE_MOVE" Default="5.0" Mode="env" Description="Minimum price change percentage to include in alert" Type="Variable" Display="advanced" Required="false" Mask="false">5.0</Config>
+  <Config Name="ALERT_MAX_PER_RUN" Target="ALERT_MAX_PER_RUN" Default="3" Mode="env" Description="Maximum alerts per crawl run" Type="Variable" Display="advanced" Required="false" Mask="false">3</Config>
+  <Config Name="ALERT_COOLDOWN_H" Target="ALERT_COOLDOWN_H" Default="4" Mode="env" Description="Cooldown period in hours before re-alerting same ticker" Type="Variable" Display="advanced" Required="false" Mask="false">4</Config>
+  <Config Name="TZ" Target="TZ" Default="Europe/Berlin" Mode="env" Description="Timezone" Type="Variable" Display="always" Required="false" Mask="false">Europe/Berlin</Config>
+  <TailscaleStateDir/>
+</Container>
