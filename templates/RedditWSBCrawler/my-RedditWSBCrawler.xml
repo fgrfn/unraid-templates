@@ -10,20 +10,9 @@
   <Support>https://github.com/fgrfn/reddit-wsb-crawler/issues</Support>
   <Project>https://github.com/fgrfn/reddit-wsb-crawler</Project>
   <ReadMe/>
-  <Overview>Automatic early warning system for Reddit stock hypes. Crawls r/wallstreetbets for ticker mentions, analyzes trends, and sends Discord alerts for unusual activity.
+  <Overview>Automatic early warning system for Reddit stock hypes. Crawls r/wallstreetbets and other subreddits for ticker mentions, analyzes trends with live prices from Yahoo Finance, and sends Discord alerts for unusual activity.
 
-Features:
-- Smart crawling of configurable subreddits (wallstreetbets, wallstreetbetsGER, etc.)
-- Regex-based ticker detection in posts and comments
-- Parallel processing for fast analysis
-- Live stock prices from Yahoo Finance
-- Trend analysis (1h, 24h, 7d price changes)
-- News integration via NewsAPI
-- Discord notifications for unusual activity
-- Configurable thresholds and cooldown periods
-- Production-ready Docker support
-
-IMPORTANT: Requires Reddit API credentials, NewsAPI key, and Discord webhook URL. See project documentation for setup instructions.</Overview>
+Requires Reddit API credentials, NewsAPI key, and Discord webhook URL.</Overview>
   <Category>Tools:</Category>
   <WebUI></WebUI>
   <TemplateURL/>
