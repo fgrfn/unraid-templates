@@ -47,6 +47,19 @@ https://fgrfn.github.io/unraid-templates/templates/Scan2Target/my-Scan2Target.xm
 https://fgrfn.github.io/unraid-templates/templates/Netzbremse/my-Netzbremse.xml
 ```
 
+### 📈 Reddit WSB Crawler
+
+- **Description:** Automatic early warning system for Reddit stock hypes - crawls r/wallstreetbets for ticker mentions and sends Discord alerts
+- **Template XML:** [`my-RedditWSBCrawler.xml`](https://fgrfn.github.io/unraid-templates/templates/RedditWSBCrawler/my-RedditWSBCrawler.xml)
+- **Docker Image:** [`ghcr.io/fgrfn/reddit-wsb-crawler`](https://github.com/fgrfn/reddit-wsb-crawler)
+- **WebUI Port:** N/A (headless)
+- **Project:** [fgrfn/reddit-wsb-crawler](https://github.com/fgrfn/reddit-wsb-crawler)
+
+**Quick Install:**
+```
+https://fgrfn.github.io/unraid-templates/templates/RedditWSBCrawler/my-RedditWSBCrawler.xml
+```
+
 ---
 
 ## 📝 Blank Template
@@ -109,6 +122,9 @@ wget -P /boot/config/plugins/dockerMan/templates-user/ https://raw.githubusercon
 
 # For Netzbremse template:
 wget -P /boot/config/plugins/dockerMan/templates-user/ https://raw.githubusercontent.com/fgrfn/unraid-templates/main/templates/Netzbremse/my-Netzbremse.xml
+
+# For Reddit WSB Crawler template:
+wget -P /boot/config/plugins/dockerMan/templates-user/ https://raw.githubusercontent.com/fgrfn/unraid-templates/main/templates/RedditWSBCrawler/my-RedditWSBCrawler.xml
 
 # For blank template:
 wget -P /boot/config/plugins/dockerMan/templates-user/ https://raw.githubusercontent.com/fgrfn/unraid-templates/main/templates/blank-template.xml
