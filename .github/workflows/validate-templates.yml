@@ -4,11 +4,11 @@ on:
   pull_request:
     paths:
       - 'templates/**/*.xml'
-  push:
-    branches:
-      - main
-    paths:
-      - 'templates/**/*.xml'
+      - 'scripts/validate-templates.py'
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
 
 jobs:
   validate:
@@ -23,6 +23,20 @@ jobs:
         with: 
           python-version: '3.11'
           
+      - name: Install dependencies
+        run: |
+          pip install lxml
+          
       - name: Validate templates
         run: |
           python scripts/validate-templates.py
+      
+      - name: Create summary
+        if: success()
+        run: |
+          echo "### ✅ Templates Validated Successfully" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "All Unraid templates passed validation checks." >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "**Validated files:**" >> $GITHUB_STEP_SUMMARY
+          find templates -name '*.xml' -type f | wc -l | xargs -I {} echo "- {} template(s)" >> $GITHUB_STEP_SUMMARY

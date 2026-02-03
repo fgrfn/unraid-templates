@@ -1,5 +1,9 @@
 # fgrfn Unraid Templates
 
+[![Validate Templates](https://github.com/fgrfn/unraid-templates/workflows/Validate%20Templates/badge.svg)](https://github.com/fgrfn/unraid-templates/actions/workflows/validate-templates.yml)
+[![Deploy](https://github.com/fgrfn/unraid-templates/workflows/Deploy/badge.svg)](https://github.com/fgrfn/unraid-templates/actions/workflows/deploy.yml)
+[![Update Templates](https://github.com/fgrfn/unraid-templates/workflows/Update%20Templates/badge.svg)](https://github.com/fgrfn/unraid-templates/actions/workflows/update-templates.yml)
+
 Welcome to the central repository for all my personally maintained **Unraid Docker Templates**. 
 
 These templates can be conveniently loaded and automatically updated via the Unraid GUI – hosted via GitHub Pages.
