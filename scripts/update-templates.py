@@ -260,8 +260,10 @@ def update_template(template_name: str, config: Dict) -> bool:
         print(f"  🆕 Found {len(new_vars)} new variable(s):")
         for var_name, var_value in new_vars:
             print(f"     - {var_name} = {var_value}")
-            # Determine if variable should be masked (contains SECRET, PASSWORD, KEY, TOKEN)
-            mask = "true" if any(keyword in var_name.upper() for keyword in ['SECRET', 'PASSWORD', 'KEY', 'TOKEN', 'API']) else "false"
+            # Determine if variable should be masked (contains SECRET, PASSWORD, KEY+API, TOKEN)
+            # More specific patterns to avoid false positives
+            sensitive_patterns = ['SECRET', 'PASSWORD', 'TOKEN', 'API_KEY', 'API_SECRET', 'API_TOKEN', 'PRIVATE']
+            mask = "true" if any(pattern in var_name.upper() for pattern in sensitive_patterns) else "false"
             # Determine if variable should be required
             required = "true" if var_value == "" else "false"
             # Add to template
