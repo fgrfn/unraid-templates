@@ -171,25 +171,26 @@ Use [`blank-template.xml`](https://github.com/fgrfn/unraid-templates/blob/main/t
 When creating or updating templates, please ensure:
 
 1. **Always include an icon** - Icons display in both Unraid UI and on the GitHub Pages website
-   - Use HTTPS URLs pointing to image files (PNG, ICO, or SVG)
-   - Sources can include:
+   - **Option 1 (Recommended): Local logo file** - Place a `logo.png`, `logo.svg`, or other image file in the template folder
+     - Example: `templates/MyApp/logo.png`
+     - The system will automatically detect and use it
+     - Supported formats: `.png`, `.svg`, `.jpg`, `.jpeg`, `.webp`, `.ico`
+   
+   - **Option 2: Icon URL in XML** - Add an `<Icon>` tag in your template XML:
      - Project favicon: `https://raw.githubusercontent.com/user/repo/main/static/favicon.ico`
      - Project logo (use `?raw=true`): `https://github.com/user/repo/blob/main/logo.png?raw=true`
      - Organization/user avatar: `https://avatars.githubusercontent.com/u/12345678`
+   
+   - **Fallback:** If no logo file or Icon URL is found, a generated avatar with the app's initials will be used
 
-2. **Test the icon URL** - Verify the URL is accessible and returns an image before submitting
+2. **Test the icon URL** - If using Option 2, verify the URL is accessible and returns an image before submitting
 
-3. **Validate your template** - Run the validation script to check for issues:
-   ```bash
-   python scripts/validate-templates.py
-   ```
-   This ensures your template meets all requirements (including icon URLs).
-
-4. **Run the generation script** - After updating templates, run:
-   ```bash
-   python scripts/generate-index.py
-   ```
-   This updates the GitHub Pages site with your changes.
+3. **Commit and push your changes** - The GitHub Actions workflow will automatically:
+   - Validate your templates
+   - Generate the updated GitHub Pages site
+   - Deploy changes to https://fgrfn.github.io/unraid-templates/
+   
+   No manual script execution needed!
 
 ---
 

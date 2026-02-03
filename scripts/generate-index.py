@@ -54,18 +54,40 @@ def find_templates():
 def generate_template_card(template):
     """Generate HTML for a single template card"""
     meta = template['metadata']
-    port = meta['webui'].split(':')[-1].replace(']', '') if meta['webui'] else 'N/A'
+    port = meta['webui'].split(':')[-1].replace(']', '') if meta['webui'] else 'N/A (headless)'
     image = meta['repository'].split(':')[0] if meta['repository'] else 'N/A'
+    
+    # Check for local logo file if no icon is defined in XML
+    icon_url = meta['icon']
+    if not icon_url:
+        # Get template directory
+        template_path = Path(template['path'])
+        template_dir = template_path.parent
+        
+        # Check for common image formats
+        for ext in ['png', 'svg', 'jpg', 'jpeg', 'webp', 'ico']:
+            logo_file = Path(__file__).parent.parent / template_dir / f'logo.{ext}'
+            if logo_file.exists():
+                # Use raw GitHub URL for the logo
+                icon_url = f"https://raw.githubusercontent.com/fgrfn/unraid-templates/main/{template_dir}/logo.{ext}"
+                break
     
     # Generate both URLs
     github_pages_url = f"https://fgrfn.github.io/unraid-templates/{template['path']}"
     raw_url = f"https://raw.githubusercontent.com/fgrfn/unraid-templates/main/{template['path']}"
     
+    # Generate icon HTML with fallback to DiceBear avatars
     icon_html = ''
-    if meta['icon']:
-        icon_html = f'<img src="{meta["icon"]}" alt="{meta["name"]}" class="template-icon">'
+    if icon_url:
+        # Use provided icon with fallback
+        project_name_encoded = meta['name'].replace(' ', '+')
+        fallback_icon = f'https://api.dicebear.com/7.x/initials/svg?seed={project_name_encoded}&backgroundColor=667eea,764ba2&textColor=ffffff'
+        icon_html = f'<img src="{icon_url}" alt="{meta["name"]}" class="template-icon" onerror="this.onerror=null; this.src=\'{fallback_icon}\';">'
     else:
-        icon_html = '<div style="width: 60px; height: 60px; border-radius: 12px; margin-bottom: 12px; background: white; padding: 15px; box-shadow: 0 3px 10px rgba(0,0,0,0.15); display: flex; align-items: center; justify-content: center; font-size: 2em;">📦</div>'
+        # Generate avatar based on project name
+        project_name_encoded = meta['name'].replace(' ', '+')
+        avatar_url = f'https://api.dicebear.com/7.x/initials/svg?seed={project_name_encoded}&backgroundColor=667eea,764ba2&textColor=ffffff'
+        icon_html = f'<img src="{avatar_url}" alt="{meta["name"]}" class="template-icon">'
     
     project_button = ''
     if meta['project']:
@@ -254,6 +276,7 @@ def get_html_template():
       align-items: center;
       margin-bottom: 10px;
       font-size: 0.88em;
+      gap: 12px;
     }
     
     .info-row:last-child {
@@ -368,13 +391,12 @@ def get_html_template():
       padding: 12px;
       font-family: 'Courier New', monospace;
       font-size: 0.75em;
-      overflow-y: auto;
       overflow-x: auto;
       color: #333;
       position: relative;
       line-height: 1.5;
       flex: 1;
-      max-height: 180px;
+      height: 100%;
     }
     
     .code-box strong {

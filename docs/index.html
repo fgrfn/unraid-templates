@@ -126,6 +126,7 @@
       align-items: center;
       margin-bottom: 10px;
       font-size: 0.88em;
+      gap: 12px;
     }
     
     .info-row:last-child {
@@ -240,13 +241,12 @@
       padding: 12px;
       font-family: 'Courier New', monospace;
       font-size: 0.75em;
-      overflow-y: auto;
       overflow-x: auto;
       color: #333;
       position: relative;
       line-height: 1.5;
       flex: 1;
-      max-height: 180px;
+      height: 100%;
     }
     
     .code-box strong {
@@ -300,10 +300,119 @@
     
     <div class="template-grid">
       
+      <!-- RedditWSBCrawler -->
+      <div class="template-card">
+        <div class="template-header">
+          <img src="https://github.com/fgrfn/reddit-wsb-crawler/raw/main/logo.png" alt="RedditWSBCrawler" class="template-icon" onerror="this.onerror=null; this.src='https://api.dicebear.com/7.x/initials/svg?seed=RedditWSBCrawler&backgroundColor=667eea,764ba2&textColor=ffffff';">
+          <h2>RedditWSBCrawler</h2>
+          <div class="subtitle">RedditWSBCrawler Container</div>
+        </div>
+        
+        <div class="template-body">
+          <p class="template-description">
+            Automatic early warning system for Reddit stock hypes. Crawls r/wallstreetbets and other subreddits for ticker mentions, analyzes trends with live prices from Yahoo Finance, and sends Discord alerts for unusual activity.
+
+Requires Reddit API credentials, NewsAPI key, and Discord ...
+          </p>
+          
+          <div class="template-info">
+            <div class="info-row">
+              <span class="info-label">🌐 WebUI Port:</span>
+              <span class="info-value">N/A (headless)</span>
+            </div>
+            <div class="info-row">
+              <span class="info-label">📦 Image:</span>
+              <span class="info-value">ghcr.io/fgrfn/reddit-wsb-crawler</span>
+            </div>
+            <div class="info-row">
+              <span class="info-label">🔧 Network:</span>
+              <span class="info-value">bridge</span>
+            </div>
+          </div>
+          
+          <div class="button-group">
+            <a href="https://fgrfn.github.io/unraid-templates/templates/RedditWSBCrawler/my-RedditWSBCrawler.xml" class="btn btn-primary" download>
+              ⬇️ Download Template
+            </a>
+            
+            <a href="https://github.com/fgrfn/reddit-wsb-crawler" class="btn btn-secondary" target="_blank">
+              📂 Original Project
+            </a>
+            <a href="https://github.com/fgrfn/reddit-wsb-crawler/issues" class="btn btn-link" target="_blank">
+              🛟 Support
+            </a>
+          </div>
+          
+          <div class="code-box">
+            <strong>Quick Install (Unraid GUI):</strong>
+            https://fgrfn.github.io/unraid-templates/templates/RedditWSBCrawler/my-RedditWSBCrawler.xml
+            
+            <strong style="margin-top: 12px;">wget Install (SSH/Terminal):</strong>
+            wget -P /boot/config/plugins/dockerMan/templates-user/ \<br>
+            &nbsp;&nbsp;https://raw.githubusercontent.com/fgrfn/unraid-templates/main/templates/RedditWSBCrawler/my-RedditWSBCrawler.xml
+          </div>
+        </div>
+      </div>
+
+      <!-- Netzbremse -->
+      <div class="template-card">
+        <div class="template-header">
+          <img src="https://raw.githubusercontent.com/fgrfn/unraid-templates/main/templates/Netzbremse/logo.svg" alt="Netzbremse" class="template-icon" onerror="this.onerror=null; this.src='https://api.dicebear.com/7.x/initials/svg?seed=Netzbremse&backgroundColor=667eea,764ba2&textColor=ffffff';">
+          <h2>Netzbremse</h2>
+          <div class="subtitle">Netzbremse Container</div>
+        </div>
+        
+        <div class="template-body">
+          <p class="template-description">
+            Automated speedtest runner using Puppeteer to periodically test peering bottlenecks from your Deutsche Telekom internet connection. Supports the netzbremse.de campaign with anonymized real-world measurements running in the background.
+
+Features:
+- Periodic automated speedtests (c...
+          </p>
+          
+          <div class="template-info">
+            <div class="info-row">
+              <span class="info-label">🌐 WebUI Port:</span>
+              <span class="info-value">N/A (headless)</span>
+            </div>
+            <div class="info-row">
+              <span class="info-label">📦 Image:</span>
+              <span class="info-value">ghcr.io/akvorrat/netzbremse-measurement</span>
+            </div>
+            <div class="info-row">
+              <span class="info-label">🔧 Network:</span>
+              <span class="info-value">bridge</span>
+            </div>
+          </div>
+          
+          <div class="button-group">
+            <a href="https://fgrfn.github.io/unraid-templates/templates/Netzbremse/my-Netzbremse.xml" class="btn btn-primary" download>
+              ⬇️ Download Template
+            </a>
+            
+            <a href="https://github.com/AKVorrat/netzbremse-measurement" class="btn btn-secondary" target="_blank">
+              📂 Original Project
+            </a>
+            <a href="https://github.com/AKVorrat/netzbremse-measurement/issues" class="btn btn-link" target="_blank">
+              🛟 Support
+            </a>
+          </div>
+          
+          <div class="code-box">
+            <strong>Quick Install (Unraid GUI):</strong>
+            https://fgrfn.github.io/unraid-templates/templates/Netzbremse/my-Netzbremse.xml
+            
+            <strong style="margin-top: 12px;">wget Install (SSH/Terminal):</strong>
+            wget -P /boot/config/plugins/dockerMan/templates-user/ \<br>
+            &nbsp;&nbsp;https://raw.githubusercontent.com/fgrfn/unraid-templates/main/templates/Netzbremse/my-Netzbremse.xml
+          </div>
+        </div>
+      </div>
+
       <!-- Bambuddy -->
       <div class="template-card">
         <div class="template-header">
-          <img src="https://github.com/maziggy/bambuddy/blob/main/static/img/apple-touch-icon.png?raw=true" alt="Bambuddy" class="template-icon">
+          <img src="https://github.com/maziggy/bambuddy/blob/main/static/img/apple-touch-icon.png?raw=true" alt="Bambuddy" class="template-icon" onerror="this.onerror=null; this.src='https://api.dicebear.com/7.x/initials/svg?seed=Bambuddy&backgroundColor=667eea,764ba2&textColor=ffffff';">
           <h2>Bambuddy</h2>
           <div class="subtitle">Bambuddy Container</div>
         </div>
@@ -359,7 +468,7 @@
       <!-- Scan2Target -->
       <div class="template-card">
         <div class="template-header">
-          <img src="https://raw.githubusercontent.com/fgrfn/Scan2Target/main/static/favicon.ico" alt="Scan2Target" class="template-icon">
+          <img src="https://raw.githubusercontent.com/fgrfn/Scan2Target/main/static/favicon.ico" alt="Scan2Target" class="template-icon" onerror="this.onerror=null; this.src='https://api.dicebear.com/7.x/initials/svg?seed=Scan2Target&backgroundColor=667eea,764ba2&textColor=ffffff';">
           <h2>Scan2Target</h2>
           <div class="subtitle">Scan2Target Container</div>
         </div>
@@ -408,115 +517,6 @@ Features:
             <strong style="margin-top: 12px;">wget Install (SSH/Terminal):</strong>
             wget -P /boot/config/plugins/dockerMan/templates-user/ \<br>
             &nbsp;&nbsp;https://raw.githubusercontent.com/fgrfn/unraid-templates/main/templates/Scan2Target/my-Scan2Target.xml
-          </div>
-        </div>
-      </div>
-
-      <!-- RedditWSBCrawler -->
-      <div class="template-card">
-        <div class="template-header">
-          <img src="https://github.com/fgrfn/reddit-wsb-crawler/raw/main/logo.png" alt="RedditWSBCrawler" class="template-icon">
-          <h2>RedditWSBCrawler</h2>
-          <div class="subtitle">RedditWSBCrawler Container</div>
-        </div>
-        
-        <div class="template-body">
-          <p class="template-description">
-            Automatic early warning system for Reddit stock hypes. Crawls r/wallstreetbets and other subreddits for ticker mentions, analyzes trends with live prices from Yahoo Finance, and sends Discord alerts for unusual activity.
-
-Requires Reddit API credentials, NewsAPI key, and Discord ...
-          </p>
-          
-          <div class="template-info">
-            <div class="info-row">
-              <span class="info-label">🌐 WebUI Port:</span>
-              <span class="info-value">N/A</span>
-            </div>
-            <div class="info-row">
-              <span class="info-label">📦 Image:</span>
-              <span class="info-value">ghcr.io/fgrfn/reddit-wsb-crawler</span>
-            </div>
-            <div class="info-row">
-              <span class="info-label">🔧 Network:</span>
-              <span class="info-value">bridge</span>
-            </div>
-          </div>
-          
-          <div class="button-group">
-            <a href="https://fgrfn.github.io/unraid-templates/templates/RedditWSBCrawler/my-RedditWSBCrawler.xml" class="btn btn-primary" download>
-              ⬇️ Download Template
-            </a>
-            
-            <a href="https://github.com/fgrfn/reddit-wsb-crawler" class="btn btn-secondary" target="_blank">
-              📂 Original Project
-            </a>
-            <a href="https://github.com/fgrfn/reddit-wsb-crawler/issues" class="btn btn-link" target="_blank">
-              🛟 Support
-            </a>
-          </div>
-          
-          <div class="code-box">
-            <strong>Quick Install (Unraid GUI):</strong>
-            https://fgrfn.github.io/unraid-templates/templates/RedditWSBCrawler/my-RedditWSBCrawler.xml
-            
-            <strong style="margin-top: 12px;">wget Install (SSH/Terminal):</strong>
-            wget -P /boot/config/plugins/dockerMan/templates-user/ \<br>
-            &nbsp;&nbsp;https://raw.githubusercontent.com/fgrfn/unraid-templates/main/templates/RedditWSBCrawler/my-RedditWSBCrawler.xml
-          </div>
-        </div>
-      </div>
-
-      <!-- Netzbremse -->
-      <div class="template-card">
-        <div class="template-header">
-          <img src="https://avatars.githubusercontent.com/u/1556527" alt="Netzbremse" class="template-icon">
-          <h2>Netzbremse</h2>
-          <div class="subtitle">Netzbremse Container</div>
-        </div>
-        
-        <div class="template-body">
-          <p class="template-description">
-            Automated speedtest runner using Puppeteer to periodically test peering bottlenecks from your Deutsche Telekom internet connection. Supports the netzbremse.de campaign with anonymized real-world measurements running in the background.
-
-Features:
-- Periodic automated speedtests (c...
-          </p>
-          
-          <div class="template-info">
-            <div class="info-row">
-              <span class="info-label">🌐 WebUI Port:</span>
-              <span class="info-value">N/A</span>
-            </div>
-            <div class="info-row">
-              <span class="info-label">📦 Image:</span>
-              <span class="info-value">ghcr.io/akvorrat/netzbremse-measurement</span>
-            </div>
-            <div class="info-row">
-              <span class="info-label">🔧 Network:</span>
-              <span class="info-value">bridge</span>
-            </div>
-          </div>
-          
-          <div class="button-group">
-            <a href="https://fgrfn.github.io/unraid-templates/templates/Netzbremse/my-Netzbremse.xml" class="btn btn-primary" download>
-              ⬇️ Download Template
-            </a>
-            
-            <a href="https://github.com/AKVorrat/netzbremse-measurement" class="btn btn-secondary" target="_blank">
-              📂 Original Project
-            </a>
-            <a href="https://github.com/AKVorrat/netzbremse-measurement/issues" class="btn btn-link" target="_blank">
-              🛟 Support
-            </a>
-          </div>
-          
-          <div class="code-box">
-            <strong>Quick Install (Unraid GUI):</strong>
-            https://fgrfn.github.io/unraid-templates/templates/Netzbremse/my-Netzbremse.xml
-            
-            <strong style="margin-top: 12px;">wget Install (SSH/Terminal):</strong>
-            wget -P /boot/config/plugins/dockerMan/templates-user/ \<br>
-            &nbsp;&nbsp;https://raw.githubusercontent.com/fgrfn/unraid-templates/main/templates/Netzbremse/my-Netzbremse.xml
           </div>
         </div>
       </div>

@@ -26,7 +26,7 @@ Default configuration runs tests every hour and stores results locally. Configur
   <Category>Tools:</Category>
   <WebUI></WebUI>
   <TemplateURL/>
-  <Icon>https://avatars.githubusercontent.com/u/1556527</Icon>
+  <Icon></Icon>
   <ExtraParams>--restart=unless-stopped</ExtraParams>
   <PostArgs/>
   <CPUset/>
