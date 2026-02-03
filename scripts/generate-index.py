@@ -495,43 +495,7 @@ def get_html_template():
     <div class="template-grid">
       {TEMPLATE_CARDS}
     </div>
-    
-    <div class="quick-install">
-      <h2>🚀 Installation Methods</h2>
-      
-      <div class="install-method">
-        <h3>Method 1: Quick Install (Recommended)</h3>
-        <p>Direct template installation via Unraid GUI:</p>
-        <ol style="color: #666; line-height: 1.8; padding-left: 20px;">
-          <li>Open Unraid: <strong>Docker → Add Container</strong></li>
-          <li>Click on <strong>"Template repositories"</strong> at the top</li>
-          <li>Copy & paste the <strong>Quick Install URL</strong> from any template above</li>
-          <li>Click <strong>"Add"</strong>, then <strong>"Apply"</strong></li>
-        </ol>
-      </div>
-      
-      <div class="install-method">
-        <h3>Method 2: Add Repository</h3>
-        <p>Get all templates automatically:</p>
-        <div class="code-box" style="margin-top: 12px;">
-          https://github.com/fgrfn/unraid-templates
-        </div>
-        <ol style="color: #666; line-height: 1.8; padding-left: 20px; margin-top: 12px;">
-          <li>Open Unraid: <strong>Docker → Add Container</strong></li>
-          <li>Click <strong>Template repositories</strong> (settings icon)</li>
-          <li>Add the repository URL above</li>
-          <li>Save and browse all available templates</li>
-        </ol>
-      </div>
-      
-      <div class="install-method">
-        <h3>Method 3: Manual Download (wget)</h3>
-        <p>Each template card above includes its own wget command for quick terminal installation.</p>
-        <p style="margin-top: 8px;">After running wget, refresh the Docker page in Unraid to see the new templates.</p>
-      </div>
-      
-    </div>
-    
+       
     <footer>
       <p>
         <a href="https://github.com/fgrfn/unraid-templates" target="_blank">📂 View on GitHub</a> • 
