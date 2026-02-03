@@ -1,0 +1,45 @@
+<?xml version='1.0' encoding='utf-8'?>
+<Container version="2">
+  <Name>BitaxeDiscordBot</Name>
+  <Repository>ghcr.io/fgrfn/bitaxe-discord-status-bot:latest</Repository>
+  <Registry>https://github.com/fgrfn/bitaxe-discord-status-bot</Registry>
+  <Network>bridge</Network>
+  <MyIP />
+  <Shell>bash</Shell>
+  <Privileged>false</Privileged>
+  <Support>https://github.com/fgrfn/bitaxe-discord-status-bot/issues</Support>
+  <Project>https://github.com/fgrfn/bitaxe-discord-status-bot</Project>
+  <ReadMe />
+  <Overview>Real-Time Discord Monitoring für BitAxe &amp; NerdAxe Bitcoin Miner. Überwache Hashrate, Temperatur, Power &amp; Best-Difficulty mit automatischen Alerts bei kritischen Events.
+
+Supports 80+ sensors from BitAxe &amp; NerdAxe devices with real-time power consumption, temperature, hashrate metrics, mining statistics, and smart alert system.</Overview>
+  <Category>Tools:</Category>
+  <WebUI />
+  <TemplateURL />
+  <Icon>https://github.com/fgrfn/bitaxe-discord-status-bot/raw/main/logo.jpg</Icon>
+  <ExtraParams>--restart=unless-stopped</ExtraParams>
+  <PostArgs />
+  <CPUset />
+  <DateInstalled />
+  <DonateText />
+  <DonateLink />
+  <Requires />
+  <Config Name="Config Volume" Target="/app/config.ini" Default="/mnt/user/appdata/bitaxe-discord-bot/config.ini" Mode="ro" Description="Configuration file (optional when using environment variables)" Type="Path" Display="always" Required="false" Mask="false">/mnt/user/appdata/bitaxe-discord-bot/config.ini</Config>
+  <Config Name="Data Volume" Target="/app/data" Default="/mnt/user/appdata/bitaxe-discord-bot/data" Mode="rw" Description="Persistent data (best difficulty records)" Type="Path" Display="always" Required="true" Mask="false">/mnt/user/appdata/bitaxe-discord-bot/data</Config>
+  <Config Name="Logs Volume" Target="/app/logs" Default="/mnt/user/appdata/bitaxe-discord-bot/logs" Mode="rw" Description="Log files" Type="Path" Display="always" Required="true" Mask="false">/mnt/user/appdata/bitaxe-discord-bot/logs</Config>
+  <Config Name="DISCORD_BOT_TOKEN" Target="DISCORD_BOT_TOKEN" Default="" Mode="env" Description="Discord Bot Token from Discord Developer Portal" Type="Variable" Display="always" Required="true" Mask="true" />
+  <Config Name="DISCORD_CHANNEL_ID" Target="DISCORD_CHANNEL_ID" Default="" Mode="env" Description="Discord Channel ID where the bot posts updates" Type="Variable" Display="always" Required="false" Mask="false" />
+  <Config Name="UPDATE_INTERVAL" Target="UPDATE_INTERVAL" Default="30" Mode="env" Description="Update interval in seconds" Type="Variable" Display="always" Required="false" Mask="false">30</Config>
+  <Config Name="MENTION_USER_ID" Target="MENTION_USER_ID" Default="" Mode="env" Description="Discord User ID to mention in alerts (optional)" Type="Variable" Display="advanced" Required="false" Mask="false" />
+  <Config Name="DEVICE_BITAXE_GAMMA_IP" Target="DEVICE_BITAXE_GAMMA_IP" Default="" Mode="env" Description="IP address of BitAxe Gamma device" Type="Variable" Display="always" Required="false" Mask="false" />
+  <Config Name="DEVICE_BITAXE_GAMMA_TEMP_THRESHOLDS" Target="DEVICE_BITAXE_GAMMA_TEMP_THRESHOLDS" Default="60,65,70" Mode="env" Description="Temperature thresholds in °C (comma-separated)" Type="Variable" Display="advanced" Required="false" Mask="false">60,65,70</Config>
+  <Config Name="DEVICE_BITAXE_GAMMA_FAN_THRESHOLDS" Target="DEVICE_BITAXE_GAMMA_FAN_THRESHOLDS" Default="0,2000,3500,7500" Mode="env" Description="Fan speed thresholds in RPM (comma-separated)" Type="Variable" Display="advanced" Required="false" Mask="false">0,2000,3500,7500</Config>
+  <Config Name="DEVICE_BITAXE_GAMMA_VOLT_THRESHOLDS" Target="DEVICE_BITAXE_GAMMA_VOLT_THRESHOLDS" Default="0.95,1.1,1.3" Mode="env" Description="Voltage thresholds in V (comma-separated)" Type="Variable" Display="advanced" Required="false" Mask="false">0.95,1.1,1.3</Config>
+  <Config Name="DEVICE_BITAXE_GAMMA_VR_TEMP_THRESHOLDS" Target="DEVICE_BITAXE_GAMMA_VR_TEMP_THRESHOLDS" Default="65,75,80" Mode="env" Description="VR temperature thresholds in °C (comma-separated)" Type="Variable" Display="advanced" Required="false" Mask="false">65,75,80</Config>
+  <Config Name="DEVICE_NERDAXE_IP" Target="DEVICE_NERDAXE_IP" Default="" Mode="env" Description="IP address of NerdAxe device" Type="Variable" Display="always" Required="false" Mask="false" />
+  <Config Name="DEVICE_NERDAXE_TEMP_THRESHOLDS" Target="DEVICE_NERDAXE_TEMP_THRESHOLDS" Default="60,65,70" Mode="env" Description="Temperature thresholds in °C (comma-separated)" Type="Variable" Display="advanced" Required="false" Mask="false">60,65,70</Config>
+  <Config Name="DEVICE_NERDAXE_FAN_THRESHOLDS" Target="DEVICE_NERDAXE_FAN_THRESHOLDS" Default="0,2000,3500,7500" Mode="env" Description="Fan speed thresholds in RPM (comma-separated)" Type="Variable" Display="advanced" Required="false" Mask="false">0,2000,3500,7500</Config>
+  <Config Name="DEVICE_NERDAXE_VOLT_THRESHOLDS" Target="DEVICE_NERDAXE_VOLT_THRESHOLDS" Default="0.95,1.1,1.3" Mode="env" Description="Voltage thresholds in V (comma-separated)" Type="Variable" Display="advanced" Required="false" Mask="false">0.95,1.1,1.3</Config>
+  <Config Name="DEVICE_NERDAXE_VR_TEMP_THRESHOLDS" Target="DEVICE_NERDAXE_VR_TEMP_THRESHOLDS" Default="65,75,80" Mode="env" Description="VR temperature thresholds in °C (comma-separated)" Type="Variable" Display="advanced" Required="false" Mask="false">65,75,80</Config>
+  <TailscaleStateDir />
+</Container>

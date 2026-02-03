@@ -43,6 +43,12 @@ TEMPLATE_CONFIGS = {
         "upstream_repo": "fgrfn/reddit-wsb-crawler",
         "docker_compose_url": "https://raw.githubusercontent.com/fgrfn/reddit-wsb-crawler/main/docker-compose.yml",
         "docker_image": "ghcr.io/fgrfn/reddit-wsb-crawler"
+    },
+    "BitaxeDiscordBot": {
+        "xml_path": "templates/BitaxeDiscordBot/my-BitaxeDiscordBot.xml",
+        "upstream_repo": "fgrfn/bitaxe-discord-status-bot",
+        "docker_compose_url": "https://raw.githubusercontent.com/fgrfn/bitaxe-discord-status-bot/main/docker-compose.yml",
+        "docker_image": "ghcr.io/fgrfn/bitaxe-discord-status-bot"
     }
 }
 
