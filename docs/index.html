@@ -242,11 +242,13 @@
       font-family: 'Courier New', monospace;
       font-size: 0.75em;
       overflow-x: hidden;
+      overflow-wrap: break-word;
+      word-break: break-all;
       color: #333;
       position: relative;
       line-height: 1.5;
       margin-bottom: 12px;
-      word-break: break-all;
+      min-height: 60px;
     }
     
     .code-box:last-child {
@@ -257,6 +259,7 @@
       display: block;
       margin-bottom: 8px;
       color: #667eea;
+      word-break: normal;
     }
     
     .code-box strong {
@@ -581,10 +584,11 @@ Features:
           <div class="code-box">
             <strong>Raw URL:</strong>
             https://raw.githubusercontent.com/fgrfn/unraid-templates/main/templates/blank-template.xml
-            
-            <strong style="margin-top: 12px;">wget Install (SSH/Terminal):</strong>
-            wget -P /boot/config/plugins/dockerMan/templates-user/ \<br>
-            &nbsp;&nbsp;https://raw.githubusercontent.com/fgrfn/unraid-templates/main/templates/blank-template.xml
+          </div>
+          
+          <div class="code-box">
+            <strong>wget Install (SSH/Terminal):</strong>
+            wget -P /boot/config/plugins/dockerMan/templates-user/ https://raw.githubusercontent.com/fgrfn/unraid-templates/main/templates/blank-template.xml
           </div>
         </div>
       </div>
