@@ -64,6 +64,19 @@ https://fgrfn.github.io/unraid-templates/templates/Netzbremse/my-Netzbremse.xml
 https://fgrfn.github.io/unraid-templates/templates/RedditWSBCrawler/my-RedditWSBCrawler.xml
 ```
 
+### ⛏️ BitAxe Discord Status Bot
+
+- **Description:** Real-time Discord monitoring for BitAxe & NerdAxe Bitcoin miners - tracks hashrate, temperature, power consumption & best difficulty with automatic alerts
+- **Template XML:** [`my-BitaxeDiscordBot.xml`](https://fgrfn.github.io/unraid-templates/templates/BitaxeDiscordBot/my-BitaxeDiscordBot.xml)
+- **Docker Image:** [`ghcr.io/fgrfn/bitaxe-discord-status-bot`](https://github.com/fgrfn/bitaxe-discord-status-bot)
+- **WebUI Port:** N/A (Discord bot)
+- **Project:** [fgrfn/bitaxe-discord-status-bot](https://github.com/fgrfn/bitaxe-discord-status-bot)
+
+**Quick Install:**
+```
+https://fgrfn.github.io/unraid-templates/templates/BitaxeDiscordBot/my-BitaxeDiscordBot.xml
+```
+
 ---
 
 ## 📝 Blank Template
@@ -130,6 +143,9 @@ wget -P /boot/config/plugins/dockerMan/templates-user/ https://raw.githubusercon
 # For Reddit WSB Crawler template:
 wget -P /boot/config/plugins/dockerMan/templates-user/ https://raw.githubusercontent.com/fgrfn/unraid-templates/main/templates/RedditWSBCrawler/my-RedditWSBCrawler.xml
 
+# For BitAxe Discord Status Bot template:
+wget -P /boot/config/plugins/dockerMan/templates-user/ https://raw.githubusercontent.com/fgrfn/unraid-templates/main/templates/BitaxeDiscordBot/my-BitaxeDiscordBot.xml
+
 # For blank template:
 wget -P /boot/config/plugins/dockerMan/templates-user/ https://raw.githubusercontent.com/fgrfn/unraid-templates/main/templates/blank-template.xml
 ```
@@ -152,6 +168,7 @@ Templates in this repository are **automatically updated daily** through a GitHu
 - [fgrfn/Scan2Target](https://github.com/fgrfn/Scan2Target)
 - [AKVorrat/netzbremse-measurement](https://github.com/AKVorrat/netzbremse-measurement)
 - [fgrfn/reddit-wsb-crawler](https://github.com/fgrfn/reddit-wsb-crawler)
+- [fgrfn/bitaxe-discord-status-bot](https://github.com/fgrfn/bitaxe-discord-status-bot)
 
 The workflow runs **daily at 2 AM UTC** and can also be triggered manually via [workflow_dispatch](https://github.com/fgrfn/unraid-templates/actions/workflows/update-templates.yml).
 
