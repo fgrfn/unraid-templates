@@ -138,10 +138,11 @@ def generate_template_card(template):
           <div class="code-box">
             <strong>Quick Install (Unraid GUI):</strong>
             {github_pages_url}
-            
-            <strong style="margin-top: 12px;">wget Install (SSH/Terminal):</strong>
-            wget -P /boot/config/plugins/dockerMan/templates-user/ \\<br>
-            &nbsp;&nbsp;{raw_url}
+          </div>
+          
+          <div class="code-box">
+            <strong>wget Install (SSH/Terminal):</strong>
+            wget -P /boot/config/plugins/dockerMan/templates-user/ {raw_url}
           </div>
         </div>
       </div>'''
@@ -170,8 +171,9 @@ def get_html_template():
     }
     
     .container {
-      max-width: 1200px;
+      max-width: 95%;
       margin: 0 auto;
+      padding: 0 20px;
     }
     
     header {
@@ -196,6 +198,31 @@ def get_html_template():
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
       gap: 25px;
+      align-items: stretch;
+    }
+    
+    @media (min-width: 1400px) {
+      .template-grid {
+        grid-template-columns: repeat(4, 1fr);
+      }
+    }
+    
+    @media (min-width: 1100px) and (max-width: 1399px) {
+      .template-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+    
+    @media (min-width: 768px) and (max-width: 1099px) {
+      .template-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+    
+    @media (max-width: 767px) {
+      .template-grid {
+        grid-template-columns: 1fr;
+      }
       margin-bottom: 40px;
     }
     
@@ -223,6 +250,7 @@ def get_html_template():
       flex-shrink: 0;
     }
     
+      min-height: 0;
     .template-icon {
       width: 60px;
       height: 60px;
@@ -234,7 +262,7 @@ def get_html_template():
     }
     
     .template-header h2 {
-      font-size: 1.6em;
+      font: 0 1 autoem;
       margin-bottom: 6px;
     }
     
@@ -266,7 +294,7 @@ def get_html_template():
     .template-info {
       background: #f8f9fa;
       border-radius: 10px;
-      padding: 15px;
+      padding: 15px;auto
       margin-bottom: 18px;
       flex-shrink: 0;
     }
@@ -391,18 +419,27 @@ def get_html_template():
       padding: 12px;
       font-family: 'Courier New', monospace;
       font-size: 0.75em;
-      overflow-x: auto;
+      overflow-x: hidden;
+      overflow-wrap: break-word;
+      word-break: break-all;
       color: #333;
       position: relative;
       line-height: 1.5;
-      flex: 1;
-      height: 100%;
+      margin-bottom: 12px;
+      min-height: 70px;
+      display: flex;
+      flex-direction: column;
+    }
+    
+    .code-box:last-child {
+      margin-bottom: 0;
     }
     
     .code-box strong {
       display: block;
       margin-bottom: 8px;
       color: #667eea;
+      word-break: normal;
     }
     
     footer {
