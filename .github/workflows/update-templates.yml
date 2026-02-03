@@ -1,0 +1,69 @@
+name: Update Templates
+
+on:
+  # Run daily at 2 AM UTC
+  schedule:
+    - cron: '0 2 * * *'
+  # Allow manual trigger
+  workflow_dispatch:
+
+jobs:
+  update-templates:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with: 
+          python-version: '3.11'
+          
+      - name: Install dependencies
+        run: |
+          pip install lxml pyyaml requests
+      
+      - name: Check for template updates
+        id: update_check
+        run: |
+          python scripts/update-templates.py
+          # Check if there are any changes
+          if git diff --quiet; then
+            echo "changes=false" >> $GITHUB_OUTPUT
+          else
+            echo "changes=true" >> $GITHUB_OUTPUT
+          fi
+      
+      - name: Validate updated templates
+        if: steps.update_check.outputs.changes == 'true'
+        run: |
+          python scripts/validate-templates.py
+      
+      - name: Update docs
+        if: steps.update_check.outputs.changes == 'true'
+        run: |
+          mkdir -p docs/templates
+          rsync -av --delete templates/ docs/templates/
+          python scripts/generate-index.py
+      
+      - name: Commit and push changes
+        if: steps.update_check.outputs.changes == 'true'
+        run: |
+          git config --global user.name 'github-actions[bot]'
+          git config --global user.email 'github-actions[bot]@users.noreply.github.com'
+          git add templates/ docs/
+          git commit -m "Auto-update templates from upstream [skip ci]"
+          git push
+      
+      - name: Create summary
+        if: steps.update_check.outputs.changes == 'true'
+        run: |
+          echo "### ✅ Templates Updated" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "Templates have been automatically updated from upstream repositories." >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "Changes:" >> $GITHUB_STEP_SUMMARY
+          git diff HEAD~1 --stat >> $GITHUB_STEP_SUMMARY
