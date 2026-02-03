@@ -254,11 +254,14 @@ def get_html_template():
     .template-icon {
       width: 60px;
       height: 60px;
+      max-width: 60px;
+      max-height: 60px;
       border-radius: 12px;
       margin-bottom: 12px;
       background: white;
       padding: 8px;
       box-shadow: 0 3px 10px rgba(0,0,0,0.15);
+      object-fit: contain;
     }
     
     .template-header h2 {
