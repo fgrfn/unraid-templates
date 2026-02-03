@@ -241,12 +241,22 @@
       padding: 12px;
       font-family: 'Courier New', monospace;
       font-size: 0.75em;
-      overflow-x: auto;
+      overflow-x: hidden;
       color: #333;
       position: relative;
       line-height: 1.5;
-      flex: 1;
-      height: 100%;
+      margin-bottom: 12px;
+      word-break: break-all;
+    }
+    
+    .code-box:last-child {
+      margin-bottom: 0;
+    }
+    
+    .code-box strong {
+      display: block;
+      margin-bottom: 8px;
+      color: #667eea;
     }
     
     .code-box strong {
@@ -346,10 +356,11 @@ Requires Reddit API credentials, NewsAPI key, and Discord ...
           <div class="code-box">
             <strong>Quick Install (Unraid GUI):</strong>
             https://fgrfn.github.io/unraid-templates/templates/RedditWSBCrawler/my-RedditWSBCrawler.xml
-            
-            <strong style="margin-top: 12px;">wget Install (SSH/Terminal):</strong>
-            wget -P /boot/config/plugins/dockerMan/templates-user/ \<br>
-            &nbsp;&nbsp;https://raw.githubusercontent.com/fgrfn/unraid-templates/main/templates/RedditWSBCrawler/my-RedditWSBCrawler.xml
+          </div>
+          
+          <div class="code-box">
+            <strong>wget Install (SSH/Terminal):</strong>
+            wget -P /boot/config/plugins/dockerMan/templates-user/ https://raw.githubusercontent.com/fgrfn/unraid-templates/main/templates/RedditWSBCrawler/my-RedditWSBCrawler.xml
           </div>
         </div>
       </div>
@@ -401,10 +412,11 @@ Features:
           <div class="code-box">
             <strong>Quick Install (Unraid GUI):</strong>
             https://fgrfn.github.io/unraid-templates/templates/Netzbremse/my-Netzbremse.xml
-            
-            <strong style="margin-top: 12px;">wget Install (SSH/Terminal):</strong>
-            wget -P /boot/config/plugins/dockerMan/templates-user/ \<br>
-            &nbsp;&nbsp;https://raw.githubusercontent.com/fgrfn/unraid-templates/main/templates/Netzbremse/my-Netzbremse.xml
+          </div>
+          
+          <div class="code-box">
+            <strong>wget Install (SSH/Terminal):</strong>
+            wget -P /boot/config/plugins/dockerMan/templates-user/ https://raw.githubusercontent.com/fgrfn/unraid-templates/main/templates/Netzbremse/my-Netzbremse.xml
           </div>
         </div>
       </div>
@@ -457,10 +469,11 @@ Features:
           <div class="code-box">
             <strong>Quick Install (Unraid GUI):</strong>
             https://fgrfn.github.io/unraid-templates/templates/Bambuddy/my-Bambuddy.xml
-            
-            <strong style="margin-top: 12px;">wget Install (SSH/Terminal):</strong>
-            wget -P /boot/config/plugins/dockerMan/templates-user/ \<br>
-            &nbsp;&nbsp;https://raw.githubusercontent.com/fgrfn/unraid-templates/main/templates/Bambuddy/my-Bambuddy.xml
+          </div>
+          
+          <div class="code-box">
+            <strong>wget Install (SSH/Terminal):</strong>
+            wget -P /boot/config/plugins/dockerMan/templates-user/ https://raw.githubusercontent.com/fgrfn/unraid-templates/main/templates/Bambuddy/my-Bambuddy.xml
           </div>
         </div>
       </div>
@@ -513,10 +526,11 @@ Features:
           <div class="code-box">
             <strong>Quick Install (Unraid GUI):</strong>
             https://fgrfn.github.io/unraid-templates/templates/Scan2Target/my-Scan2Target.xml
-            
-            <strong style="margin-top: 12px;">wget Install (SSH/Terminal):</strong>
-            wget -P /boot/config/plugins/dockerMan/templates-user/ \<br>
-            &nbsp;&nbsp;https://raw.githubusercontent.com/fgrfn/unraid-templates/main/templates/Scan2Target/my-Scan2Target.xml
+          </div>
+          
+          <div class="code-box">
+            <strong>wget Install (SSH/Terminal):</strong>
+            wget -P /boot/config/plugins/dockerMan/templates-user/ https://raw.githubusercontent.com/fgrfn/unraid-templates/main/templates/Scan2Target/my-Scan2Target.xml
           </div>
         </div>
       </div>
