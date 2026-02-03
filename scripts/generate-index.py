@@ -252,10 +252,10 @@ def get_html_template():
     
       min-height: 0;
     .template-icon {
-      width: 60px;
-      height: 60px;
-      max-width: 60px;
-      max-height: 60px;
+      width: 80px;
+      height: 80px;
+      max-width: 80px;
+      max-height: 80px;
       border-radius: 12px;
       margin-bottom: 12px;
       background: white;
