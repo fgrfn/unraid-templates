@@ -82,12 +82,12 @@ def generate_template_card(template):
         # Use provided icon with fallback
         project_name_encoded = meta['name'].replace(' ', '+')
         fallback_icon = f'https://api.dicebear.com/7.x/initials/svg?seed={project_name_encoded}&backgroundColor=667eea,764ba2&textColor=ffffff'
-        icon_html = f'<img src="{icon_url}" alt="{meta["name"]}" class="template-icon" onerror="this.onerror=null; this.src=\'{fallback_icon}\';">'
+        icon_html = f'<img src="{icon_url}" alt="{meta["name"]}" class="template-icon" style="width: 36px !important; height: 36px !important; max-width: 36px !important; max-height: 36px !important; object-fit: contain;" onerror="this.onerror=null; this.src=\'{fallback_icon}\';">'
     else:
         # Generate avatar based on project name
         project_name_encoded = meta['name'].replace(' ', '+')
         avatar_url = f'https://api.dicebear.com/7.x/initials/svg?seed={project_name_encoded}&backgroundColor=667eea,764ba2&textColor=ffffff'
-        icon_html = f'<img src="{avatar_url}" alt="{meta["name"]}" class="template-icon">'
+        icon_html = f'<img src="{avatar_url}" alt="{meta["name"]}" class="template-icon" style="width: 36px !important; height: 36px !important; max-width: 36px !important; max-height: 36px !important; object-fit: contain;">'
     
     project_button = ''
     if meta['project']:
