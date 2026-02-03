@@ -134,6 +134,31 @@ Then refresh the Docker page in Unraid to see the new template.
 
 ---
 
+## 🔄 Automatic Template Updates
+
+Templates in this repository are **automatically updated daily** through a GitHub Actions workflow that:
+
+- 📡 Checks upstream project repositories for changes (docker-compose.yml)
+- 🔍 Detects new environment variables, ports, and volumes
+- ✨ Automatically adds missing configuration to templates
+- ✅ Validates and commits changes back to the repository
+
+**Monitored Projects:**
+- [maziggy/bambuddy](https://github.com/maziggy/bambuddy)
+- [fgrfn/Scan2Target](https://github.com/fgrfn/Scan2Target)
+- [AKVorrat/netzbremse-measurement](https://github.com/AKVorrat/netzbremse-measurement)
+- [fgrfn/reddit-wsb-crawler](https://github.com/fgrfn/reddit-wsb-crawler)
+
+The workflow runs **daily at 2 AM UTC** and can also be triggered manually via [workflow_dispatch](https://github.com/fgrfn/unraid-templates/actions/workflows/update-templates.yml).
+
+**Script Usage:**
+```bash
+# Check for template updates manually
+python scripts/update-templates.py
+```
+
+---
+
 ## ✍️ Contributing
 
 Want to add or improve a template?  
