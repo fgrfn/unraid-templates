@@ -252,17 +252,17 @@ def get_html_template():
     
       min-height: 0;
     .template-icon {
-      width: 48px;
-      height: 48px;
-      min-width: 48px;
-      min-height: 48px;
-      max-width: 48px;
-      max-height: 48px;
-      border-radius: 8px;
-      margin-bottom: 12px;
+      width: 36px;
+      height: 36px;
+      min-width: 36px;
+      min-height: 36px;
+      max-width: 36px;
+      max-height: 36px;
+      border-radius: 6px;
+      margin-bottom: 10px;
       background: white;
-      padding: 4px;
-      box-shadow: 0 3px 10px rgba(0,0,0,0.15);
+      padding: 3px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.12);
       object-fit: contain;
       object-position: center;
       display: block;
