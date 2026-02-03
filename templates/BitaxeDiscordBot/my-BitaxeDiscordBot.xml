@@ -10,9 +10,9 @@
   <Support>https://github.com/fgrfn/bitaxe-discord-status-bot/issues</Support>
   <Project>https://github.com/fgrfn/bitaxe-discord-status-bot</Project>
   <ReadMe />
-  <Overview>Real-Time Discord Monitoring für BitAxe &amp; NerdAxe Bitcoin Miner. Überwache Hashrate, Temperatur, Power &amp; Best-Difficulty mit automatischen Alerts bei kritischen Events.
+  <Overview>Real-time Discord monitoring for BitAxe &amp; NerdAxe Bitcoin miners. Monitor hashrate, temperature, power consumption &amp; best difficulty with automatic alerts for critical events.
 
-Supports 80+ sensors from BitAxe &amp; NerdAxe devices with real-time power consumption, temperature, hashrate metrics, mining statistics, and smart alert system.</Overview>
+Supports 80+ sensors from BitAxe &amp; NerdAxe devices with real-time power consumption, temperature, hashrate metrics, mining statistics, and smart alert system. Features include temperature alerts, offline detection, smart cooldown to avoid alert spam, and best-difficulty tracking.</Overview>
   <Category>Tools:</Category>
   <WebUI />
   <TemplateURL />
