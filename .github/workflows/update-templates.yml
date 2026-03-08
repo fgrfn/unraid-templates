@@ -19,10 +19,8 @@ jobs:
     
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v4
         
       - name: Set up Python
-        uses: actions/setup-python@v5
         with: 
           python-version: '3.11'
           
@@ -70,4 +68,5 @@ jobs:
           echo "Templates have been automatically updated from upstream repositories." >> $GITHUB_STEP_SUMMARY
           echo "" >> $GITHUB_STEP_SUMMARY
           echo "Changes:" >> $GITHUB_STEP_SUMMARY
+          git diff HEAD~1 --stat >> $GITHUB_STEP_SUMMARY
           git diff HEAD~1 --stat >> $GITHUB_STEP_SUMMARY

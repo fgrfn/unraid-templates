@@ -16,10 +16,8 @@ jobs:
     
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v4
         
       - name: Set up Python
-        uses: actions/setup-python@v5
         with: 
           python-version: '3.11'
           
@@ -39,4 +37,5 @@ jobs:
           echo "All Unraid templates passed validation checks." >> $GITHUB_STEP_SUMMARY
           echo "" >> $GITHUB_STEP_SUMMARY
           echo "**Validated files:**" >> $GITHUB_STEP_SUMMARY
+          find templates -name '*.xml' -type f | wc -l | xargs -I {} echo "- {} template(s)" >> $GITHUB_STEP_SUMMARY
           find templates -name '*.xml' -type f | wc -l | xargs -I {} echo "- {} template(s)" >> $GITHUB_STEP_SUMMARY
