@@ -21,8 +21,10 @@ jobs:
     
     steps:
       - name: Checkout repository
+        uses: actions/checkout@v4
         
       - name: Set up Python
+        uses: actions/setup-python@v5
         with: 
           python-version: '3.11'
           
@@ -60,5 +62,4 @@ jobs:
           echo "🔗 [View GitHub Pages](https://fgrfn.github.io/unraid-templates/)" >> $GITHUB_STEP_SUMMARY
           echo "" >> $GITHUB_STEP_SUMMARY
           echo "**Changes:**" >> $GITHUB_STEP_SUMMARY
-          git diff HEAD~1 --name-only | grep '\.xml$' | sed 's/^/- /' >> $GITHUB_STEP_SUMMARY || echo "- No template changes" >> $GITHUB_STEP_SUMMARY
           git diff HEAD~1 --name-only | grep '\.xml$' | sed 's/^/- /' >> $GITHUB_STEP_SUMMARY || echo "- No template changes" >> $GITHUB_STEP_SUMMARY
