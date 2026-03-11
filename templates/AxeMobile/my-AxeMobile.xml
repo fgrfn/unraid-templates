@@ -24,5 +24,6 @@
   <Requires />
   <Config Name="WebUI Port" Target="80" Default="3847" Mode="tcp" Description="Port for the Web Interface" Type="Port" Display="always" Required="true" Mask="false">3847</Config>
   <Config Name="NODE_ENV" Target="NODE_ENV" Default="production" Mode="env" Description="Node environment (runtime is nginx serving static files; this value does not affect behavior)" Type="Variable" Display="advanced" Required="false" Mask="false">production</Config>
+  <Config Name="AXEPOOL_API_URL" Target="AXEPOOL_API_URL" Default="http://axepool-stratum:3334" Mode="env" Description="URL of the AxePool Stratum stats API. Default assumes the companion container is named &quot;axepool-stratum&quot; on the same Unraid bridge network. Adjust if your AxePoolStratum container has a different name or IP." Type="Variable" Display="always" Required="false" Mask="false">http://axepool-stratum:3334</Config>
   <TailscaleStateDir />
 </Container>
