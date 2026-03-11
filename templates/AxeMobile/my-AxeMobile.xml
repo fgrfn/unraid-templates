@@ -1,0 +1,28 @@
+<?xml version='1.0' encoding='utf-8'?>
+<Container version="2">
+  <Name>AxeMobile</Name>
+  <Repository>ghcr.io/issasoridev/axemobile:latest</Repository>
+  <Registry>https://github.com/IsSasoriDev/AxeMobile</Registry>
+  <Network>bridge</Network>
+  <MyIP />
+  <Shell>bash</Shell>
+  <Privileged>false</Privileged>
+  <Support>https://github.com/IsSasoriDev/AxeMobile/issues</Support>
+  <Project>https://github.com/IsSasoriDev/AxeMobile</Project>
+  <ReadMe />
+  <Overview>AxeMobile is a comprehensive dashboard for monitoring and managing your Bitaxe and NerdAxe Bitcoin miners. Includes real-time hashrate, temperature and power monitoring, multi-miner support with network scanning, performance presets (Eco, Balanced, Performance, Max OC), firmware update support, Bitcoin network statistics, and a mining calculator.</Overview>
+  <Category>Tools:</Category>
+  <WebUI>http://[IP]:[PORT:3847]</WebUI>
+  <TemplateURL />
+  <Icon>https://raw.githubusercontent.com/IsSasoriDev/AxeMobile/main/axemobile-main/icon.png</Icon>
+  <ExtraParams>--restart=unless-stopped</ExtraParams>
+  <PostArgs />
+  <CPUset />
+  <DateInstalled />
+  <DonateText />
+  <DonateLink />
+  <Requires />
+  <Config Name="WebUI Port" Target="80" Default="3847" Mode="tcp" Description="Port for the Web Interface" Type="Port" Display="always" Required="true" Mask="false">3847</Config>
+  <Config Name="NODE_ENV" Target="NODE_ENV" Default="production" Mode="env" Description="Node environment (runtime is nginx serving static files; this value does not affect behavior)" Type="Variable" Display="advanced" Required="false" Mask="false">production</Config>
+  <TailscaleStateDir />
+</Container>
