@@ -1,0 +1,34 @@
+<?xml version='1.0' encoding='utf-8'?>
+<Container version="2">
+  <Name>AxePoolStratum</Name>
+  <Repository>ghcr.io/issasoridev/axepool-stratum:latest</Repository>
+  <Registry>https://github.com/IsSasoriDev/AxeMobile</Registry>
+  <Network>bridge</Network>
+  <MyIP />
+  <Shell>bash</Shell>
+  <Privileged>false</Privileged>
+  <Support>https://github.com/IsSasoriDev/AxeMobile/issues</Support>
+  <Project>https://github.com/IsSasoriDev/AxeMobile</Project>
+  <ReadMe />
+  <Overview>AxePool Stratum is the companion mining pool stratum server for AxeMobile. It handles the stratum protocol communication between your Bitaxe/NerdAxe miners and your Bitcoin node, and exposes mining statistics consumed by the AxeMobile dashboard. Run this alongside the AxeMobile container.</Overview>
+  <Category>Tools:</Category>
+  <WebUI />
+  <TemplateURL />
+  <Icon>https://raw.githubusercontent.com/IsSasoriDev/AxeMobile/main/axemobile-main/icon.png</Icon>
+  <ExtraParams>--restart=unless-stopped</ExtraParams>
+  <PostArgs />
+  <CPUset />
+  <DateInstalled />
+  <DonateText />
+  <DonateLink />
+  <Requires />
+  <Config Name="Stratum Port" Target="3333" Default="3333" Mode="tcp" Description="Stratum port for miners to connect to" Type="Port" Display="always" Required="true" Mask="false">3333</Config>
+  <Config Name="Data Volume" Target="/data/ckpool" Default="/mnt/user/appdata/axemobile/axepool" Mode="rw" Description="Persistent data directory for ckpool" Type="Path" Display="always" Required="true" Mask="false">/mnt/user/appdata/axemobile/axepool</Config>
+  <Config Name="BITCOIN_RPC_HOST" Target="BITCOIN_RPC_HOST" Default="" Mode="env" Description="IP address or hostname of your Bitcoin node" Type="Variable" Display="always" Required="true" Mask="false" />
+  <Config Name="BITCOIN_RPC_PORT" Target="BITCOIN_RPC_PORT" Default="8332" Mode="env" Description="Bitcoin RPC port" Type="Variable" Display="always" Required="false" Mask="false">8332</Config>
+  <Config Name="BITCOIN_RPC_USER" Target="BITCOIN_RPC_USER" Default="" Mode="env" Description="Bitcoin RPC username" Type="Variable" Display="always" Required="true" Mask="false" />
+  <Config Name="BITCOIN_RPC_PASS" Target="BITCOIN_RPC_PASS" Default="" Mode="env" Description="Bitcoin RPC password" Type="Variable" Display="always" Required="true" Mask="true" />
+  <Config Name="POOL_ADDRESS" Target="POOL_ADDRESS" Default="" Mode="env" Description="Bitcoin address to receive mining rewards" Type="Variable" Display="always" Required="false" Mask="false" />
+  <Config Name="STATS_PORT" Target="STATS_PORT" Default="3334" Mode="env" Description="Internal stats API port (consumed by AxeMobile; must match AXEPOOL_API_URL in the AxeMobile container)" Type="Variable" Display="advanced" Required="false" Mask="false">3334</Config>
+  <TailscaleStateDir />
+</Container>
