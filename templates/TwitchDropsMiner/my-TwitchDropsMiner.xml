@@ -1,0 +1,32 @@
+<?xml version='1.0' encoding='utf-8'?>
+<Container version="2">
+  <Name>TwitchDropsMiner</Name>
+  <Repository>ghcr.io/fgrfn/twitch-drops-miner:latest</Repository>
+  <Registry>https://github.com/fgrfn/TwitchDropsMiner</Registry>
+  <Network>bridge</Network>
+  <MyIP />
+  <Shell>bash</Shell>
+  <Privileged>false</Privileged>
+  <Support>https://github.com/fgrfn/TwitchDropsMiner/issues</Support>
+  <Project>https://github.com/fgrfn/TwitchDropsMiner</Project>
+  <ReadMe />
+  <Overview>Twitch Drops Miner automatically farms Twitch drops without ever opening a stream. No more tab juggling, channel switching, or missing rewards — just set it, forget it, and collect.
+
+Features: streamless mining (save bandwidth), automatic campaign discovery, auto channel switching, optional auto-add of newly eligible games, Discord webhook notifications, persistent OAuth login via cookies, and a simple web UI accessible from your browser.</Overview>
+  <Category>Tools:</Category>
+  <WebUI>http://[IP]:[PORT:8080]</WebUI>
+  <TemplateURL />
+  <Icon>https://raw.githubusercontent.com/fgrfn/TwitchDropsMiner/main/icons/pickaxe.ico</Icon>
+  <ExtraParams>--restart=unless-stopped</ExtraParams>
+  <PostArgs />
+  <CPUset />
+  <DateInstalled />
+  <DonateText />
+  <DonateLink />
+  <Requires />
+  <Config Name="WebUI Port" Target="8080" Default="8080" Mode="tcp" Description="Port for the Web Interface" Type="Port" Display="always" Required="true" Mask="false">8080</Config>
+  <Config Name="Data Volume" Target="/app/data" Default="/mnt/user/appdata/twitch-drops-miner/data" Mode="rw" Description="Persistent data directory (OAuth cookies, settings)" Type="Path" Display="always" Required="true" Mask="false">/mnt/user/appdata/twitch-drops-miner/data</Config>
+  <Config Name="Logs Volume" Target="/app/logs" Default="/mnt/user/appdata/twitch-drops-miner/logs" Mode="rw" Description="Log files (optional)" Type="Path" Display="always" Required="false" Mask="false">/mnt/user/appdata/twitch-drops-miner/logs</Config>
+  <Config Name="TZ" Target="TZ" Default="UTC" Mode="env" Description="Timezone (e.g. UTC, Europe/Berlin, America/New_York)" Type="Variable" Display="always" Required="false" Mask="false">UTC</Config>
+  <TailscaleStateDir />
+</Container>
