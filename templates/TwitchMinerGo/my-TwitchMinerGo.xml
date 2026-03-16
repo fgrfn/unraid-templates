@@ -1,0 +1,37 @@
+<?xml version='1.0' encoding='utf-8'?>
+<Container version="2">
+  <Name>TwitchMinerGo</Name>
+  <Repository>ghcr.io/guliveer/twitch-miner-go:latest</Repository>
+  <Registry>https://github.com/Guliveer/twitch-miner-go</Registry>
+  <Network>bridge</Network>
+  <MyIP />
+  <Shell>sh</Shell>
+  <Privileged>false</Privileged>
+  <Support>https://github.com/Guliveer/twitch-miner-go/issues</Support>
+  <Project>https://github.com/Guliveer/twitch-miner-go</Project>
+  <ReadMe />
+  <Overview>A high-performance Go rewrite of the Twitch Channel Points Miner v2. Mines channel points, claims bonuses, places predictions, joins raids, claims drops, and more — all with a fraction of the resource usage (~5–15 MB RAM vs ~80–120 MB for the Python version).
+
+Features: multi-account support, channel points mining, predictions with configurable strategies (SMART, HIGH_ODDS, MOST_VOTED, etc.), drops, raids, community moments, category watcher, notifications (Telegram, Discord, Webhook, Matrix, Pushover, Gotify), and a built-in analytics web UI.
+
+Configuration: place one YAML file per account in the configs volume. The filename (without extension) becomes the Twitch username. Auth tokens and notification secrets are injected via environment variables.</Overview>
+  <Category>Tools:</Category>
+  <WebUI>http://[IP]:[PORT:8080]</WebUI>
+  <TemplateURL />
+  <Icon>https://avatars.githubusercontent.com/Guliveer</Icon>
+  <ExtraParams>--restart=unless-stopped</ExtraParams>
+  <PostArgs />
+  <CPUset />
+  <DateInstalled />
+  <DonateText />
+  <DonateLink />
+  <Requires />
+  <Config Name="WebUI Port" Target="8080" Default="8080" Mode="tcp" Description="Port for the analytics web UI and health endpoint" Type="Port" Display="always" Required="true" Mask="false">8080</Config>
+  <Config Name="Configs Volume" Target="/configs" Default="/mnt/user/appdata/twitch-miner-go/configs" Mode="rw" Description="Directory for per-account YAML config files (filename without extension = Twitch username)" Type="Path" Display="always" Required="true" Mask="false">/mnt/user/appdata/twitch-miner-go/configs</Config>
+  <Config Name="Data Volume" Target="/data" Default="/mnt/user/appdata/twitch-miner-go/data" Mode="rw" Description="Persistent data directory for cookies and state (set DATA_DIR to /data)" Type="Path" Display="always" Required="true" Mask="false">/mnt/user/appdata/twitch-miner-go/data</Config>
+  <Config Name="DATA_DIR" Target="DATA_DIR" Default="/data" Mode="env" Description="Path inside the container where cookies and state are stored" Type="Variable" Display="always" Required="false" Mask="false">/data</Config>
+  <Config Name="PORT" Target="PORT" Default="8080" Mode="env" Description="HTTP server port for the analytics web UI and health endpoint" Type="Variable" Display="advanced" Required="false" Mask="false">8080</Config>
+  <Config Name="LOG_LEVEL" Target="LOG_LEVEL" Default="INFO" Mode="env" Description="Log level: DEBUG, INFO, WARN, ERROR" Type="Variable" Display="advanced" Required="false" Mask="false">INFO</Config>
+  <Config Name="TZ" Target="TZ" Default="UTC" Mode="env" Description="Timezone (e.g. UTC, Europe/Berlin, America/New_York)" Type="Variable" Display="always" Required="false" Mask="false">UTC</Config>
+  <TailscaleStateDir />
+</Container>
