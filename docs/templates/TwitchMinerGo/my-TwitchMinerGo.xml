@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='utf-8'?>
 <Container version="2">
   <Name>TwitchMinerGo</Name>
-  <Repository>ghcr.io/guliveer/twitch-miner-go:latest</Repository>
+  <Repository>ghcr.io/fgrfn/twitch-miner-go:latest</Repository>
   <Registry>https://github.com/Guliveer/twitch-miner-go</Registry>
   <Network>bridge</Network>
   <MyIP />
