@@ -19,7 +19,7 @@ Configuration: place one YAML file per account in the configs volume. The filena
   <WebUI>http://[IP]:[PORT:8080]</WebUI>
   <TemplateURL />
   <Icon>https://avatars.githubusercontent.com/Guliveer</Icon>
-  <ExtraParams>--restart=unless-stopped</ExtraParams>
+  <ExtraParams></ExtraParams>
   <PostArgs />
   <CPUset />
   <DateInstalled />
