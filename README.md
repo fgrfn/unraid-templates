@@ -77,6 +77,19 @@ https://fgrfn.github.io/unraid-templates/templates/RedditWSBCrawler/my-RedditWSB
 https://fgrfn.github.io/unraid-templates/templates/BitaxeDiscordBot/my-BitaxeDiscordBot.xml
 ```
 
+### 🎮 Twitch Miner Go
+
+- **Description:** High-performance Go rewrite of Twitch Channel Points Miner v2 — mines channel points, claims bonuses, places predictions, joins raids, and claims drops with a fraction of the resource usage
+- **Template XML:** [`my-TwitchMinerGo.xml`](https://fgrfn.github.io/unraid-templates/templates/TwitchMinerGo/my-TwitchMinerGo.xml)
+- **Docker Image:** [`ghcr.io/guliveer/twitch-miner-go`](https://github.com/Guliveer/twitch-miner-go)
+- **WebUI Port:** 8080
+- **Original Project:** [Guliveer/twitch-miner-go](https://github.com/Guliveer/twitch-miner-go)
+
+**Quick Install:**
+```
+https://fgrfn.github.io/unraid-templates/templates/TwitchMinerGo/my-TwitchMinerGo.xml
+```
+
 ---
 
 ## 📝 Blank Template
@@ -146,6 +159,9 @@ wget -P /boot/config/plugins/dockerMan/templates-user/ https://raw.githubusercon
 # For BitAxe Discord Status Bot template:
 wget -P /boot/config/plugins/dockerMan/templates-user/ https://raw.githubusercontent.com/fgrfn/unraid-templates/main/templates/BitaxeDiscordBot/my-BitaxeDiscordBot.xml
 
+# For Twitch Miner Go template:
+wget -P /boot/config/plugins/dockerMan/templates-user/ https://raw.githubusercontent.com/fgrfn/unraid-templates/main/templates/TwitchMinerGo/my-TwitchMinerGo.xml
+
 # For blank template:
 wget -P /boot/config/plugins/dockerMan/templates-user/ https://raw.githubusercontent.com/fgrfn/unraid-templates/main/templates/blank-template.xml
 ```
@@ -169,6 +185,7 @@ Templates in this repository are **automatically updated daily** through a GitHu
 - [AKVorrat/netzbremse-measurement](https://github.com/AKVorrat/netzbremse-measurement)
 - [fgrfn/reddit-wsb-crawler](https://github.com/fgrfn/reddit-wsb-crawler)
 - [fgrfn/bitaxe-discord-status-bot](https://github.com/fgrfn/bitaxe-discord-status-bot)
+- [Guliveer/twitch-miner-go](https://github.com/Guliveer/twitch-miner-go)
 
 The workflow runs **daily at 2 AM UTC** and can also be triggered manually via [workflow_dispatch](https://github.com/fgrfn/unraid-templates/actions/workflows/update-templates.yml).
 
