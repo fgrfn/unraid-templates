@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='utf-8'?>
 <Container version="2">
   <Name>Rackula</Name>
-  <Repository>ghcr.io/rackulalives/rackula:latest</Repository>
+  <Repository>ghcr.io/rackulalives/rackula:persist</Repository>
   <Registry>https://github.com/RackulaLives/Rackula</Registry>
   <Network>bridge</Network>
   <MyIP />
@@ -10,7 +10,7 @@
   <Support>https://github.com/RackulaLives/Rackula/issues</Support>
   <Project>https://github.com/RackulaLives/Rackula</Project>
   <ReadMe />
-  <Overview>Drag and drop rack visualizer for your homelab. Plan your rack layout by dragging devices in, moving them around, and exporting the result. Real device images, PNG/PDF/SVG export, and QR code sharing — your layout lives in a URL. Runs entirely in your browser.</Overview>
+  <Overview>Drag and drop rack visualizer for your homelab. Plan your rack layout by dragging devices in, moving them around, and exporting the result. Real device images, PNG/PDF/SVG export, and QR code sharing — your layout lives in a URL. Supports persistent storage via the Rackula API sidecar container (my-Rackula-API). Install and start the Rackula-API container first, then start this container.</Overview>
   <Category>Tools:</Category>
   <WebUI>http://[IP]:[PORT:8080]</WebUI>
   <TemplateURL />
@@ -21,8 +21,10 @@
   <DateInstalled />
   <DonateText />
   <DonateLink />
-  <Requires />
+  <Requires>Rackula-API container must be running first</Requires>
   <Config Name="WebUI Port" Target="8080" Default="8080" Mode="tcp" Description="Port for the Web Interface" Type="Port" Display="always" Required="true" Mask="false">8080</Config>
-  <Config Name="TZ" Target="TZ" Default="UTC" Mode="env" Description="Timezone (e.g. UTC, Europe/Berlin, America/New_York)" Type="Variable" Display="always" Required="false" Mask="false">UTC</Config>
+  <Config Name="API_HOST" Target="API_HOST" Default="rackula-api" Mode="env" Description="Hostname of the Rackula API container (must match the container name of the Rackula-API container)" Type="Variable" Display="always" Required="true" Mask="false">rackula-api</Config>
+  <Config Name="API_PORT" Target="API_PORT" Default="3001" Mode="env" Description="Port the Rackula API listens on (must match RACKULA_API_PORT in the Rackula-API container)" Type="Variable" Display="always" Required="true" Mask="false">3001</Config>
+  <Config Name="API_WRITE_TOKEN" Target="API_WRITE_TOKEN" Default="" Mode="env" Description="Optional secret token to protect API write (PUT/DELETE) routes. Must match RACKULA_API_WRITE_TOKEN in the Rackula-API container." Type="Variable" Display="advanced" Required="false" Mask="true" />
   <TailscaleStateDir />
 </Container>
