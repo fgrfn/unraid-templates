@@ -1,0 +1,28 @@
+<?xml version='1.0' encoding='utf-8'?>
+<Container version="2">
+  <Name>Rackula</Name>
+  <Repository>ghcr.io/rackulalives/rackula:latest</Repository>
+  <Registry>https://github.com/RackulaLives/Rackula</Registry>
+  <Network>bridge</Network>
+  <MyIP />
+  <Shell>bash</Shell>
+  <Privileged>false</Privileged>
+  <Support>https://github.com/RackulaLives/Rackula/issues</Support>
+  <Project>https://github.com/RackulaLives/Rackula</Project>
+  <ReadMe />
+  <Overview>Drag and drop rack visualizer for your homelab. Plan your rack layout by dragging devices in, moving them around, and exporting the result. Real device images, PNG/PDF/SVG export, and QR code sharing — your layout lives in a URL. Runs entirely in your browser.</Overview>
+  <Category>Tools:</Category>
+  <WebUI>http://[IP]:[PORT:8080]</WebUI>
+  <TemplateURL />
+  <Icon>https://raw.githubusercontent.com/RackulaLives/Rackula/main/assets/favicon.svg</Icon>
+  <ExtraParams>--restart=unless-stopped</ExtraParams>
+  <PostArgs />
+  <CPUset />
+  <DateInstalled />
+  <DonateText />
+  <DonateLink />
+  <Requires />
+  <Config Name="WebUI Port" Target="8080" Default="8080" Mode="tcp" Description="Port for the Web Interface" Type="Port" Display="always" Required="true" Mask="false">8080</Config>
+  <Config Name="TZ" Target="TZ" Default="UTC" Mode="env" Description="Timezone (e.g. UTC, Europe/Berlin, America/New_York)" Type="Variable" Display="always" Required="false" Mask="false">UTC</Config>
+  <TailscaleStateDir />
+</Container>
