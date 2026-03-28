@@ -1,0 +1,42 @@
+<?xml version='1.0' encoding='utf-8'?>
+<Container version="2">
+  <Name>Homelable-Backend</Name>
+  <Repository>ghcr.io/pouzor/homelable-backend:latest</Repository>
+  <Registry>https://github.com/Pouzor/homelable</Registry>
+  <Network>homelable</Network>
+  <MyIP />
+  <Shell>bash</Shell>
+  <Privileged>false</Privileged>
+  <Support>https://github.com/Pouzor/homelable/issues</Support>
+  <Project>https://github.com/Pouzor/homelable</Project>
+  <ReadMe>https://github.com/Pouzor/homelable/blob/main/INSTALLATION.md</ReadMe>
+  <Overview>Backend for Homelable — a self-hosted infrastructure visualization solution. Provides network scanning (nmap), a healthcheck system (ping/TCP/HTTP/SSH/Prometheus), and a REST API for the frontend.
+
+Install this container first, then install Homelable-Frontend. Both containers must use the same custom Docker network (homelable).
+
+Default login: admin / admin — change AUTH_PASSWORD_HASH before exposing on your network.</Overview>
+  <Category>Tools: HomeAutomation:</Category>
+  <WebUI />
+  <TemplateURL />
+  <Icon>https://raw.githubusercontent.com/Pouzor/homelable/main/frontend/public/favicon.svg</Icon>
+  <ExtraParams>--restart=unless-stopped --cap-add=NET_RAW</ExtraParams>
+  <PostArgs />
+  <CPUset />
+  <DateInstalled />
+  <DonateText />
+  <DonateLink />
+  <Requires>A custom Docker network named "homelable" must exist before starting this container. Create it with: docker network create homelable</Requires>
+  <!-- Volume -->
+  <Config Name="Data" Target="/app/data" Default="/mnt/user/appdata/homelable/backend" Mode="rw" Description="Persistent storage for the Homelable database (SQLite)" Type="Path" Display="always" Required="true" Mask="false">/mnt/user/appdata/homelable/backend</Config>
+  <!-- Required environment variables -->
+  <Config Name="SECRET_KEY" Target="SECRET_KEY" Default="" Mode="env" Description="Secret key for JWT token signing. Generate a random string (32+ characters)." Type="Variable" Display="always" Required="true" Mask="true" />
+  <Config Name="AUTH_USERNAME" Target="AUTH_USERNAME" Default="admin" Mode="env" Description="Username for the Homelable web interface." Type="Variable" Display="always" Required="true" Mask="false">admin</Config>
+  <Config Name="AUTH_PASSWORD_HASH" Target="AUTH_PASSWORD_HASH" Default="$2b$12$RtMbyw17l4N5UGzeXMNAWuzCaVV.XFBY7ZetWheQhxcBDcxahapkG" Mode="env" Description="Bcrypt hash of the admin password (default: admin). Generate with: docker exec homelable-backend python -c &quot;from passlib.context import CryptContext; print(CryptContext(schemes=[&apos;bcrypt&apos;]).hash(&apos;yourpassword&apos;))&quot;" Type="Variable" Display="always" Required="true" Mask="true">$2b$12$RtMbyw17l4N5UGzeXMNAWuzCaVV.XFBY7ZetWheQhxcBDcxahapkG</Config>
+  <!-- Optional environment variables -->
+  <Config Name="SQLITE_PATH" Target="SQLITE_PATH" Default="/app/data/homelab.db" Mode="env" Description="Path to the SQLite database file inside the container." Type="Variable" Display="advanced" Required="false" Mask="false">/app/data/homelab.db</Config>
+  <Config Name="CORS_ORIGINS" Target="CORS_ORIGINS" Default='["http://localhost:3000"]' Mode="env" Description="Allowed CORS origins for the frontend. Set to the URL you use to access Homelable in your browser, e.g. [&quot;http://192.168.1.10:3000&quot;]. Use comma-separated entries for multiple origins." Type="Variable" Display="always" Required="false" Mask="false">["http://localhost:3000"]</Config>
+  <Config Name="SCANNER_RANGES" Target="SCANNER_RANGES" Default='["192.168.1.0/24"]' Mode="env" Description="JSON array of CIDR ranges to scan for network devices." Type="Variable" Display="always" Required="false" Mask="false">["192.168.1.0/24"]</Config>
+  <Config Name="STATUS_CHECKER_INTERVAL" Target="STATUS_CHECKER_INTERVAL" Default="60" Mode="env" Description="How often (in seconds) to check node status." Type="Variable" Display="advanced" Required="false" Mask="false">60</Config>
+  <Config Name="TZ" Target="TZ" Default="Europe/Berlin" Mode="env" Description="Timezone (e.g. Europe/Berlin, America/New_York, UTC)" Type="Variable" Display="always" Required="false" Mask="false">Europe/Berlin</Config>
+  <TailscaleStateDir />
+</Container>

@@ -1,0 +1,33 @@
+<?xml version='1.0' encoding='utf-8'?>
+<Container version="2">
+  <Name>Homelable-Frontend</Name>
+  <Repository>ghcr.io/pouzor/homelable-frontend:latest</Repository>
+  <Registry>https://github.com/Pouzor/homelable</Registry>
+  <Network>homelable</Network>
+  <MyIP />
+  <Shell>sh</Shell>
+  <Privileged>false</Privileged>
+  <Support>https://github.com/Pouzor/homelable/issues</Support>
+  <Project>https://github.com/Pouzor/homelable</Project>
+  <ReadMe>https://github.com/Pouzor/homelable/blob/main/INSTALLATION.md</ReadMe>
+  <Overview>Frontend for Homelable — a self-hosted infrastructure visualization solution. Displays your homelab as an interactive canvas with network scanning, live healthchecks, and customizable node designs.
+
+Install Homelable-Backend first, then this container. Both containers must use the same custom Docker network (homelable).
+
+Open the WebUI on port 3000 and log in with the credentials configured in Homelable-Backend.</Overview>
+  <Category>Tools: HomeAutomation:</Category>
+  <WebUI>http://[IP]:[PORT:3000]</WebUI>
+  <TemplateURL />
+  <Icon>https://raw.githubusercontent.com/Pouzor/homelable/main/frontend/public/favicon.svg</Icon>
+  <ExtraParams>--restart=unless-stopped</ExtraParams>
+  <PostArgs />
+  <CPUset />
+  <DateInstalled />
+  <DonateText />
+  <DonateLink />
+  <Requires>Homelable-Backend must be running on the same "homelable" Docker network.</Requires>
+  <!-- Port -->
+  <Config Name="WebUI Port" Target="80" Default="3000" Mode="tcp" Description="Port for the Homelable web interface." Type="Port" Display="always" Required="true" Mask="false">3000</Config>
+  <Config Name="TZ" Target="TZ" Default="Europe/Berlin" Mode="env" Description="Timezone (e.g. Europe/Berlin, America/New_York, UTC)" Type="Variable" Display="always" Required="false" Mask="false">Europe/Berlin</Config>
+  <TailscaleStateDir />
+</Container>
