@@ -343,6 +343,115 @@
     
     <div class="template-grid">
       
+      <!-- Rackula -->
+      <div class="template-card">
+        <div class="template-header">
+          <img src="https://raw.githubusercontent.com/RackulaLives/Rackula/main/assets/favicon.svg" alt="Rackula" class="template-icon" style="width: 36px !important; height: 36px !important; max-width: 36px !important; max-height: 36px !important; object-fit: contain;" onerror="this.onerror=null; this.src='https://api.dicebear.com/7.x/initials/svg?seed=Rackula&backgroundColor=667eea,764ba2&textColor=ffffff';">
+          <h2>Rackula</h2>
+          <div class="subtitle">Rackula Container</div>
+        </div>
+        
+        <div class="template-body">
+          <p class="template-description">
+            Drag and drop rack visualizer for your homelab. Plan your rack layout by dragging devices in, moving them around, and exporting the result. Real device images, PNG/PDF/SVG export, and QR code sharing — your layout lives in a URL. Runs entirely in your browser.
+          </p>
+          
+          <div class="template-info">
+            <div class="info-row">
+              <span class="info-label">🌐 WebUI Port:</span>
+              <span class="info-value">8080</span>
+            </div>
+            <div class="info-row">
+              <span class="info-label">📦 Image:</span>
+              <span class="info-value">ghcr.io/rackulalives/rackula</span>
+            </div>
+            <div class="info-row">
+              <span class="info-label">🔧 Network:</span>
+              <span class="info-value">bridge</span>
+            </div>
+          </div>
+          
+          <div class="button-group">
+            <a href="https://fgrfn.github.io/unraid-templates/templates/Rackula/my-Rackula.xml" class="btn btn-primary" download>
+              ⬇️ Download Template
+            </a>
+            
+            <a href="https://github.com/RackulaLives/Rackula" class="btn btn-secondary" target="_blank">
+              📂 Original Project
+            </a>
+            <a href="https://github.com/RackulaLives/Rackula/issues" class="btn btn-link" target="_blank">
+              🛟 Support
+            </a>
+          </div>
+          
+          <div class="code-box">
+            <strong>Quick Install (Unraid GUI):</strong>
+            https://fgrfn.github.io/unraid-templates/templates/Rackula/my-Rackula.xml
+          </div>
+          
+          <div class="code-box">
+            <strong>wget Install (SSH/Terminal):</strong>
+            wget -P /boot/config/plugins/dockerMan/templates-user/ https://raw.githubusercontent.com/fgrfn/unraid-templates/main/templates/Rackula/my-Rackula.xml
+          </div>
+        </div>
+      </div>
+
+      <!-- Netzbremse -->
+      <div class="template-card">
+        <div class="template-header">
+          <img src="https://netzbremse.de/img/hourglass_hu15528090548520832702.png" alt="Netzbremse" class="template-icon" style="width: 36px !important; height: 36px !important; max-width: 36px !important; max-height: 36px !important; object-fit: contain;" onerror="this.onerror=null; this.src='https://api.dicebear.com/7.x/initials/svg?seed=Netzbremse&backgroundColor=667eea,764ba2&textColor=ffffff';">
+          <h2>Netzbremse</h2>
+          <div class="subtitle">Netzbremse Container</div>
+        </div>
+        
+        <div class="template-body">
+          <p class="template-description">
+            Automated speedtest runner using Puppeteer to periodically test peering bottlenecks from your Deutsche Telekom internet connection. Supports the netzbremse.de campaign with anonymized real-world measurements running in the background.
+
+Features:
+- Periodic automated speedtests (c...
+          </p>
+          
+          <div class="template-info">
+            <div class="info-row">
+              <span class="info-label">🌐 WebUI Port:</span>
+              <span class="info-value">N/A (headless)</span>
+            </div>
+            <div class="info-row">
+              <span class="info-label">📦 Image:</span>
+              <span class="info-value">ghcr.io/akvorrat/netzbremse-measurement</span>
+            </div>
+            <div class="info-row">
+              <span class="info-label">🔧 Network:</span>
+              <span class="info-value">bridge</span>
+            </div>
+          </div>
+          
+          <div class="button-group">
+            <a href="https://fgrfn.github.io/unraid-templates/templates/Netzbremse/my-Netzbremse.xml" class="btn btn-primary" download>
+              ⬇️ Download Template
+            </a>
+            
+            <a href="https://github.com/AKVorrat/netzbremse-measurement" class="btn btn-secondary" target="_blank">
+              📂 Original Project
+            </a>
+            <a href="https://github.com/AKVorrat/netzbremse-measurement/issues" class="btn btn-link" target="_blank">
+              🛟 Support
+            </a>
+          </div>
+          
+          <div class="code-box">
+            <strong>Quick Install (Unraid GUI):</strong>
+            https://fgrfn.github.io/unraid-templates/templates/Netzbremse/my-Netzbremse.xml
+          </div>
+          
+          <div class="code-box">
+            <strong>wget Install (SSH/Terminal):</strong>
+            wget -P /boot/config/plugins/dockerMan/templates-user/ https://raw.githubusercontent.com/fgrfn/unraid-templates/main/templates/Netzbremse/my-Netzbremse.xml
+          </div>
+        </div>
+      </div>
+
       <!-- Scan2Target -->
       <div class="template-card">
         <div class="template-header">
@@ -396,112 +505,6 @@ Features:
           <div class="code-box">
             <strong>wget Install (SSH/Terminal):</strong>
             wget -P /boot/config/plugins/dockerMan/templates-user/ https://raw.githubusercontent.com/fgrfn/unraid-templates/main/templates/Scan2Target/my-Scan2Target.xml
-          </div>
-        </div>
-      </div>
-
-      <!-- AxePoolStratum -->
-      <div class="template-card">
-        <div class="template-header">
-          <img src="https://raw.githubusercontent.com/IsSasoriDev/AxeMobile/main/axemobile-main/icon.png" alt="AxePoolStratum" class="template-icon" style="width: 36px !important; height: 36px !important; max-width: 36px !important; max-height: 36px !important; object-fit: contain;" onerror="this.onerror=null; this.src='https://api.dicebear.com/7.x/initials/svg?seed=AxePoolStratum&backgroundColor=667eea,764ba2&textColor=ffffff';">
-          <h2>AxePoolStratum</h2>
-          <div class="subtitle">AxePoolStratum Container</div>
-        </div>
-        
-        <div class="template-body">
-          <p class="template-description">
-            AxePool Stratum is the companion mining pool stratum server for AxeMobile. It handles the stratum protocol communication between your Bitaxe/NerdAxe miners and your Bitcoin node, and exposes mining statistics consumed by the AxeMobile dashboard. Run this alongside the AxeMobile c...
-          </p>
-          
-          <div class="template-info">
-            <div class="info-row">
-              <span class="info-label">🌐 WebUI Port:</span>
-              <span class="info-value">N/A (headless)</span>
-            </div>
-            <div class="info-row">
-              <span class="info-label">📦 Image:</span>
-              <span class="info-value">ghcr.io/issasoridev/axepool-stratum</span>
-            </div>
-            <div class="info-row">
-              <span class="info-label">🔧 Network:</span>
-              <span class="info-value">bridge</span>
-            </div>
-          </div>
-          
-          <div class="button-group">
-            <a href="https://fgrfn.github.io/unraid-templates/templates/AxeMobile/my-AxePoolStratum.xml" class="btn btn-primary" download>
-              ⬇️ Download Template
-            </a>
-            
-            <a href="https://github.com/IsSasoriDev/AxeMobile" class="btn btn-secondary" target="_blank">
-              📂 Original Project
-            </a>
-            <a href="https://github.com/IsSasoriDev/AxeMobile/issues" class="btn btn-link" target="_blank">
-              🛟 Support
-            </a>
-          </div>
-          
-          <div class="code-box">
-            <strong>Quick Install (Unraid GUI):</strong>
-            https://fgrfn.github.io/unraid-templates/templates/AxeMobile/my-AxePoolStratum.xml
-          </div>
-          
-          <div class="code-box">
-            <strong>wget Install (SSH/Terminal):</strong>
-            wget -P /boot/config/plugins/dockerMan/templates-user/ https://raw.githubusercontent.com/fgrfn/unraid-templates/main/templates/AxeMobile/my-AxePoolStratum.xml
-          </div>
-        </div>
-      </div>
-
-      <!-- AxeMobile -->
-      <div class="template-card">
-        <div class="template-header">
-          <img src="https://raw.githubusercontent.com/IsSasoriDev/AxeMobile/main/axemobile-main/icon.png" alt="AxeMobile" class="template-icon" style="width: 36px !important; height: 36px !important; max-width: 36px !important; max-height: 36px !important; object-fit: contain;" onerror="this.onerror=null; this.src='https://api.dicebear.com/7.x/initials/svg?seed=AxeMobile&backgroundColor=667eea,764ba2&textColor=ffffff';">
-          <h2>AxeMobile</h2>
-          <div class="subtitle">AxeMobile Container</div>
-        </div>
-        
-        <div class="template-body">
-          <p class="template-description">
-            AxeMobile is a comprehensive dashboard for monitoring and managing your Bitaxe and NerdAxe Bitcoin miners. Includes real-time hashrate, temperature and power monitoring, multi-miner support with network scanning, performance presets (Eco, Balanced, Performance, Max OC), firmware ...
-          </p>
-          
-          <div class="template-info">
-            <div class="info-row">
-              <span class="info-label">🌐 WebUI Port:</span>
-              <span class="info-value">3847</span>
-            </div>
-            <div class="info-row">
-              <span class="info-label">📦 Image:</span>
-              <span class="info-value">ghcr.io/issasoridev/axemobile</span>
-            </div>
-            <div class="info-row">
-              <span class="info-label">🔧 Network:</span>
-              <span class="info-value">bridge</span>
-            </div>
-          </div>
-          
-          <div class="button-group">
-            <a href="https://fgrfn.github.io/unraid-templates/templates/AxeMobile/my-AxeMobile.xml" class="btn btn-primary" download>
-              ⬇️ Download Template
-            </a>
-            
-            <a href="https://github.com/IsSasoriDev/AxeMobile" class="btn btn-secondary" target="_blank">
-              📂 Original Project
-            </a>
-            <a href="https://github.com/IsSasoriDev/AxeMobile/issues" class="btn btn-link" target="_blank">
-              🛟 Support
-            </a>
-          </div>
-          
-          <div class="code-box">
-            <strong>Quick Install (Unraid GUI):</strong>
-            https://fgrfn.github.io/unraid-templates/templates/AxeMobile/my-AxeMobile.xml
-          </div>
-          
-          <div class="code-box">
-            <strong>wget Install (SSH/Terminal):</strong>
-            wget -P /boot/config/plugins/dockerMan/templates-user/ https://raw.githubusercontent.com/fgrfn/unraid-templates/main/templates/AxeMobile/my-AxeMobile.xml
           </div>
         </div>
       </div>
@@ -561,29 +564,30 @@ Features: multi-acc...
         </div>
       </div>
 
-      <!-- TwitchDropsMiner -->
+      <!-- Pluton -->
       <div class="template-card">
         <div class="template-header">
-          <img src="https://raw.githubusercontent.com/fgrfn/TwitchDropsMiner/main/icons/pickaxe.ico" alt="TwitchDropsMiner" class="template-icon" style="width: 36px !important; height: 36px !important; max-width: 36px !important; max-height: 36px !important; object-fit: contain;" onerror="this.onerror=null; this.src='https://api.dicebear.com/7.x/initials/svg?seed=TwitchDropsMiner&backgroundColor=667eea,764ba2&textColor=ffffff';">
-          <h2>TwitchDropsMiner</h2>
-          <div class="subtitle">TwitchDropsMiner Container</div>
+          <img src="https://avatars.githubusercontent.com/u/205273611" alt="Pluton" class="template-icon" style="width: 36px !important; height: 36px !important; max-width: 36px !important; max-height: 36px !important; object-fit: contain;" onerror="this.onerror=null; this.src='https://api.dicebear.com/7.x/initials/svg?seed=Pluton&backgroundColor=667eea,764ba2&textColor=ffffff';">
+          <h2>Pluton</h2>
+          <div class="subtitle">Pluton Container</div>
         </div>
         
         <div class="template-body">
           <p class="template-description">
-            Twitch Drops Miner automatically farms Twitch drops without ever opening a stream. No more tab juggling, channel switching, or missing rewards — just set it, forget it, and collect.
+            Self-hosted backup management platform that simplifies automated, incremental backups across your storage destinations. Leverages Restic for secure incremental backups and Rclone for versatile cloud storage connectivity, wrapped in an intuitive web interface.
 
-Features: streamless mining (save bandwidth), automatic campaign discovery, auto channel switchin...
+Features:
+- Automat...
           </p>
           
           <div class="template-info">
             <div class="info-row">
               <span class="info-label">🌐 WebUI Port:</span>
-              <span class="info-value">8080</span>
+              <span class="info-value">5173</span>
             </div>
             <div class="info-row">
               <span class="info-label">📦 Image:</span>
-              <span class="info-value">ghcr.io/fgrfn/twitch-drops-miner</span>
+              <span class="info-value">plutonhq/pluton</span>
             </div>
             <div class="info-row">
               <span class="info-label">🔧 Network:</span>
@@ -592,26 +596,26 @@ Features: streamless mining (save bandwidth), automatic campaign discovery, auto
           </div>
           
           <div class="button-group">
-            <a href="https://fgrfn.github.io/unraid-templates/templates/TwitchDropsMiner/my-TwitchDropsMiner.xml" class="btn btn-primary" download>
+            <a href="https://fgrfn.github.io/unraid-templates/templates/Pluton/my-Pluton.xml" class="btn btn-primary" download>
               ⬇️ Download Template
             </a>
             
-            <a href="https://github.com/fgrfn/TwitchDropsMiner" class="btn btn-secondary" target="_blank">
+            <a href="https://github.com/plutonhq/pluton" class="btn btn-secondary" target="_blank">
               📂 Original Project
             </a>
-            <a href="https://github.com/fgrfn/TwitchDropsMiner/issues" class="btn btn-link" target="_blank">
+            <a href="https://github.com/plutonhq/pluton/issues" class="btn btn-link" target="_blank">
               🛟 Support
             </a>
           </div>
           
           <div class="code-box">
             <strong>Quick Install (Unraid GUI):</strong>
-            https://fgrfn.github.io/unraid-templates/templates/TwitchDropsMiner/my-TwitchDropsMiner.xml
+            https://fgrfn.github.io/unraid-templates/templates/Pluton/my-Pluton.xml
           </div>
           
           <div class="code-box">
             <strong>wget Install (SSH/Terminal):</strong>
-            wget -P /boot/config/plugins/dockerMan/templates-user/ https://raw.githubusercontent.com/fgrfn/unraid-templates/main/templates/TwitchDropsMiner/my-TwitchDropsMiner.xml
+            wget -P /boot/config/plugins/dockerMan/templates-user/ https://raw.githubusercontent.com/fgrfn/unraid-templates/main/templates/Pluton/my-Pluton.xml
           </div>
         </div>
       </div>
@@ -728,20 +732,17 @@ Requires Reddit API credentials, NewsAPI key, and Discord ...
         </div>
       </div>
 
-      <!-- Netzbremse -->
+      <!-- AxePoolStratum -->
       <div class="template-card">
         <div class="template-header">
-          <img src="https://netzbremse.de/img/hourglass_hu15528090548520832702.png" alt="Netzbremse" class="template-icon" style="width: 36px !important; height: 36px !important; max-width: 36px !important; max-height: 36px !important; object-fit: contain;" onerror="this.onerror=null; this.src='https://api.dicebear.com/7.x/initials/svg?seed=Netzbremse&backgroundColor=667eea,764ba2&textColor=ffffff';">
-          <h2>Netzbremse</h2>
-          <div class="subtitle">Netzbremse Container</div>
+          <img src="https://raw.githubusercontent.com/IsSasoriDev/AxeMobile/main/axemobile-main/icon.png" alt="AxePoolStratum" class="template-icon" style="width: 36px !important; height: 36px !important; max-width: 36px !important; max-height: 36px !important; object-fit: contain;" onerror="this.onerror=null; this.src='https://api.dicebear.com/7.x/initials/svg?seed=AxePoolStratum&backgroundColor=667eea,764ba2&textColor=ffffff';">
+          <h2>AxePoolStratum</h2>
+          <div class="subtitle">AxePoolStratum Container</div>
         </div>
         
         <div class="template-body">
           <p class="template-description">
-            Automated speedtest runner using Puppeteer to periodically test peering bottlenecks from your Deutsche Telekom internet connection. Supports the netzbremse.de campaign with anonymized real-world measurements running in the background.
-
-Features:
-- Periodic automated speedtests (c...
+            AxePool Stratum is the companion mining pool stratum server for AxeMobile. It handles the stratum protocol communication between your Bitaxe/NerdAxe miners and your Bitcoin node, and exposes mining statistics consumed by the AxeMobile dashboard. Run this alongside the AxeMobile c...
           </p>
           
           <div class="template-info">
@@ -751,7 +752,7 @@ Features:
             </div>
             <div class="info-row">
               <span class="info-label">📦 Image:</span>
-              <span class="info-value">ghcr.io/akvorrat/netzbremse-measurement</span>
+              <span class="info-value">ghcr.io/issasoridev/axepool-stratum</span>
             </div>
             <div class="info-row">
               <span class="info-label">🔧 Network:</span>
@@ -760,26 +761,134 @@ Features:
           </div>
           
           <div class="button-group">
-            <a href="https://fgrfn.github.io/unraid-templates/templates/Netzbremse/my-Netzbremse.xml" class="btn btn-primary" download>
+            <a href="https://fgrfn.github.io/unraid-templates/templates/AxeMobile/my-AxePoolStratum.xml" class="btn btn-primary" download>
               ⬇️ Download Template
             </a>
             
-            <a href="https://github.com/AKVorrat/netzbremse-measurement" class="btn btn-secondary" target="_blank">
+            <a href="https://github.com/IsSasoriDev/AxeMobile" class="btn btn-secondary" target="_blank">
               📂 Original Project
             </a>
-            <a href="https://github.com/AKVorrat/netzbremse-measurement/issues" class="btn btn-link" target="_blank">
+            <a href="https://github.com/IsSasoriDev/AxeMobile/issues" class="btn btn-link" target="_blank">
               🛟 Support
             </a>
           </div>
           
           <div class="code-box">
             <strong>Quick Install (Unraid GUI):</strong>
-            https://fgrfn.github.io/unraid-templates/templates/Netzbremse/my-Netzbremse.xml
+            https://fgrfn.github.io/unraid-templates/templates/AxeMobile/my-AxePoolStratum.xml
           </div>
           
           <div class="code-box">
             <strong>wget Install (SSH/Terminal):</strong>
-            wget -P /boot/config/plugins/dockerMan/templates-user/ https://raw.githubusercontent.com/fgrfn/unraid-templates/main/templates/Netzbremse/my-Netzbremse.xml
+            wget -P /boot/config/plugins/dockerMan/templates-user/ https://raw.githubusercontent.com/fgrfn/unraid-templates/main/templates/AxeMobile/my-AxePoolStratum.xml
+          </div>
+        </div>
+      </div>
+
+      <!-- AxeMobile -->
+      <div class="template-card">
+        <div class="template-header">
+          <img src="https://raw.githubusercontent.com/IsSasoriDev/AxeMobile/main/axemobile-main/icon.png" alt="AxeMobile" class="template-icon" style="width: 36px !important; height: 36px !important; max-width: 36px !important; max-height: 36px !important; object-fit: contain;" onerror="this.onerror=null; this.src='https://api.dicebear.com/7.x/initials/svg?seed=AxeMobile&backgroundColor=667eea,764ba2&textColor=ffffff';">
+          <h2>AxeMobile</h2>
+          <div class="subtitle">AxeMobile Container</div>
+        </div>
+        
+        <div class="template-body">
+          <p class="template-description">
+            AxeMobile is a comprehensive dashboard for monitoring and managing your Bitaxe and NerdAxe Bitcoin miners. Includes real-time hashrate, temperature and power monitoring, multi-miner support with network scanning, performance presets (Eco, Balanced, Performance, Max OC), firmware ...
+          </p>
+          
+          <div class="template-info">
+            <div class="info-row">
+              <span class="info-label">🌐 WebUI Port:</span>
+              <span class="info-value">3847</span>
+            </div>
+            <div class="info-row">
+              <span class="info-label">📦 Image:</span>
+              <span class="info-value">ghcr.io/issasoridev/axemobile</span>
+            </div>
+            <div class="info-row">
+              <span class="info-label">🔧 Network:</span>
+              <span class="info-value">bridge</span>
+            </div>
+          </div>
+          
+          <div class="button-group">
+            <a href="https://fgrfn.github.io/unraid-templates/templates/AxeMobile/my-AxeMobile.xml" class="btn btn-primary" download>
+              ⬇️ Download Template
+            </a>
+            
+            <a href="https://github.com/IsSasoriDev/AxeMobile" class="btn btn-secondary" target="_blank">
+              📂 Original Project
+            </a>
+            <a href="https://github.com/IsSasoriDev/AxeMobile/issues" class="btn btn-link" target="_blank">
+              🛟 Support
+            </a>
+          </div>
+          
+          <div class="code-box">
+            <strong>Quick Install (Unraid GUI):</strong>
+            https://fgrfn.github.io/unraid-templates/templates/AxeMobile/my-AxeMobile.xml
+          </div>
+          
+          <div class="code-box">
+            <strong>wget Install (SSH/Terminal):</strong>
+            wget -P /boot/config/plugins/dockerMan/templates-user/ https://raw.githubusercontent.com/fgrfn/unraid-templates/main/templates/AxeMobile/my-AxeMobile.xml
+          </div>
+        </div>
+      </div>
+
+      <!-- TwitchDropsMiner -->
+      <div class="template-card">
+        <div class="template-header">
+          <img src="https://raw.githubusercontent.com/fgrfn/TwitchDropsMiner/main/icons/pickaxe.ico" alt="TwitchDropsMiner" class="template-icon" style="width: 36px !important; height: 36px !important; max-width: 36px !important; max-height: 36px !important; object-fit: contain;" onerror="this.onerror=null; this.src='https://api.dicebear.com/7.x/initials/svg?seed=TwitchDropsMiner&backgroundColor=667eea,764ba2&textColor=ffffff';">
+          <h2>TwitchDropsMiner</h2>
+          <div class="subtitle">TwitchDropsMiner Container</div>
+        </div>
+        
+        <div class="template-body">
+          <p class="template-description">
+            Twitch Drops Miner automatically farms Twitch drops without ever opening a stream. No more tab juggling, channel switching, or missing rewards — just set it, forget it, and collect.
+
+Features: streamless mining (save bandwidth), automatic campaign discovery, auto channel switchin...
+          </p>
+          
+          <div class="template-info">
+            <div class="info-row">
+              <span class="info-label">🌐 WebUI Port:</span>
+              <span class="info-value">8080</span>
+            </div>
+            <div class="info-row">
+              <span class="info-label">📦 Image:</span>
+              <span class="info-value">ghcr.io/fgrfn/twitch-drops-miner</span>
+            </div>
+            <div class="info-row">
+              <span class="info-label">🔧 Network:</span>
+              <span class="info-value">bridge</span>
+            </div>
+          </div>
+          
+          <div class="button-group">
+            <a href="https://fgrfn.github.io/unraid-templates/templates/TwitchDropsMiner/my-TwitchDropsMiner.xml" class="btn btn-primary" download>
+              ⬇️ Download Template
+            </a>
+            
+            <a href="https://github.com/fgrfn/TwitchDropsMiner" class="btn btn-secondary" target="_blank">
+              📂 Original Project
+            </a>
+            <a href="https://github.com/fgrfn/TwitchDropsMiner/issues" class="btn btn-link" target="_blank">
+              🛟 Support
+            </a>
+          </div>
+          
+          <div class="code-box">
+            <strong>Quick Install (Unraid GUI):</strong>
+            https://fgrfn.github.io/unraid-templates/templates/TwitchDropsMiner/my-TwitchDropsMiner.xml
+          </div>
+          
+          <div class="code-box">
+            <strong>wget Install (SSH/Terminal):</strong>
+            wget -P /boot/config/plugins/dockerMan/templates-user/ https://raw.githubusercontent.com/fgrfn/unraid-templates/main/templates/TwitchDropsMiner/my-TwitchDropsMiner.xml
           </div>
         </div>
       </div>
@@ -835,59 +944,6 @@ Supports 80+ sensors from BitAxe & NerdAxe devices with real-time power consumpt
           <div class="code-box">
             <strong>wget Install (SSH/Terminal):</strong>
             wget -P /boot/config/plugins/dockerMan/templates-user/ https://raw.githubusercontent.com/fgrfn/unraid-templates/main/templates/BitaxeDiscordBot/my-BitaxeDiscordBot.xml
-          </div>
-        </div>
-      </div>
-
-      <!-- Rackula -->
-      <div class="template-card">
-        <div class="template-header">
-          <img src="https://raw.githubusercontent.com/RackulaLives/Rackula/main/assets/favicon.svg" alt="Rackula" class="template-icon" style="width: 36px !important; height: 36px !important; max-width: 36px !important; max-height: 36px !important; object-fit: contain;" onerror="this.onerror=null; this.src='https://api.dicebear.com/7.x/initials/svg?seed=Rackula&backgroundColor=667eea,764ba2&textColor=ffffff';">
-          <h2>Rackula</h2>
-          <div class="subtitle">Rackula Container</div>
-        </div>
-        
-        <div class="template-body">
-          <p class="template-description">
-            Drag and drop rack visualizer for your homelab. Plan your rack layout by dragging devices in, moving them around, and exporting the result. Real device images, PNG/PDF/SVG export, and QR code sharing — your layout lives in a URL. Runs entirely in your browser.
-          </p>
-          
-          <div class="template-info">
-            <div class="info-row">
-              <span class="info-label">🌐 WebUI Port:</span>
-              <span class="info-value">8080</span>
-            </div>
-            <div class="info-row">
-              <span class="info-label">📦 Image:</span>
-              <span class="info-value">ghcr.io/rackulalives/rackula</span>
-            </div>
-            <div class="info-row">
-              <span class="info-label">🔧 Network:</span>
-              <span class="info-value">bridge</span>
-            </div>
-          </div>
-          
-          <div class="button-group">
-            <a href="https://fgrfn.github.io/unraid-templates/templates/Rackula/my-Rackula.xml" class="btn btn-primary" download>
-              ⬇️ Download Template
-            </a>
-            
-            <a href="https://github.com/RackulaLives/Rackula" class="btn btn-secondary" target="_blank">
-              📂 Original Project
-            </a>
-            <a href="https://github.com/RackulaLives/Rackula/issues" class="btn btn-link" target="_blank">
-              🛟 Support
-            </a>
-          </div>
-          
-          <div class="code-box">
-            <strong>Quick Install (Unraid GUI):</strong>
-            https://fgrfn.github.io/unraid-templates/templates/Rackula/my-Rackula.xml
-          </div>
-          
-          <div class="code-box">
-            <strong>wget Install (SSH/Terminal):</strong>
-            wget -P /boot/config/plugins/dockerMan/templates-user/ https://raw.githubusercontent.com/fgrfn/unraid-templates/main/templates/Rackula/my-Rackula.xml
           </div>
         </div>
       </div>
