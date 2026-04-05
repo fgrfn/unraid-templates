@@ -1,0 +1,30 @@
+<?xml version='1.0' encoding='utf-8'?>
+<Container version="2">
+  <Name>HashHive</Name>
+  <Repository>ghcr.io/fgrfn/hashhive:latest</Repository>
+  <Registry>https://github.com/fgrfn/hashhive</Registry>
+  <Network>bridge</Network>
+  <MyIP />
+  <Shell>bash</Shell>
+  <Privileged>false</Privileged>
+  <Support>https://github.com/fgrfn/hashhive/issues</Support>
+  <Project>https://github.com/fgrfn/hashhive</Project>
+  <ReadMe />
+  <Overview>Unified mining dashboard for NMMiner, BitAxe and NerdAxe. Provides live stats (hashrate, temperature, power, share rate), per-device configuration, pool management, alerts (offline, temp spike, hashrate drop, etc.) and notifications via Telegram, Discord or Gotify.</Overview>
+  <Category>Tools:</Category>
+  <WebUI>http://[IP]:[PORT:8000]</WebUI>
+  <TemplateURL />
+  <Icon>https://raw.githubusercontent.com/fgrfn/hashhive/main/assets/logo.png</Icon>
+  <ExtraParams>--restart=unless-stopped</ExtraParams>
+  <PostArgs />
+  <CPUset />
+  <DateInstalled />
+  <DonateText />
+  <DonateLink />
+  <Requires />
+  <Config Name="WebUI Port" Target="8000" Default="8000" Mode="tcp" Description="Port for the HashHive Web UI" Type="Port" Display="always" Required="true" Mask="false">8000</Config>
+  <Config Name="Data Volume" Target="/app/backend/data" Default="/mnt/user/appdata/hashhive/data" Mode="rw" Description="Persistent data (config, alerts, device state, logs)" Type="Path" Display="always" Required="true" Mask="false">/mnt/user/appdata/hashhive/data</Config>
+  <Config Name="HASHHIVE_DATA_DIR" Target="HASHHIVE_DATA_DIR" Default="/app/backend/data" Mode="env" Description="Internal data directory path (do not change)" Type="Variable" Display="advanced" Required="false" Mask="false">/app/backend/data</Config>
+  <Config Name="TZ" Target="TZ" Default="Europe/Berlin" Mode="env" Description="Timezone" Type="Variable" Display="always" Required="false" Mask="false">Europe/Berlin</Config>
+  <TailscaleStateDir />
+</Container>
