@@ -47,4 +47,5 @@ Requires Reddit API credentials, NewsAPI key, and Discord webhook URL.</Overview
   <Config Name="CRAWL_INTERVAL_MINUTES" Target="CRAWL_INTERVAL_MINUTES" Default="30" Mode="env" Description="Environment variable: CRAWL_INTERVAL_MINUTES" Type="Variable" Display="advanced" Required="false" Mask="false">30</Config>
   <Config Name="DISCORD_STATUS_UPDATE" Target="DISCORD_STATUS_UPDATE" Default="true" Mode="env" Description="Environment variable: DISCORD_STATUS_UPDATE" Type="Variable" Display="advanced" Required="false" Mask="false">true</Config>
   <Config Name="ALPHAVANTAGE_API_KEY" Target="ALPHAVANTAGE_API_KEY" Default="" Mode="env" Description="Environment variable: ALPHAVANTAGE_API_KEY" Type="Variable" Display="advanced" Required="true" Mask="true" />
+  <Config Name="WSB_PORT" Target="WSB_PORT" Default="80" Mode="env" Description="Environment variable: WSB_PORT" Type="Variable" Display="advanced" Required="false" Mask="false">80</Config>
 </Container>
