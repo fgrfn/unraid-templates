@@ -1,0 +1,36 @@
+<?xml version='1.0' encoding='utf-8'?>
+<Container version="2">
+  <Name>Bootimus</Name>
+  <Repository>garybowers/bootimus:latest</Repository>
+  <Registry>https://hub.docker.com/r/garybowers/bootimus</Registry>
+  <Network>bridge</Network>
+  <MyIP />
+  <Shell>bash</Shell>
+  <Privileged>false</Privileged>
+  <Support>https://github.com/garybowers/bootimus/issues</Support>
+  <Project>https://github.com/garybowers/bootimus</Project>
+  <ReadMe />
+  <Overview>Modern PXE/HTTP boot server with embedded iPXE bootloaders, SQLite support, and a full-featured web admin interface. Supports 50+ distros, built-in diagnostic tools (GParted, Clonezilla, Memtest86+), per-client MAC-based access control, JWT authentication, hardware inventory and real-time boot logs.</Overview>
+  <Category>Network:Management Tools:</Category>
+  <WebUI>http://[IP]:[PORT:8081]</WebUI>
+  <TemplateURL />
+  <Icon>https://raw.githubusercontent.com/garybowers/bootimus/main/web/static/favicon.png</Icon>
+  <ExtraParams>--restart=unless-stopped --cap-add=NET_BIND_SERVICE</ExtraParams>
+  <PostArgs />
+  <CPUset />
+  <DateInstalled />
+  <DonateText />
+  <DonateLink />
+  <Requires />
+  <Config Name="Admin UI Port" Target="8081" Default="8081" Mode="tcp" Description="Port for the Bootimus admin web interface" Type="Port" Display="always" Required="true" Mask="false">8081</Config>
+  <Config Name="HTTP Boot Port" Target="8080" Default="8080" Mode="tcp" Description="Port for the HTTP boot server (iPXE menu and kernel/initrd serving)" Type="Port" Display="always" Required="true" Mask="false">8080</Config>
+  <Config Name="TFTP Port" Target="69" Default="69" Mode="udp" Description="UDP port for the TFTP server (initial PXE boot)" Type="Port" Display="always" Required="true" Mask="false">69</Config>
+  <Config Name="Data Volume" Target="/data" Default="/mnt/user/appdata/bootimus/data" Mode="rw" Description="Persistent data directory (ISOs, database, bootloaders, config)" Type="Path" Display="always" Required="true" Mask="false">/mnt/user/appdata/bootimus/data</Config>
+  <Config Name="BOOTIMUS_SERVER_ADDR" Target="BOOTIMUS_SERVER_ADDR" Default="" Mode="env" Description="IP address of this server announced to PXE clients. Recommended to set explicitly to your Unraid IP; leave empty only if auto-detection works in your network." Type="Variable" Display="always" Required="false" Mask="false"></Config>
+  <Config Name="BOOTIMUS_TFTP_PORT" Target="BOOTIMUS_TFTP_PORT" Default="69" Mode="env" Description="TFTP port (must match the exposed port above)" Type="Variable" Display="advanced" Required="false" Mask="false">69</Config>
+  <Config Name="BOOTIMUS_HTTP_PORT" Target="BOOTIMUS_HTTP_PORT" Default="8080" Mode="env" Description="HTTP boot server port (must match the exposed port above)" Type="Variable" Display="advanced" Required="false" Mask="false">8080</Config>
+  <Config Name="BOOTIMUS_ADMIN_PORT" Target="BOOTIMUS_ADMIN_PORT" Default="8081" Mode="env" Description="Admin interface port (must match the exposed port above)" Type="Variable" Display="advanced" Required="false" Mask="false">8081</Config>
+  <Config Name="BOOTIMUS_DATA_DIR" Target="BOOTIMUS_DATA_DIR" Default="/data" Mode="env" Description="Internal data directory path (do not change)" Type="Variable" Display="advanced" Required="false" Mask="false">/data</Config>
+  <Config Name="TZ" Target="TZ" Default="UTC" Mode="env" Description="Timezone (e.g. Europe/Berlin, America/New_York)" Type="Variable" Display="always" Required="false" Mask="false">UTC</Config>
+  <TailscaleStateDir />
+</Container>
