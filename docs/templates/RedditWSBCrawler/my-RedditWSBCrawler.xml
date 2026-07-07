@@ -48,4 +48,7 @@ Requires Reddit API credentials, NewsAPI key, and Discord webhook URL.</Overview
   <Config Name="DISCORD_STATUS_UPDATE" Target="DISCORD_STATUS_UPDATE" Default="true" Mode="env" Description="Environment variable: DISCORD_STATUS_UPDATE" Type="Variable" Display="advanced" Required="false" Mask="false">true</Config>
   <Config Name="ALPHAVANTAGE_API_KEY" Target="ALPHAVANTAGE_API_KEY" Default="" Mode="env" Description="Environment variable: ALPHAVANTAGE_API_KEY" Type="Variable" Display="advanced" Required="true" Mask="true" />
   <Config Name="WSB_PORT" Target="WSB_PORT" Default="80" Mode="env" Description="Environment variable: WSB_PORT" Type="Variable" Display="advanced" Required="false" Mask="false">80</Config>
+  <Config Name="WSB_HOST" Target="WSB_HOST" Default="0.0.0.0" Mode="env" Description="Environment variable: WSB_HOST" Type="Variable" Display="advanced" Required="false" Mask="false">0.0.0.0</Config>
+  <Config Name="WSB_DB_PATH" Target="WSB_DB_PATH" Default="/app/data/wsb_crawler.db" Mode="env" Description="Environment variable: WSB_DB_PATH" Type="Variable" Display="advanced" Required="false" Mask="false">/app/data/wsb_crawler.db</Config>
+  <Config Name="WSB_AUTH_TOKEN" Target="WSB_AUTH_TOKEN" Default="" Mode="env" Description="Environment variable: WSB_AUTH_TOKEN" Type="Variable" Display="advanced" Required="true" Mask="true" />
 </Container>
