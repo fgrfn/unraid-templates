@@ -2,41 +2,48 @@ name: Validate Templates
 
 on:
   pull_request:
-    paths:
-      - 'templates/**/*.xml'
-      - 'scripts/validate-templates.py'
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
 
 concurrency:
-  group: ${{ github.workflow }}-${{ github.ref }}
+  group: validate-${{ github.ref }}
   cancel-in-progress: true
 
 jobs:
   validate:
     runs-on: ubuntu-latest
-    
     steps:
-      - name: Checkout repository
+      - name: Checkout
         uses: actions/checkout@v4
-        
+
       - name: Set up Python
         uses: actions/setup-python@v5
-        with: 
-          python-version: '3.11'
-          
+        with:
+          python-version: "3.12"
+          cache: pip
+
       - name: Install dependencies
-        run: |
-          pip install lxml
-          
-      - name: Validate templates
-        run: |
-          python scripts/validate-templates.py
-      
-      - name: Create summary
-        if: success()
-        run: |
-          echo "### ✅ Templates Validated Successfully" >> $GITHUB_STEP_SUMMARY
-          echo "" >> $GITHUB_STEP_SUMMARY
-          echo "All Unraid templates passed validation checks." >> $GITHUB_STEP_SUMMARY
-          echo "" >> $GITHUB_STEP_SUMMARY
-          echo "**Validated files:**" >> $GITHUB_STEP_SUMMARY
-          find templates -name '*.xml' -type f | wc -l | xargs -I {} echo "- {} template(s)" >> $GITHUB_STEP_SUMMARY
+        run: python -m pip install -r requirements-dev.txt
+
+      - name: Validate XML and catalog
+        run: python scripts/validate-templates.py
+
+      - name: Run tests
+        run: pytest -q
+
+      - name: Verify generated README
+        run: python scripts/generate.py --check-readme
+
+      - name: Build Pages artifact
+        run: python scripts/generate.py --output _site
+
+      - name: Upload preview artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: unraid-templates-site
+          path: _site
+          if-no-files-found: error
