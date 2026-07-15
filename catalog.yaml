@@ -1,0 +1,97 @@
+repository:
+  title: fgrfn Unraid Templates
+  description: Curated Docker templates for Unraid
+  pages_base_url: https://fgrfn.github.io/unraid-templates
+  github: https://github.com/fgrfn/unraid-templates
+  default_timezone: Europe/Berlin
+templates:
+- id: axemobile
+  path: templates/AxeMobile/my-AxeMobile.xml
+  tags:
+  - Mining
+  - Dashboard
+  ownership: external
+  upstream:
+    compose_url: https://raw.githubusercontent.com/IsSasoriDev/AxeMobile/main/docker-compose.yml
+    service: axemobile
+    enabled: false
+- id: axepool-stratum
+  path: templates/AxeMobile/my-AxePoolStratum.xml
+  tags:
+  - Mining
+  - Stratum
+  ownership: external
+  upstream:
+    compose_url: https://raw.githubusercontent.com/IsSasoriDev/AxeMobile/main/docker-compose.yml
+    service: axepool-stratum
+    enabled: false
+- id: bootimus
+  path: templates/Bootimus/my-Bootimus.xml
+  tags:
+  - Network
+  - PXE
+  ownership: external
+  upstream:
+    compose_url: https://raw.githubusercontent.com/garybowers/bootimus/main/docker-compose.yml
+    service: bootimus
+    enabled: true
+- id: hashhive
+  path: templates/HashHive/my-HashHive.xml
+  tags:
+  - Mining
+  - Dashboard
+  ownership: first-party
+  upstream:
+    compose_url: https://raw.githubusercontent.com/fgrfn/hashhive/main/docker-compose.yml
+    service: ''
+    enabled: true
+- id: pluton
+  path: templates/Pluton/my-Pluton.xml
+  tags:
+  - Backup
+  - Storage
+  ownership: external
+  upstream:
+    compose_url: https://raw.githubusercontent.com/plutonhq/pluton/main/docker-compose.yml
+    service: pluton
+    enabled: true
+- id: reddit-wsb-crawler
+  path: templates/RedditWSBCrawler/my-RedditWSBCrawler.xml
+  tags:
+  - Monitoring
+  - Finance
+  ownership: first-party
+  upstream:
+    compose_url: https://raw.githubusercontent.com/fgrfn/reddit-wsb-crawler/main/docker-compose.yml
+    service: ''
+    enabled: true
+- id: scan2target
+  path: templates/Scan2Target/my-Scan2Target.xml
+  tags:
+  - Scanning
+  - Productivity
+  ownership: first-party
+  upstream:
+    compose_url: https://raw.githubusercontent.com/fgrfn/Scan2Target/main/docker-compose.yml
+    service: ''
+    enabled: true
+- id: twitch-drops-miner
+  path: templates/TwitchDropsMiner/my-TwitchDropsMiner.xml
+  tags:
+  - Twitch
+  - Automation
+  ownership: first-party
+  upstream:
+    compose_url: https://raw.githubusercontent.com/fgrfn/TwitchDropsMiner/main/docker-compose.yml
+    service: ''
+    enabled: true
+- id: twitch-miner-go
+  path: templates/TwitchMinerGo/my-TwitchMinerGo.xml
+  tags:
+  - Twitch
+  - Automation
+  ownership: external
+  upstream:
+    compose_url: https://raw.githubusercontent.com/Guliveer/twitch-miner-go/main/docker-compose.yml
+    service: ''
+    enabled: true
