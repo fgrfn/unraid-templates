@@ -28,7 +28,7 @@ jobs:
 
     steps:
       - name: Checkout upstream repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
         with:
           repository: Guliveer/twitch-miner-go
           fetch-depth: 0
