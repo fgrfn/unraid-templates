@@ -1,238 +1,57 @@
 # fgrfn Unraid Templates
 
-[![Validate Templates](https://github.com/fgrfn/unraid-templates/workflows/Validate%20Templates/badge.svg)](https://github.com/fgrfn/unraid-templates/actions/workflows/validate-templates.yml)
-[![Deploy](https://github.com/fgrfn/unraid-templates/workflows/Deploy/badge.svg)](https://github.com/fgrfn/unraid-templates/actions/workflows/deploy.yml)
-[![Update Templates](https://github.com/fgrfn/unraid-templates/workflows/Update%20Templates/badge.svg)](https://github.com/fgrfn/unraid-templates/actions/workflows/update-templates.yml)
+[![Validate Templates](https://github.com/fgrfn/unraid-templates/actions/workflows/validate-templates.yml/badge.svg)](https://github.com/fgrfn/unraid-templates/actions/workflows/validate-templates.yml)
+[![Deploy Pages](https://github.com/fgrfn/unraid-templates/actions/workflows/deploy.yml/badge.svg)](https://github.com/fgrfn/unraid-templates/actions/workflows/deploy.yml)
+[![Upstream Drift](https://github.com/fgrfn/unraid-templates/actions/workflows/upstream-drift.yml/badge.svg)](https://github.com/fgrfn/unraid-templates/actions/workflows/upstream-drift.yml)
 
-Welcome to the central repository for all my personally maintained **Unraid Docker Templates**. 
+Curated Docker templates for Unraid. The catalog currently contains **9 templates**.
 
-These templates can be conveniently loaded and automatically updated via the Unraid GUI – hosted via GitHub Pages.
+## Available templates
 
----
+| Template | Description | Network | Web UI | Install |
+|---|---|---|---|---|
+| [AxeMobile](https://github.com/IsSasoriDev/AxeMobile) | AxeMobile is a dashboard for monitoring and managing Bitaxe and NerdAxe Bitcoin miners. It provides live hashrate, temperature and power data, network discovery, performance presets, firmware updates, Bitcoin network statistics and a mining calculator. | `axemobile` | `http://[IP]:[PORT:3847]` | [XML](https://fgrfn.github.io/unraid-templates/templates/AxeMobile/my-AxeMobile.xml) |
+| [AxePoolStratum](https://github.com/IsSasoriDev/AxeMobile) | AxePoolStratum is the companion stratum server for AxeMobile. It connects Bitaxe and NerdAxe miners to a Bitcoin node and exposes mining statistics to the AxeMobile dashboard. | `axemobile` | `Headless` | [XML](https://fgrfn.github.io/unraid-templates/templates/AxeMobile/my-AxePoolStratum.xml) |
+| [Bootimus](https://github.com/garybowers/bootimus) | Modern PXE and HTTP boot server with embedded iPXE bootloaders, SQLite support and a web administration interface. It includes distributions, diagnostics, per-client access control, authentication, hardware inventory and boot logs. | `bridge` | `http://[IP]:[PORT:8081]` | [XML](https://fgrfn.github.io/unraid-templates/templates/Bootimus/my-Bootimus.xml) |
+| [HashHive](https://github.com/fgrfn/hashhive) | Unified mining dashboard for NMMiner, Bitaxe and NerdAxe devices. It provides live statistics, device configuration, pool management, alerting and notifications through Telegram, Discord or Gotify. | `bridge` | `http://[IP]:[PORT:8000]` | [XML](https://fgrfn.github.io/unraid-templates/templates/HashHive/my-HashHive.xml) |
+| [Pluton](https://github.com/plutonhq/pluton) | Self-hosted backup management platform based on Restic and Rclone. Pluton provides encrypted incremental backups, replication, retention schedules, restore workflows, notifications, retries and event scripts through a web interface. | `bridge` | `http://[IP]:[PORT:5173]` | [XML](https://fgrfn.github.io/unraid-templates/templates/Pluton/my-Pluton.xml) |
+| [RedditWSBCrawler](https://github.com/fgrfn/reddit-wsb-crawler) | Early-warning crawler for stock-ticker activity on Reddit. It analyzes mention trends, enriches them with market and news data and can send Discord alerts for unusual activity. | `bridge` | `Headless` | [XML](https://fgrfn.github.io/unraid-templates/templates/RedditWSBCrawler/my-RedditWSBCrawler.xml) |
+| [Scan2Target](https://github.com/fgrfn/Scan2Target) | Web-based scan server for USB and network scanners. Scan2Target discovers scanners and routes documents to file shares, mail, Paperless-ngx, webhooks and cloud providers. | `host` | `http://[IP]:8000` | [XML](https://fgrfn.github.io/unraid-templates/templates/Scan2Target/my-Scan2Target.xml) |
+| [TwitchDropsMiner](https://github.com/fgrfn/TwitchDropsMiner) | Twitch Drops Miner farms eligible Twitch drops without keeping a stream open. It discovers campaigns, changes channels automatically, persists OAuth state and offers webhook notifications and a web interface. | `bridge` | `http://[IP]:[PORT:8080]` | [XML](https://fgrfn.github.io/unraid-templates/templates/TwitchDropsMiner/my-TwitchDropsMiner.xml) |
+| [TwitchMinerGo](https://github.com/Guliveer/twitch-miner-go) | Resource-efficient Twitch channel-points miner written in Go. It supports multiple accounts, predictions, drops, raids, notifications and an analytics web interface. | `bridge` | `http://[IP]:[PORT:8080]` | [XML](https://fgrfn.github.io/unraid-templates/templates/TwitchMinerGo/my-TwitchMinerGo.xml) |
 
-## 📦 Available Templates
+## Installation
 
-### 🖨️ Bambuddy
+### Add the complete template repository
 
-- **Description:** Self-hosted print archive and management system for Bambu Lab 3D printers
-- **Template XML:** [`my-Bambuddy.xml`](https://fgrfn.github.io/unraid-templates/templates/Bambuddy/my-Bambuddy.xml)
-- **Docker Image:** [`ghcr.io/maziggy/bambuddy`](https://github.com/maziggy/bambuddy)
-- **WebUI Port:** 8000
-- **Original Project:** [maziggy/bambuddy](https://github.com/maziggy/bambuddy)
+In Unraid, open **Docker → Add Container → Template repositories** and add:
 
-**Quick Install:**
-```
-https://fgrfn.github.io/unraid-templates/templates/Bambuddy/my-Bambuddy.xml
-```
-
-### 🖨️ Scan2Target
-
-- **Description:** Modern web-based scan server for network and USB scanners
-- **Template XML:** [`my-Scan2Target.xml`](https://fgrfn.github.io/unraid-templates/templates/Scan2Target/my-Scan2Target.xml)
-- **Docker Image:** [`ghcr.io/fgrfn/scan2target`](https://github.com/fgrfn/Scan2Target)
-- **WebUI Port:** 8000
-- **Project:** [fgrfn/Scan2Target](https://github.com/fgrfn/Scan2Target)
-
-**Quick Install:**
-```
-https://fgrfn.github.io/unraid-templates/templates/Scan2Target/my-Scan2Target.xml
-```
-
-### 📊 Netzbremse
-
-- **Description:** Automated speedtest runner for testing peering bottlenecks from Deutsche Telekom connections
-- **Template XML:** [`my-Netzbremse.xml`](https://fgrfn.github.io/unraid-templates/templates/Netzbremse/my-Netzbremse.xml)
-- **Docker Image:** [`ghcr.io/akvorrat/netzbremse-measurement`](https://github.com/AKVorrat/netzbremse-measurement)
-- **WebUI Port:** N/A (headless)
-- **Original Project:** [AKVorrat/netzbremse-measurement](https://github.com/AKVorrat/netzbremse-measurement)
-
-**Quick Install:**
-```
-https://fgrfn.github.io/unraid-templates/templates/Netzbremse/my-Netzbremse.xml
-```
-
-### 📈 Reddit WSB Crawler
-
-- **Description:** Automatic early warning system for Reddit stock hypes - crawls r/wallstreetbets for ticker mentions and sends Discord alerts
-- **Template XML:** [`my-RedditWSBCrawler.xml`](https://fgrfn.github.io/unraid-templates/templates/RedditWSBCrawler/my-RedditWSBCrawler.xml)
-- **Docker Image:** [`ghcr.io/fgrfn/reddit-wsb-crawler`](https://github.com/fgrfn/reddit-wsb-crawler)
-- **WebUI Port:** N/A (headless)
-- **Project:** [fgrfn/reddit-wsb-crawler](https://github.com/fgrfn/reddit-wsb-crawler)
-
-**Quick Install:**
-```
-https://fgrfn.github.io/unraid-templates/templates/RedditWSBCrawler/my-RedditWSBCrawler.xml
-```
-
-### ⛏️ BitAxe Discord Status Bot
-
-- **Description:** Real-time Discord monitoring for BitAxe & NerdAxe Bitcoin miners - tracks hashrate, temperature, power consumption & best difficulty with automatic alerts
-- **Template XML:** [`my-BitaxeDiscordBot.xml`](https://fgrfn.github.io/unraid-templates/templates/BitaxeDiscordBot/my-BitaxeDiscordBot.xml)
-- **Docker Image:** [`ghcr.io/fgrfn/bitaxe-discord-status-bot`](https://github.com/fgrfn/bitaxe-discord-status-bot)
-- **WebUI Port:** N/A (Discord bot)
-- **Project:** [fgrfn/bitaxe-discord-status-bot](https://github.com/fgrfn/bitaxe-discord-status-bot)
-
-**Quick Install:**
-```
-https://fgrfn.github.io/unraid-templates/templates/BitaxeDiscordBot/my-BitaxeDiscordBot.xml
-```
-
-### 🎮 Twitch Miner Go
-
-- **Description:** High-performance Go rewrite of Twitch Channel Points Miner v2 — mines channel points, claims bonuses, places predictions, joins raids, and claims drops with a fraction of the resource usage
-- **Template XML:** [`my-TwitchMinerGo.xml`](https://fgrfn.github.io/unraid-templates/templates/TwitchMinerGo/my-TwitchMinerGo.xml)
-- **Docker Image:** [`ghcr.io/guliveer/twitch-miner-go`](https://github.com/Guliveer/twitch-miner-go)
-- **WebUI Port:** 8080
-- **Original Project:** [Guliveer/twitch-miner-go](https://github.com/Guliveer/twitch-miner-go)
-
-**Quick Install:**
-```
-https://fgrfn.github.io/unraid-templates/templates/TwitchMinerGo/my-TwitchMinerGo.xml
-```
-
----
-
-## 📝 Blank Template
-
-A **template file** is available for quickly creating new templates:
-
-- **Template:** [`blank-template.xml`](https://github.com/fgrfn/unraid-templates/blob/main/templates/blank-template.xml)
-- Contains all important fields with examples for ports, volumes, and environment variables
-- Perfect for converting Docker-Compose files to Unraid templates
-
----
-
-## 🌐 GitHub Pages Overview
-
-Central landing page with link index:  
-➡️ [`https://fgrfn.github.io/unraid-templates/`](https://fgrfn.github.io/unraid-templates/)
-
----
-
-## 🛠️ Installation Methods
-
-### Method 1: Quick Install (Single Template)
-
-1. Open Unraid: **Docker → Add Container**
-2. Select at the top: **Template repositories**
-3. Copy & paste the template URL from the "Quick Install" section above
-4. Click **"Add"**, then **"Apply"**
-
-### Method 2: Add Template Repository
-
-Add this repository URL to automatically get all templates: 
-
-```
+```text
 https://github.com/fgrfn/unraid-templates
 ```
 
-1. Open Unraid: **Docker → Add Container**
-2. Click **Template repositories** (or settings icon)
-3. Add the repository URL above
-4. Save and browse all available templates
+### Install a single template
 
-### Method 3: Manual Installation
+Open **Docker → Add Container → Template repositories** and paste the XML URL from the table above. Alternatively download the XML to `/boot/config/plugins/dockerMan/templates-user/`.
 
-**Option A: Download via Browser**
-1. Download the desired `.xml` file from this repository
-2. Place it in `/boot/config/plugins/dockerMan/templates-user/`
-3. Refresh the Docker page in Unraid
-4. The template will appear in your template list
+## Development
 
-**Option B: Download via wget (SSH/Terminal)**
-
-Open Unraid terminal or SSH and run: 
+The repository uses `catalog.yaml` as its inventory. Template XML remains the source of container configuration; the README, website and deployment artifact are generated from both sources.
 
 ```bash
-# For Bambuddy template: 
-wget -P /boot/config/plugins/dockerMan/templates-user/ https://raw.githubusercontent.com/fgrfn/unraid-templates/main/templates/Bambuddy/my-Bambuddy.xml
-
-# For Scan2Target template:
-wget -P /boot/config/plugins/dockerMan/templates-user/ https://raw.githubusercontent.com/fgrfn/unraid-templates/main/templates/Scan2Target/my-Scan2Target.xml
-
-# For Netzbremse template:
-wget -P /boot/config/plugins/dockerMan/templates-user/ https://raw.githubusercontent.com/fgrfn/unraid-templates/main/templates/Netzbremse/my-Netzbremse.xml
-
-# For Reddit WSB Crawler template:
-wget -P /boot/config/plugins/dockerMan/templates-user/ https://raw.githubusercontent.com/fgrfn/unraid-templates/main/templates/RedditWSBCrawler/my-RedditWSBCrawler.xml
-
-# For BitAxe Discord Status Bot template:
-wget -P /boot/config/plugins/dockerMan/templates-user/ https://raw.githubusercontent.com/fgrfn/unraid-templates/main/templates/BitaxeDiscordBot/my-BitaxeDiscordBot.xml
-
-# For Twitch Miner Go template:
-wget -P /boot/config/plugins/dockerMan/templates-user/ https://raw.githubusercontent.com/fgrfn/unraid-templates/main/templates/TwitchMinerGo/my-TwitchMinerGo.xml
-
-# For blank template:
-wget -P /boot/config/plugins/dockerMan/templates-user/ https://raw.githubusercontent.com/fgrfn/unraid-templates/main/templates/blank-template.xml
+python -m pip install -r requirements-dev.txt
+python scripts/validate-templates.py
+pytest
+python scripts/generate-index.py --check-readme
+python scripts/generate-index.py --output _site
 ```
 
-Then refresh the Docker page in Unraid to see the new template.
+Upstream monitoring creates or updates a **draft pull request containing a drift report**. It never modifies production templates or pushes directly to `main`.
 
----
+## Contributing
 
-## 🔄 Automatic Template Updates
+See [CONTRIBUTING.md](CONTRIBUTING.md). New templates must be added to `catalog.yaml`, pass semantic validation and include clear security and networking requirements.
 
-Templates in this repository are **automatically updated daily** through a GitHub Actions workflow that:
+## License
 
-- 📡 Checks upstream project repositories for changes (docker-compose.yml)
-- 🔍 Detects new environment variables, ports, and volumes
-- ✨ Automatically adds missing configuration to templates
-- ✅ Validates and commits changes back to the repository
-
-**Monitored Projects:**
-- [maziggy/bambuddy](https://github.com/maziggy/bambuddy)
-- [fgrfn/Scan2Target](https://github.com/fgrfn/Scan2Target)
-- [AKVorrat/netzbremse-measurement](https://github.com/AKVorrat/netzbremse-measurement)
-- [fgrfn/reddit-wsb-crawler](https://github.com/fgrfn/reddit-wsb-crawler)
-- [fgrfn/bitaxe-discord-status-bot](https://github.com/fgrfn/bitaxe-discord-status-bot)
-- [Guliveer/twitch-miner-go](https://github.com/Guliveer/twitch-miner-go)
-
-The workflow runs **daily at 2 AM UTC** and can also be triggered manually via [workflow_dispatch](https://github.com/fgrfn/unraid-templates/actions/workflows/update-templates.yml).
-
-**Script Usage:**
-```bash
-# Check for template updates manually
-python scripts/update-templates.py
-```
-
----
-
-## ✍️ Contributing
-
-Want to add or improve a template?  
-Pull requests are welcome – or contact me directly!
-
-Use [`blank-template.xml`](https://github.com/fgrfn/unraid-templates/blob/main/templates/blank-template.xml) as a starting point for new templates.
-
-### 📋 Template Guidelines
-
-When creating or updating templates, please ensure:
-
-1. **Always include an icon** - Icons display in both Unraid UI and on the GitHub Pages website
-   - **Option 1 (Recommended): Local logo file** - Place a `logo.png`, `logo.svg`, or other image file in the template folder
-     - Example: `templates/MyApp/logo.png`
-     - The system will automatically detect and use it
-     - Supported formats: `.png`, `.svg`, `.jpg`, `.jpeg`, `.webp`, `.ico`
-   
-   - **Option 2: Icon URL in XML** - Add an `<Icon>` tag in your template XML:
-     - Project favicon: `https://raw.githubusercontent.com/user/repo/main/static/favicon.ico`
-     - Project logo (use `?raw=true`): `https://github.com/user/repo/blob/main/logo.png?raw=true`
-     - Organization/user avatar: `https://avatars.githubusercontent.com/u/12345678`
-   
-   - **Fallback:** If no logo file or Icon URL is found, a generated avatar with the app's initials will be used
-
-2. **Test the icon URL** - If using Option 2, verify the URL is accessible and returns an image before submitting
-
-3. **Commit and push your changes** - The GitHub Actions workflow will automatically:
-   - Validate your templates
-   - Generate the updated GitHub Pages site
-   - Deploy changes to https://fgrfn.github.io/unraid-templates/
-   
-   No manual script execution needed!
-
----
-
-## 📄 License
-
-All templates are based on freely accessible projects.   
-The templates themselves are licensed under the MIT License.
+Template repository code and metadata are available under the [MIT License](LICENSE). Upstream applications retain their own licenses.
