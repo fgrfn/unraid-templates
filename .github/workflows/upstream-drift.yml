@@ -1,0 +1,70 @@
+name: Upstream Drift
+
+on:
+  schedule:
+    - cron: "17 2 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pull-requests: write
+
+concurrency:
+  group: upstream-drift
+  cancel-in-progress: false
+
+jobs:
+  report:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout main
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+
+      - name: Install dependencies
+        run: python -m pip install -r requirements.txt
+
+      - name: Check upstream Compose files
+        id: drift
+        shell: bash
+        run: |
+          set +e
+          python scripts/check-upstream.py --output reports/upstream-drift.md
+          status=$?
+          set -e
+          if [ "$status" -eq 0 ]; then
+            echo "review_required=false" >> "$GITHUB_OUTPUT"
+          elif [ "$status" -eq 2 ]; then
+            echo "review_required=true" >> "$GITHUB_OUTPUT"
+          else
+            exit "$status"
+          fi
+
+      - name: Publish review branch
+        if: steps.drift.outputs.review_required == 'true'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          branch="automation/upstream-drift"
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git checkout -B "$branch"
+          git add -f reports/upstream-drift.md
+          if git diff --cached --quiet; then
+            exit 0
+          fi
+          git commit -m "Report upstream template drift"
+          git push --force-with-lease origin "$branch"
+          if gh pr view "$branch" --json number >/dev/null 2>&1; then
+            gh pr edit "$branch" --title "Review upstream template drift" --body-file reports/upstream-drift.md
+          else
+            gh pr create --draft --base main --head "$branch" --title "Review upstream template drift" --body-file reports/upstream-drift.md
+          fi
