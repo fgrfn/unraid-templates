@@ -10,22 +10,10 @@
   <Support>https://github.com/plutonhq/pluton/issues</Support>
   <Project>https://github.com/plutonhq/pluton</Project>
   <ReadMe>https://docs.usepluton.com/docs/getting-started/deploy-docker</ReadMe>
-  <Overview>Self-hosted backup management platform that simplifies automated, incremental backups across your storage destinations. Leverages Restic for secure incremental backups and Rclone for versatile cloud storage connectivity, wrapped in an intuitive web interface.
-
-Features:
-- Automated backups with encryption, compression and retention policies powered by Restic
-- Backup Replication: auto backup to multiple cloud storages for 3-2-1 backup plans
-- Flexible scheduling with fine-grained retention policies
-- End-to-end encryption from local machine to cloud storage
-- 70+ Storage Providers supported via Rclone
-- Easy Restore &amp; Download with just a few clicks
-- Event notifications (email on backup start, end, completion or failure)
-- Auto Retry Logic with customization options
-- Real-time progress tracking and extensive logging
-- Run scripts before/after backups</Overview>
+  <Overview>Self-hosted backup management platform based on Restic and Rclone. Pluton provides encrypted incremental backups, replication, retention schedules, restore workflows, notifications, retries and event scripts through a web interface.</Overview>
   <Category>Backup:</Category>
   <WebUI>http://[IP]:[PORT:5173]</WebUI>
-  <TemplateURL />
+  <TemplateURL>https://fgrfn.github.io/unraid-templates/templates/Pluton/my-Pluton.xml</TemplateURL>
   <Icon>https://avatars.githubusercontent.com/u/205273611</Icon>
   <ExtraParams>--restart=unless-stopped</ExtraParams>
   <PostArgs />
@@ -33,24 +21,22 @@ Features:
   <DateInstalled />
   <DonateText />
   <DonateLink />
-  <Requires />
-  <!-- Port -->
-  <Config Name="WebUI Port" Target="5173" Default="5173" Mode="tcp" Description="Port for the Pluton web interface. Must match SERVER_PORT." Type="Port" Display="always" Required="true" Mask="false">5173</Config>
-  <!-- Volume -->
-  <Config Name="Data Volume" Target="/data" Default="/mnt/user/appdata/pluton" Mode="rw" Description="Persistent storage for Pluton (database, config, logs)" Type="Path" Display="always" Required="true" Mask="false">/mnt/user/appdata/pluton</Config>
-  <!-- Required environment variables -->
-  <Config Name="ENCRYPTION_KEY" Target="ENCRYPTION_KEY" Default="" Mode="env" Description="Encryption key for Restic/Rclone snapshot encryption. Generate a strong random string (32+ characters recommended)." Type="Variable" Display="always" Required="true" Mask="true" />
-  <Config Name="USER_NAME" Target="USER_NAME" Default="admin" Mode="env" Description="Admin username for the Pluton web interface." Type="Variable" Display="always" Required="true" Mask="false">admin</Config>
-  <Config Name="USER_PASSWORD" Target="USER_PASSWORD" Default="" Mode="env" Description="Admin password for the Pluton web interface. Use a strong password." Type="Variable" Display="always" Required="true" Mask="true" />
-  <!-- Optional environment variables -->
-  <Config Name="APP_URL" Target="APP_URL" Default="http://localhost:5173" Mode="env" Description="Public URL of the Pluton instance (used for links in notifications)." Type="Variable" Display="always" Required="false" Mask="false">http://localhost:5173</Config>
-  <Config Name="APP_TITLE" Target="APP_TITLE" Default="Pluton" Mode="env" Description="Title shown in the Pluton web interface." Type="Variable" Display="advanced" Required="false" Mask="false">Pluton</Config>
-  <Config Name="SERVER_PORT" Target="SERVER_PORT" Default="5173" Mode="env" Description="Port the Pluton server listens on inside the container. Must match the WebUI Port mapping." Type="Variable" Display="advanced" Required="false" Mask="false">5173</Config>
-  <Config Name="MAX_CONCURRENT_BACKUPS" Target="MAX_CONCURRENT_BACKUPS" Default="2" Mode="env" Description="Maximum number of backup jobs that can run simultaneously." Type="Variable" Display="advanced" Required="false" Mask="false">2</Config>
-  <Config Name="SESSION_DURATION" Target="SESSION_DURATION" Default="7" Mode="env" Description="How long a frontend login session lasts in days." Type="Variable" Display="advanced" Required="false" Mask="false">7</Config>
-  <Config Name="ALLOW_CUSTOM_RESTORE_PATH" Target="ALLOW_CUSTOM_RESTORE_PATH" Default="true" Mode="env" Description="Allow users to specify a custom restore path." Type="Variable" Display="advanced" Required="false" Mask="false">true</Config>
-  <Config Name="ALLOW_FILE_BROWSER" Target="ALLOW_FILE_BROWSER" Default="true" Mode="env" Description="Enable the built-in file browser in the UI." Type="Variable" Display="advanced" Required="false" Mask="false">true</Config>
-  <Config Name="DISABLE_EVENT_SCRIPTS" Target="DISABLE_EVENT_SCRIPTS" Default="false" Mode="env" Description="Disable running scripts before/after backup jobs." Type="Variable" Display="advanced" Required="false" Mask="false">false</Config>
-  <Config Name="TZ" Target="TZ" Default="Europe/Berlin" Mode="env" Description="Timezone (e.g. Europe/Berlin, America/New_York, UTC)" Type="Variable" Display="always" Required="false" Mask="false">Europe/Berlin</Config>
+  <Requires>Review the read-only backup source and writable restore target mappings before starting the container. Restrict them to the shares Pluton should access.</Requires>
+  <Config Name="WebUI Port" Target="5173" Default="5173" Mode="tcp" Description="Host port for the Pluton web interface. Keep SERVER_PORT at 5173." Type="Port" Display="always" Required="true" Mask="false">5173</Config>
+  <Config Name="Data Volume" Target="/data" Default="/mnt/user/appdata/pluton" Mode="rw" Description="Persistent database, configuration and logs." Type="Path" Display="always" Required="true" Mask="false">/mnt/user/appdata/pluton</Config>
+  <Config Name="Backup Source" Target="/backup-source" Default="/mnt/user" Mode="ro" Description="Read-only source containing the shares that may be backed up. Narrow this path when possible." Type="Path" Display="always" Required="false" Mask="false">/mnt/user</Config>
+  <Config Name="Restore Target" Target="/restore" Default="/mnt/user" Mode="rw" Description="Writable restore destination. Narrow this path when possible." Type="Path" Display="always" Required="false" Mask="false">/mnt/user</Config>
+  <Config Name="ENCRYPTION_KEY" Target="ENCRYPTION_KEY" Default="" Mode="env" Description="Strong encryption key with at least 32 random characters." Type="Variable" Display="always" Required="true" Mask="true" />
+  <Config Name="USER_NAME" Target="USER_NAME" Default="admin" Mode="env" Description="Initial administrator username." Type="Variable" Display="always" Required="true" Mask="false">admin</Config>
+  <Config Name="USER_PASSWORD" Target="USER_PASSWORD" Default="" Mode="env" Description="Initial administrator password." Type="Variable" Display="always" Required="true" Mask="true" />
+  <Config Name="APP_URL" Target="APP_URL" Default="http://localhost:5173" Mode="env" Description="Public URL used in notifications." Type="Variable" Display="always" Required="false" Mask="false">http://localhost:5173</Config>
+  <Config Name="APP_TITLE" Target="APP_TITLE" Default="Pluton" Mode="env" Description="Title displayed in the web interface." Type="Variable" Display="advanced" Required="false" Mask="false">Pluton</Config>
+  <Config Name="SERVER_PORT" Target="SERVER_PORT" Default="5173" Mode="env" Description="Internal server port; keep aligned with the container port." Type="Variable" Display="advanced" Required="false" Mask="false">5173</Config>
+  <Config Name="MAX_CONCURRENT_BACKUPS" Target="MAX_CONCURRENT_BACKUPS" Default="2" Mode="env" Description="Maximum number of simultaneous backup jobs." Type="Variable" Display="advanced" Required="false" Mask="false">2</Config>
+  <Config Name="SESSION_DURATION" Target="SESSION_DURATION" Default="7" Mode="env" Description="Login session duration in days." Type="Variable" Display="advanced" Required="false" Mask="false">7</Config>
+  <Config Name="ALLOW_CUSTOM_RESTORE_PATH" Target="ALLOW_CUSTOM_RESTORE_PATH" Default="true" Mode="env" Description="Allow custom restore paths." Type="Variable" Display="advanced" Required="false" Mask="false">true</Config>
+  <Config Name="ALLOW_FILE_BROWSER" Target="ALLOW_FILE_BROWSER" Default="true" Mode="env" Description="Enable the built-in file browser." Type="Variable" Display="advanced" Required="false" Mask="false">true</Config>
+  <Config Name="DISABLE_EVENT_SCRIPTS" Target="DISABLE_EVENT_SCRIPTS" Default="false" Mode="env" Description="Disable pre- and post-backup scripts." Type="Variable" Display="advanced" Required="false" Mask="false">false</Config>
+  <Config Name="TZ" Target="TZ" Default="Europe/Berlin" Mode="env" Description="Container timezone." Type="Variable" Display="always" Required="false" Mask="false">Europe/Berlin</Config>
   <TailscaleStateDir />
 </Container>
