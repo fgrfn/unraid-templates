@@ -8,6 +8,7 @@ on:
 permissions:
   contents: write
   pull-requests: write
+  issues: write
 
 concurrency:
   group: upstream-drift
@@ -16,6 +17,7 @@ concurrency:
 jobs:
   report:
     runs-on: ubuntu-latest
+    timeout-minutes: 15
     steps:
       - name: Checkout main
         uses: actions/checkout@v7
@@ -39,32 +41,72 @@ jobs:
           python scripts/check-upstream.py --output reports/upstream-drift.md
           status=$?
           set -e
-          if [ "$status" -eq 0 ]; then
-            echo "review_required=false" >> "$GITHUB_OUTPUT"
-          elif [ "$status" -eq 2 ]; then
-            echo "review_required=true" >> "$GITHUB_OUTPUT"
-          else
-            exit "$status"
-          fi
+          case "$status" in
+            0) echo "review_required=false" >> "$GITHUB_OUTPUT" ;;
+            2) echo "review_required=true" >> "$GITHUB_OUTPUT" ;;
+            *) exit "$status" ;;
+          esac
 
-      - name: Publish review branch
+      - name: Upload drift report
+        if: always()
+        uses: actions/upload-artifact@v7
+        with:
+          name: upstream-drift-report
+          path: reports/upstream-drift.md
+          if-no-files-found: error
+
+      - name: Publish review branch and pull request
+        id: publish
         if: steps.drift.outputs.review_required == 'true'
+        continue-on-error: true
         env:
           GH_TOKEN: ${{ github.token }}
         shell: bash
         run: |
+          set -euo pipefail
           branch="automation/upstream-drift"
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git checkout -B "$branch"
           git add -f reports/upstream-drift.md
+
           if git diff --cached --quiet; then
+            echo "No report change to publish." >> "$GITHUB_STEP_SUMMARY"
             exit 0
           fi
+
           git commit -m "Report upstream template drift"
-          git push --force-with-lease origin "$branch"
-          if gh pr view "$branch" --json number >/dev/null 2>&1; then
-            gh pr edit "$branch" --title "Review upstream template drift" --body-file reports/upstream-drift.md
+          git push --force origin "$branch"
+
+          pr_number="$(gh pr list --head "$branch" --base main --state open --json number --jq '.[0].number // empty')"
+          if [ -n "$pr_number" ]; then
+            gh pr edit "$pr_number" \
+              --title "Review upstream template drift" \
+              --body-file reports/upstream-drift.md
           else
-            gh pr create --draft --base main --head "$branch" --title "Review upstream template drift" --body-file reports/upstream-drift.md
+            gh pr create --draft --base main --head "$branch" \
+              --title "Review upstream template drift" \
+              --body-file reports/upstream-drift.md
           fi
+
+      - name: Fall back to an issue when PR creation is disabled
+        if: steps.drift.outputs.review_required == 'true' && steps.publish.outcome == 'failure'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          title="Upstream template drift requires review"
+          issue_number="$(gh issue list --state open --search "\"$title\" in:title" --json number --jq '.[0].number // empty')"
+          if [ -n "$issue_number" ]; then
+            gh issue edit "$issue_number" --title "$title" --body-file reports/upstream-drift.md
+          else
+            gh issue create --title "$title" --body-file reports/upstream-drift.md
+          fi
+          {
+            echo "## Upstream drift detected"
+            echo
+            echo "GitHub Actions could not create the review pull request."
+            echo "A tracking issue and the \`upstream-drift-report\` artifact were created instead."
+            echo "Enable **Settings → Actions → General → Allow GitHub Actions to create and approve pull requests** to restore automatic draft PR creation."
+          } >> "$GITHUB_STEP_SUMMARY"
