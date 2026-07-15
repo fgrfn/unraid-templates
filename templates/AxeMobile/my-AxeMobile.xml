@@ -3,17 +3,17 @@
   <Name>AxeMobile</Name>
   <Repository>ghcr.io/issasoridev/axemobile:latest</Repository>
   <Registry>https://github.com/IsSasoriDev/AxeMobile</Registry>
-  <Network>bridge</Network>
+  <Network>axemobile</Network>
   <MyIP />
   <Shell>bash</Shell>
   <Privileged>false</Privileged>
   <Support>https://github.com/IsSasoriDev/AxeMobile/issues</Support>
   <Project>https://github.com/IsSasoriDev/AxeMobile</Project>
-  <ReadMe />
-  <Overview>AxeMobile is a comprehensive dashboard for monitoring and managing your Bitaxe and NerdAxe Bitcoin miners. Includes real-time hashrate, temperature and power monitoring, multi-miner support with network scanning, performance presets (Eco, Balanced, Performance, Max OC), firmware update support, Bitcoin network statistics, and a mining calculator.</Overview>
+  <ReadMe>https://github.com/IsSasoriDev/AxeMobile#readme</ReadMe>
+  <Overview>AxeMobile is a dashboard for monitoring and managing Bitaxe and NerdAxe Bitcoin miners. It provides live hashrate, temperature and power data, network discovery, performance presets, firmware updates, Bitcoin network statistics and a mining calculator.</Overview>
   <Category>Tools:</Category>
   <WebUI>http://[IP]:[PORT:3847]</WebUI>
-  <TemplateURL />
+  <TemplateURL>https://fgrfn.github.io/unraid-templates/templates/AxeMobile/my-AxeMobile.xml</TemplateURL>
   <Icon>https://raw.githubusercontent.com/IsSasoriDev/AxeMobile/main/axemobile-main/icon.png</Icon>
   <ExtraParams>--restart=unless-stopped</ExtraParams>
   <PostArgs />
@@ -21,9 +21,8 @@
   <DateInstalled />
   <DonateText />
   <DonateLink />
-  <Requires />
-  <Config Name="WebUI Port" Target="80" Default="3847" Mode="tcp" Description="Port for the Web Interface" Type="Port" Display="always" Required="true" Mask="false">3847</Config>
-  <Config Name="NODE_ENV" Target="NODE_ENV" Default="production" Mode="env" Description="Node environment (runtime is nginx serving static files; this value does not affect behavior)" Type="Variable" Display="advanced" Required="false" Mask="false">production</Config>
-  <Config Name="AXEPOOL_API_URL" Target="AXEPOOL_API_URL" Default="http://axepool-stratum:3334" Mode="env" Description="URL of the AxePool Stratum stats API. Default assumes the companion container is named &quot;axepool-stratum&quot; on the same Unraid bridge network. Adjust if your AxePoolStratum container has a different name or IP." Type="Variable" Display="always" Required="false" Mask="false">http://axepool-stratum:3334</Config>
+  <Requires>Create the shared Docker network once before installation: docker network create axemobile. Install AxePoolStratum on the same network when pool statistics are required.</Requires>
+  <Config Name="WebUI Port" Target="80" Default="3847" Mode="tcp" Description="Host port for the AxeMobile web interface." Type="Port" Display="always" Required="true" Mask="false">3847</Config>
+  <Config Name="AXEPOOL_API_URL" Target="AXEPOOL_API_URL" Default="http://axepool-stratum:3334" Mode="env" Description="Stats API URL of the AxePoolStratum companion container on the shared axemobile network." Type="Variable" Display="always" Required="false" Mask="false">http://axepool-stratum:3334</Config>
   <TailscaleStateDir />
 </Container>

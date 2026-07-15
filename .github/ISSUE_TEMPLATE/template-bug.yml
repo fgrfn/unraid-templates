@@ -1,0 +1,35 @@
+name: Broken template
+description: Report an installation, metadata or runtime problem
+title: "[Template]: "
+labels: ["bug"]
+body:
+  - type: input
+    id: template
+    attributes:
+      label: Template
+    validations:
+      required: true
+  - type: input
+    id: unraid
+    attributes:
+      label: Unraid version
+    validations:
+      required: true
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem
+      description: Remove passwords, tokens, cookies and private URLs from logs.
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected behavior
+    validations:
+      required: true
+  - type: textarea
+    id: logs
+    attributes:
+      label: Sanitized logs
+      render: shell

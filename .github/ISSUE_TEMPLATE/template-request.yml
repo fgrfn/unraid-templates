@@ -1,0 +1,32 @@
+name: Template request
+description: Suggest an application for this repository
+title: "[Request]: "
+labels: ["enhancement"]
+body:
+  - type: input
+    id: project
+    attributes:
+      label: Upstream project URL
+    validations:
+      required: true
+  - type: input
+    id: image
+    attributes:
+      label: Container image
+    validations:
+      required: true
+  - type: textarea
+    id: compose
+    attributes:
+      label: Official Docker or Compose documentation
+    validations:
+      required: true
+  - type: checkboxes
+    id: checks
+    attributes:
+      label: Checks
+      options:
+        - label: The image is actively maintained and has a documented license.
+          required: true
+        - label: I have not included credentials or private data.
+          required: true

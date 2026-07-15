@@ -1,18 +1,7 @@
 # Security Policy
 
-## Supported Versions
+Do not publish real passwords, API keys, tokens, cookies, private URLs or wallet credentials in templates, issues, pull requests or logs.
 
-Security fixes are provided for the latest default branch.
+For vulnerabilities in this repository's validation, generation or deployment code, open a private GitHub security advisory. Vulnerabilities in an application represented by a template must be reported to that application's upstream project.
 
-## Reporting a Vulnerability
-
-Please report vulnerabilities privately via GitHub Security Advisories (preferred) or direct contact.
-Do not open public issues for unpatched vulnerabilities.
-
-Include:
-- affected repository and version/commit
-- reproduction steps
-- impact assessment
-- possible mitigation
-
-We will acknowledge receipt as quickly as possible and coordinate a fix + disclosure timeline.
+Template installation grants the referenced container the paths, devices, network mode and capabilities shown in its XML. Review these settings before installation, especially host networking, writable share mounts and additional Linux capabilities.

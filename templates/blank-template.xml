@@ -1,56 +1,29 @@
-<?xml version="1.0"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Container version="2">
-  <!-- Basic Information -->
-  <Name></Name>
-  <Repository></Repository>
-  <Registry></Registry>
+  <Name>APP_NAME</Name>
+  <Repository>OWNER/IMAGE:TAG</Repository>
+  <Registry>https://hub.docker.com/r/OWNER/IMAGE</Registry>
   <Network>bridge</Network>
-  <MyIP></MyIP>
+  <MyIP />
   <Shell>bash</Shell>
   <Privileged>false</Privileged>
-  
-  <!-- Links and Documentation -->
-  <Support></Support>
-  <Project></Project>
-  <ReadMe></ReadMe>
-  <Overview></Overview>
-  
-  <!-- UI Settings -->
-  <Category></Category>
-  <WebUI></WebUI>
-  <TemplateURL></TemplateURL>
-  <!-- Icon: Use HTTPS URL to an image file (PNG, ICO, or SVG recommended)
-       Examples:
-       - Project favicon: https://raw.githubusercontent.com/user/repo/main/static/favicon.ico
-       - Project logo with ?raw=true: https://github.com/user/repo/blob/main/logo.png?raw=true
-       - Organization avatar: https://avatars.githubusercontent.com/u/12345678
-       IMPORTANT: Always include an icon - it displays on both the Unraid UI and GitHub Pages -->
-  <Icon>https://raw.githubusercontent.com/user/repo/main/icon.png</Icon>
-  
-  <!-- Docker Parameters -->
-  <ExtraParams></ExtraParams>
-  <PostArgs></PostArgs>
-  <CPUset></CPUset>
-  <DateInstalled></DateInstalled>
-  
-  <!-- Donation Links (optional) -->
-  <DonateText></DonateText>
-  <DonateLink></DonateLink>
-  <Requires></Requires>
-  
-  <!-- Port Configuration Example -->
-  <Config Name="WebUI Port" Target="8080" Default="8080" Mode="tcp" Description="Port for Web Interface" Type="Port" Display="always" Required="true" Mask="false">8080</Config>
-  
-  <!-- Volume/Path Configuration Example -->
-  <Config Name="AppData" Target="/config" Default="/mnt/user/appdata/appname" Mode="rw" Description="Application data directory" Type="Path" Display="always" Required="true" Mask="false">/mnt/user/appdata/appname</Config>
-  
-  <!-- Environment Variable Example -->
-  <Config Name="PUID" Target="PUID" Default="99" Mode="env" Description="User ID" Type="Variable" Display="advanced" Required="false" Mask="false">99</Config>
-  
-  <Config Name="PGID" Target="PGID" Default="100" Mode="env" Description="Group ID" Type="Variable" Display="advanced" Required="false" Mask="false">100</Config>
-  
-  <Config Name="TZ" Target="TZ" Default="Europe/Berlin" Mode="env" Description="Timezone" Type="Variable" Display="always" Required="false" Mask="false">Europe/Berlin</Config>
-  
-  <!-- Tailscale (optional) -->
-  <TailscaleStateDir/>
+  <Support>https://github.com/OWNER/PROJECT/issues</Support>
+  <Project>https://github.com/OWNER/PROJECT</Project>
+  <ReadMe>https://github.com/OWNER/PROJECT#readme</ReadMe>
+  <Overview>Describe the application, its main purpose and important installation notes.</Overview>
+  <Category>Tools:</Category>
+  <WebUI>http://[IP]:[PORT:8080]</WebUI>
+  <TemplateURL>https://fgrfn.github.io/unraid-templates/templates/APP_FOLDER/my-APP_NAME.xml</TemplateURL>
+  <Icon>https://raw.githubusercontent.com/OWNER/PROJECT/main/icon.png</Icon>
+  <ExtraParams>--restart=unless-stopped</ExtraParams>
+  <PostArgs />
+  <CPUset />
+  <DateInstalled />
+  <DonateText />
+  <DonateLink />
+  <Requires />
+  <Config Name="WebUI Port" Target="8080" Default="8080" Mode="tcp" Description="Host port for the web interface." Type="Port" Display="always" Required="true" Mask="false">8080</Config>
+  <Config Name="AppData" Target="/config" Default="/mnt/user/appdata/app-name" Mode="rw" Description="Persistent application data." Type="Path" Display="always" Required="true" Mask="false">/mnt/user/appdata/app-name</Config>
+  <Config Name="TZ" Target="TZ" Default="Europe/Berlin" Mode="env" Description="Container timezone." Type="Variable" Display="always" Required="false" Mask="false">Europe/Berlin</Config>
+  <TailscaleStateDir />
 </Container>

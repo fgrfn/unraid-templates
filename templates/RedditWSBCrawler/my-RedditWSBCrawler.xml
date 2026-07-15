@@ -9,13 +9,11 @@
   <Privileged>false</Privileged>
   <Support>https://github.com/fgrfn/reddit-wsb-crawler/issues</Support>
   <Project>https://github.com/fgrfn/reddit-wsb-crawler</Project>
-  <ReadMe />
-  <Overview>Automatic early warning system for Reddit stock hypes. Crawls r/wallstreetbets and other subreddits for ticker mentions, analyzes trends with live prices from Yahoo Finance, and sends Discord alerts for unusual activity.
-
-Requires Reddit API credentials, NewsAPI key, and Discord webhook URL.</Overview>
+  <ReadMe>https://github.com/fgrfn/reddit-wsb-crawler#readme</ReadMe>
+  <Overview>Early-warning crawler for stock-ticker activity on Reddit. It analyzes mention trends, enriches them with market and news data and can send Discord alerts for unusual activity.</Overview>
   <Category>Tools:</Category>
   <WebUI />
-  <TemplateURL />
+  <TemplateURL>https://fgrfn.github.io/unraid-templates/templates/RedditWSBCrawler/my-RedditWSBCrawler.xml</TemplateURL>
   <Icon>https://github.com/fgrfn/reddit-wsb-crawler/raw/main/logo.png</Icon>
   <ExtraParams>--restart=unless-stopped</ExtraParams>
   <PostArgs />
@@ -24,31 +22,31 @@ Requires Reddit API credentials, NewsAPI key, and Discord webhook URL.</Overview
   <DonateText />
   <DonateLink />
   <Requires />
-  <Config Name="Data Volume" Target="/app/data" Default="/mnt/user/appdata/reddit-wsb-crawler/data" Mode="rw" Description="Persistent data (ticker lists, caches, crawl results)" Type="Path" Display="always" Required="true" Mask="false">/mnt/user/appdata/reddit-wsb-crawler/data</Config>
-  <Config Name="Logs Volume" Target="/app/logs" Default="/mnt/user/appdata/reddit-wsb-crawler/logs" Mode="rw" Description="Log files" Type="Path" Display="always" Required="true" Mask="false">/mnt/user/appdata/reddit-wsb-crawler/logs</Config>
-  <Config Name="Config Volume" Target="/app/config" Default="/mnt/user/appdata/reddit-wsb-crawler/config" Mode="rw" Description="Configuration files (.env)" Type="Path" Display="always" Required="true" Mask="false">/mnt/user/appdata/reddit-wsb-crawler/config</Config>
-  <Config Name="REDDIT_CLIENT_ID" Target="REDDIT_CLIENT_ID" Default="" Mode="env" Description="Reddit API Client ID (get from reddit.com/prefs/apps)" Type="Variable" Display="always" Required="true" Mask="true" />
-  <Config Name="REDDIT_CLIENT_SECRET" Target="REDDIT_CLIENT_SECRET" Default="" Mode="env" Description="Reddit API Client Secret (get from reddit.com/prefs/apps)" Type="Variable" Display="always" Required="true" Mask="true" />
-  <Config Name="REDDIT_USER_AGENT" Target="REDDIT_USER_AGENT" Default="python:wsb-crawler:v1.0.0 (by /u/yourusername)" Mode="env" Description="Reddit User Agent string" Type="Variable" Display="always" Required="true" Mask="false">python:wsb-crawler:v1.0.0 (by /u/yourusername)</Config>
-  <Config Name="NEWSAPI_KEY" Target="NEWSAPI_KEY" Default="" Mode="env" Description="NewsAPI key (get from newsapi.org/register)" Type="Variable" Display="always" Required="true" Mask="true" />
-  <Config Name="DISCORD_WEBHOOK_URL" Target="DISCORD_WEBHOOK_URL" Default="" Mode="env" Description="Discord Webhook URL for alerts" Type="Variable" Display="always" Required="true" Mask="true" />
-  <Config Name="SUBREDDITS" Target="SUBREDDITS" Default="wallstreetbets,wallstreetbetsGER" Mode="env" Description="Comma-separated list of subreddits to crawl" Type="Variable" Display="always" Required="false" Mask="false">wallstreetbets,wallstreetbetsGER</Config>
-  <Config Name="NEWSAPI_LANG" Target="NEWSAPI_LANG" Default="en" Mode="env" Description="Language for news (en, de, etc.)" Type="Variable" Display="advanced" Required="false" Mask="false">en</Config>
-  <Config Name="NEWSAPI_WINDOW_HOURS" Target="NEWSAPI_WINDOW_HOURS" Default="48" Mode="env" Description="Time window for news in hours" Type="Variable" Display="advanced" Required="false" Mask="false">48</Config>
-  <Config Name="ALERT_MIN_ABS" Target="ALERT_MIN_ABS" Default="20" Mode="env" Description="Minimum mentions for new tickers to trigger alert" Type="Variable" Display="advanced" Required="false" Mask="false">20</Config>
-  <Config Name="ALERT_MIN_DELTA" Target="ALERT_MIN_DELTA" Default="10" Mode="env" Description="Minimum mention increase for known tickers" Type="Variable" Display="advanced" Required="false" Mask="false">10</Config>
-  <Config Name="ALERT_RATIO" Target="ALERT_RATIO" Default="2.0" Mode="env" Description="Minimum ratio increase for alerts (e.g., 2.0 = 200%)" Type="Variable" Display="advanced" Required="false" Mask="false">2.0</Config>
-  <Config Name="ALERT_MIN_PRICE_MOVE" Target="ALERT_MIN_PRICE_MOVE" Default="5.0" Mode="env" Description="Minimum price change percentage to include in alert" Type="Variable" Display="advanced" Required="false" Mask="false">5.0</Config>
-  <Config Name="ALERT_MAX_PER_RUN" Target="ALERT_MAX_PER_RUN" Default="3" Mode="env" Description="Maximum alerts per crawl run" Type="Variable" Display="advanced" Required="false" Mask="false">3</Config>
-  <Config Name="ALERT_COOLDOWN_H" Target="ALERT_COOLDOWN_H" Default="4" Mode="env" Description="Cooldown period in hours before re-alerting same ticker" Type="Variable" Display="advanced" Required="false" Mask="false">4</Config>
-  <Config Name="TZ" Target="TZ" Default="Europe/Berlin" Mode="env" Description="Timezone" Type="Variable" Display="always" Required="false" Mask="false">Europe/Berlin</Config>
+  <Config Name="Data Volume" Target="/app/data" Default="/mnt/user/appdata/reddit-wsb-crawler/data" Mode="rw" Description="Persistent data, caches and crawl results." Type="Path" Display="always" Required="true" Mask="false">/mnt/user/appdata/reddit-wsb-crawler/data</Config>
+  <Config Name="Logs Volume" Target="/app/logs" Default="/mnt/user/appdata/reddit-wsb-crawler/logs" Mode="rw" Description="Persistent logs." Type="Path" Display="always" Required="true" Mask="false">/mnt/user/appdata/reddit-wsb-crawler/logs</Config>
+  <Config Name="Config Volume" Target="/app/config" Default="/mnt/user/appdata/reddit-wsb-crawler/config" Mode="rw" Description="Configuration files." Type="Path" Display="always" Required="true" Mask="false">/mnt/user/appdata/reddit-wsb-crawler/config</Config>
+  <Config Name="REDDIT_CLIENT_ID" Target="REDDIT_CLIENT_ID" Default="" Mode="env" Description="Reddit API client ID." Type="Variable" Display="always" Required="true" Mask="true" />
+  <Config Name="REDDIT_CLIENT_SECRET" Target="REDDIT_CLIENT_SECRET" Default="" Mode="env" Description="Reddit API client secret." Type="Variable" Display="always" Required="true" Mask="true" />
+  <Config Name="REDDIT_USER_AGENT" Target="REDDIT_USER_AGENT" Default="python:wsb-crawler:v1.0.0 (by /u/yourusername)" Mode="env" Description="Reddit user-agent string." Type="Variable" Display="always" Required="true" Mask="false">python:wsb-crawler:v1.0.0 (by /u/yourusername)</Config>
+  <Config Name="NEWSAPI_KEY" Target="NEWSAPI_KEY" Default="" Mode="env" Description="NewsAPI key." Type="Variable" Display="always" Required="true" Mask="true" />
+  <Config Name="DISCORD_WEBHOOK_URL" Target="DISCORD_WEBHOOK_URL" Default="" Mode="env" Description="Discord webhook URL for alerts." Type="Variable" Display="always" Required="true" Mask="true" />
+  <Config Name="SUBREDDITS" Target="SUBREDDITS" Default="wallstreetbets,wallstreetbetsGER" Mode="env" Description="Comma-separated subreddits to crawl." Type="Variable" Display="always" Required="false" Mask="false">wallstreetbets,wallstreetbetsGER</Config>
+  <Config Name="NEWSAPI_LANG" Target="NEWSAPI_LANG" Default="en" Mode="env" Description="News language." Type="Variable" Display="advanced" Required="false" Mask="false">en</Config>
+  <Config Name="NEWSAPI_WINDOW_HOURS" Target="NEWSAPI_WINDOW_HOURS" Default="48" Mode="env" Description="News lookback window in hours." Type="Variable" Display="advanced" Required="false" Mask="false">48</Config>
+  <Config Name="ALERT_MIN_ABS" Target="ALERT_MIN_ABS" Default="20" Mode="env" Description="Minimum mentions for a new ticker alert." Type="Variable" Display="advanced" Required="false" Mask="false">20</Config>
+  <Config Name="ALERT_MIN_DELTA" Target="ALERT_MIN_DELTA" Default="10" Mode="env" Description="Minimum mention increase for a known ticker." Type="Variable" Display="advanced" Required="false" Mask="false">10</Config>
+  <Config Name="ALERT_RATIO" Target="ALERT_RATIO" Default="2.0" Mode="env" Description="Minimum mention ratio for an alert." Type="Variable" Display="advanced" Required="false" Mask="false">2.0</Config>
+  <Config Name="ALERT_MIN_PRICE_MOVE" Target="ALERT_MIN_PRICE_MOVE" Default="5.0" Mode="env" Description="Minimum price move included in an alert." Type="Variable" Display="advanced" Required="false" Mask="false">5.0</Config>
+  <Config Name="ALERT_MAX_PER_RUN" Target="ALERT_MAX_PER_RUN" Default="3" Mode="env" Description="Maximum alerts per crawl." Type="Variable" Display="advanced" Required="false" Mask="false">3</Config>
+  <Config Name="ALERT_COOLDOWN_H" Target="ALERT_COOLDOWN_H" Default="4" Mode="env" Description="Cooldown before alerting the same ticker again." Type="Variable" Display="advanced" Required="false" Mask="false">4</Config>
+  <Config Name="TZ" Target="TZ" Default="Europe/Berlin" Mode="env" Description="Container timezone." Type="Variable" Display="always" Required="false" Mask="false">Europe/Berlin</Config>
+  <Config Name="CRAWLER_LOOP_MODE" Target="CRAWLER_LOOP_MODE" Default="false" Mode="env" Description="Run continuously instead of a single crawl." Type="Variable" Display="advanced" Required="false" Mask="false">false</Config>
+  <Config Name="CRAWL_INTERVAL_MINUTES" Target="CRAWL_INTERVAL_MINUTES" Default="30" Mode="env" Description="Continuous-mode crawl interval." Type="Variable" Display="advanced" Required="false" Mask="false">30</Config>
+  <Config Name="DISCORD_STATUS_UPDATE" Target="DISCORD_STATUS_UPDATE" Default="true" Mode="env" Description="Send status updates to Discord." Type="Variable" Display="advanced" Required="false" Mask="false">true</Config>
+  <Config Name="ALPHAVANTAGE_API_KEY" Target="ALPHAVANTAGE_API_KEY" Default="" Mode="env" Description="Optional Alpha Vantage API key." Type="Variable" Display="advanced" Required="false" Mask="true" />
+  <Config Name="WSB_PORT" Target="WSB_PORT" Default="80" Mode="env" Description="Internal HTTP port." Type="Variable" Display="advanced" Required="false" Mask="false">80</Config>
+  <Config Name="WSB_HOST" Target="WSB_HOST" Default="0.0.0.0" Mode="env" Description="Internal bind address." Type="Variable" Display="advanced" Required="false" Mask="false">0.0.0.0</Config>
+  <Config Name="WSB_DB_PATH" Target="WSB_DB_PATH" Default="/app/data/wsb_crawler.db" Mode="env" Description="Internal database path." Type="Variable" Display="advanced" Required="false" Mask="false">/app/data/wsb_crawler.db</Config>
+  <Config Name="WSB_AUTH_TOKEN" Target="WSB_AUTH_TOKEN" Default="" Mode="env" Description="Optional API authentication token." Type="Variable" Display="advanced" Required="false" Mask="true" />
   <TailscaleStateDir />
-  <Config Name="CRAWLER_LOOP_MODE" Target="CRAWLER_LOOP_MODE" Default="false" Mode="env" Description="Environment variable: CRAWLER_LOOP_MODE" Type="Variable" Display="advanced" Required="false" Mask="false">false</Config>
-  <Config Name="CRAWL_INTERVAL_MINUTES" Target="CRAWL_INTERVAL_MINUTES" Default="30" Mode="env" Description="Environment variable: CRAWL_INTERVAL_MINUTES" Type="Variable" Display="advanced" Required="false" Mask="false">30</Config>
-  <Config Name="DISCORD_STATUS_UPDATE" Target="DISCORD_STATUS_UPDATE" Default="true" Mode="env" Description="Environment variable: DISCORD_STATUS_UPDATE" Type="Variable" Display="advanced" Required="false" Mask="false">true</Config>
-  <Config Name="ALPHAVANTAGE_API_KEY" Target="ALPHAVANTAGE_API_KEY" Default="" Mode="env" Description="Environment variable: ALPHAVANTAGE_API_KEY" Type="Variable" Display="advanced" Required="true" Mask="true" />
-  <Config Name="WSB_PORT" Target="WSB_PORT" Default="80" Mode="env" Description="Environment variable: WSB_PORT" Type="Variable" Display="advanced" Required="false" Mask="false">80</Config>
-  <Config Name="WSB_HOST" Target="WSB_HOST" Default="0.0.0.0" Mode="env" Description="Environment variable: WSB_HOST" Type="Variable" Display="advanced" Required="false" Mask="false">0.0.0.0</Config>
-  <Config Name="WSB_DB_PATH" Target="WSB_DB_PATH" Default="/app/data/wsb_crawler.db" Mode="env" Description="Environment variable: WSB_DB_PATH" Type="Variable" Display="advanced" Required="false" Mask="false">/app/data/wsb_crawler.db</Config>
-  <Config Name="WSB_AUTH_TOKEN" Target="WSB_AUTH_TOKEN" Default="" Mode="env" Description="Environment variable: WSB_AUTH_TOKEN" Type="Variable" Display="advanced" Required="true" Mask="true" />
 </Container>
