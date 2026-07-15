@@ -38,8 +38,12 @@ jobs:
           python scripts/validate-templates.py 2>&1 | tee validation.log
 
       - name: Run tests
-        if: always()
-        run: pytest -q
+        id: tests
+        continue-on-error: true
+        shell: bash
+        run: |
+          set -o pipefail
+          pytest -q 2>&1 | tee pytest.log
 
       - name: Verify generated README
         if: always()
@@ -49,12 +53,14 @@ jobs:
         if: always()
         run: python scripts/generate.py --output _site
 
-      - name: Upload validation report
+      - name: Upload validation reports
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: template-validation-report
-          path: validation.log
+          name: validation-reports
+          path: |
+            validation.log
+            pytest.log
           if-no-files-found: error
 
       - name: Upload preview artifact
@@ -66,5 +72,5 @@ jobs:
           if-no-files-found: error
 
       - name: Enforce validation result
-        if: steps.template_validation.outcome == 'failure'
+        if: steps.template_validation.outcome == 'failure' || steps.tests.outcome == 'failure'
         run: exit 1
