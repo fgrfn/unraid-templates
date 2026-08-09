@@ -6,6 +6,8 @@
 
 Curated Docker templates for Unraid. The catalog currently contains **9 templates**.
 
+> **Personal learning project:** Built with the help of OpenAI Codex and Claude Code as a way to experiment, learn and create something useful.
+
 ## Available templates
 
 | Template | Description | Network | Web UI | Install |
