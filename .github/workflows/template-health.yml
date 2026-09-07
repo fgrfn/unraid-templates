@@ -1,0 +1,95 @@
+name: Template Health
+
+on:
+  schedule:
+    - cron: "17 2 * * 1"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  issues: write
+
+concurrency:
+  group: template-health
+  cancel-in-progress: false
+
+env:
+  ISSUE_TITLE: Template health needs review
+
+jobs:
+  report:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v7
+
+      - name: Set up Python
+        uses: actions/setup-python@v6
+        with:
+          python-version: "3.12"
+          cache: pip
+
+      - name: Install dependencies
+        run: python -m pip install -r requirements.txt
+
+      - name: Check template health
+        id: health
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          set +e
+          python scripts/check-health.py --output reports/template-health.md
+          status=$?
+          set -e
+          case "$status" in
+            0) echo "review_required=false" >> "$GITHUB_OUTPUT" ;;
+            2) echo "review_required=true" >> "$GITHUB_OUTPUT" ;;
+            *) exit "$status" ;;
+          esac
+
+      - name: Upload health report
+        if: always()
+        uses: actions/upload-artifact@v7
+        with:
+          name: template-health-report
+          path: reports/template-health.md
+          if-no-files-found: error
+
+      - name: Add report to the run summary
+        if: always()
+        shell: bash
+        run: |
+          if [ -f reports/template-health.md ]; then
+            cat reports/template-health.md >> "$GITHUB_STEP_SUMMARY"
+          else
+            echo "The health check crashed before writing a report." >> "$GITHUB_STEP_SUMMARY"
+          fi
+
+      - name: Open or update the tracking issue
+        if: steps.health.outputs.review_required == 'true'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          issue="$(gh issue list --state open --search "\"$ISSUE_TITLE\" in:title" --json number --jq '.[0].number // empty')"
+          if [ -n "$issue" ]; then
+            gh issue edit "$issue" --body-file reports/template-health.md
+          else
+            gh issue create --title "$ISSUE_TITLE" --body-file reports/template-health.md
+          fi
+
+      - name: Close the tracking issue once everything is healthy
+        if: steps.health.outputs.review_required == 'false'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          issue="$(gh issue list --state open --search "\"$ISSUE_TITLE\" in:title" --json number --jq '.[0].number // empty')"
+          if [ -n "$issue" ]; then
+            gh issue comment "$issue" --body "All templates resolved cleanly in the latest run. Closing."
+            gh issue close "$issue"
+          fi

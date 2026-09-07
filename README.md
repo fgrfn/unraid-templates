@@ -2,9 +2,9 @@
 
 [![Validate Templates](https://github.com/fgrfn/unraid-templates/actions/workflows/validate-templates.yml/badge.svg)](https://github.com/fgrfn/unraid-templates/actions/workflows/validate-templates.yml)
 [![Deploy Pages](https://github.com/fgrfn/unraid-templates/actions/workflows/deploy.yml/badge.svg)](https://github.com/fgrfn/unraid-templates/actions/workflows/deploy.yml)
-[![Upstream Drift](https://github.com/fgrfn/unraid-templates/actions/workflows/upstream-drift.yml/badge.svg)](https://github.com/fgrfn/unraid-templates/actions/workflows/upstream-drift.yml)
+[![Template Health](https://github.com/fgrfn/unraid-templates/actions/workflows/template-health.yml/badge.svg)](https://github.com/fgrfn/unraid-templates/actions/workflows/template-health.yml)
 
-Curated Docker templates for Unraid. The catalog currently contains **4 templates**.
+Curated Docker templates for Unraid. The catalog currently contains **3 templates**.
 
 > **Personal learning project:** Built with the help of OpenAI Codex and Claude Code as a way to experiment, learn and create something useful.
 
@@ -15,7 +15,6 @@ Curated Docker templates for Unraid. The catalog currently contains **4 template
 | [HashHive](https://github.com/fgrfn/hashhive) | Unified mining dashboard for NMMiner, Bitaxe and NerdAxe devices. It provides live statistics, device configuration, pool management, alerting and notifications through Telegram, Discord or Gotify. | `bridge` | `http://[IP]:[PORT:8000]` | [XML](https://fgrfn.github.io/unraid-templates/templates/HashHive/my-HashHive.xml) |
 | [RedditWSBCrawler](https://github.com/fgrfn/reddit-wsb-crawler) | Early-warning crawler for stock-ticker activity on Reddit. It analyzes mention trends, enriches them with market and news data and can send Discord alerts for unusual activity. | `bridge` | `Headless` | [XML](https://fgrfn.github.io/unraid-templates/templates/RedditWSBCrawler/my-RedditWSBCrawler.xml) |
 | [Scan2Target](https://github.com/fgrfn/Scan2Target) | Web-based scan server for USB and network scanners. Scan2Target discovers scanners and routes documents to file shares, mail, Paperless-ngx, webhooks and cloud providers. | `host` | `http://[IP]:8000` | [XML](https://fgrfn.github.io/unraid-templates/templates/Scan2Target/my-Scan2Target.xml) |
-| [TwitchDropsMiner](https://github.com/fgrfn/TwitchDropsMiner) | Twitch Drops Miner farms eligible Twitch drops without keeping a stream open. It discovers campaigns, changes channels automatically, persists OAuth state and offers webhook notifications and a web interface. | `bridge` | `http://[IP]:[PORT:8080]` | [XML](https://fgrfn.github.io/unraid-templates/templates/TwitchDropsMiner/my-TwitchDropsMiner.xml) |
 
 ## Installation
 
@@ -43,7 +42,7 @@ python scripts/generate-index.py --check-readme
 python scripts/generate-index.py --output _site
 ```
 
-Upstream monitoring creates or updates a **draft pull request containing a drift report**. It never modifies production templates or pushes directly to `main`.
+A weekly health check verifies that every template still resolves: the container image exists in its registry, the GitHub project is present and not archived, and the project, support, readme, icon and template URLs all respond. It is review-only and tracks findings in a single issue that closes itself once everything is healthy.
 
 ## Contributing
 
