@@ -21,9 +21,17 @@ python scripts/generate.py --output _site
 
 Generated website files must not be committed. GitHub Pages is deployed from an Actions artifact.
 
-## Upstream changes
+## Template health
 
-The scheduled upstream check only creates a drift report in a draft pull request. Review every reported image, port, volume or environment change against the upstream documentation before editing a template.
+`scripts/check-health.py` runs weekly and is review-only; it never edits a template. It reports when a container image has disappeared from its registry, when a GitHub project is gone or archived, and when any URL a template hands to Unraid stops responding. Findings collect in a single tracking issue that closes itself once the next run is clean.
+
+For entries marked `ownership: external` it additionally compares the upstream Compose service against the template and reports image, port, volume and environment differences. Review each one against the upstream documentation before editing a template. First-party entries are skipped deliberately: their Compose file is a development artifact rather than a published contract, so comparing it reports noise.
+
+Run it locally with:
+
+```bash
+python scripts/check-health.py --output reports/template-health.md
+```
 
 ## Pull requests
 

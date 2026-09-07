@@ -2,7 +2,7 @@
 
 [![Validate Templates](https://github.com/fgrfn/unraid-templates/actions/workflows/validate-templates.yml/badge.svg)](https://github.com/fgrfn/unraid-templates/actions/workflows/validate-templates.yml)
 [![Deploy Pages](https://github.com/fgrfn/unraid-templates/actions/workflows/deploy.yml/badge.svg)](https://github.com/fgrfn/unraid-templates/actions/workflows/deploy.yml)
-[![Upstream Drift](https://github.com/fgrfn/unraid-templates/actions/workflows/upstream-drift.yml/badge.svg)](https://github.com/fgrfn/unraid-templates/actions/workflows/upstream-drift.yml)
+[![Template Health](https://github.com/fgrfn/unraid-templates/actions/workflows/template-health.yml/badge.svg)](https://github.com/fgrfn/unraid-templates/actions/workflows/template-health.yml)
 
 Curated Docker templates for Unraid. The catalog currently contains **4 templates**.
 
@@ -43,7 +43,7 @@ python scripts/generate-index.py --check-readme
 python scripts/generate-index.py --output _site
 ```
 
-Upstream monitoring creates or updates a **draft pull request containing a drift report**. It never modifies production templates or pushes directly to `main`.
+A weekly health check verifies that every template still resolves: the container image exists in its registry, the GitHub project is present and not archived, and the project, support, readme, icon and template URLs all respond. It is review-only and tracks findings in a single issue that closes itself once everything is healthy.
 
 ## Contributing
 

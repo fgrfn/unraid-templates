@@ -2,6 +2,9 @@
 
 ## Unreleased
 
+- Replaced the upstream drift check with `scripts/check-health.py`, which verifies that each template's container image, GitHub project and outbound URLs still resolve, and reports Compose drift for external entries only.
+- Fixed Compose port and volume parsing: `${PORT:-8080}` was read as the container port `-8080}`.
+- Replaced the daily drift pull request with a weekly run that maintains one tracking issue and closes it once every template is healthy again.
 - Removed the AxeMobile, AxePoolStratum, Bootimus, Pluton and TwitchMinerGo templates; the catalog now covers first-party applications only.
 - Removed the scheduled `twitch-miner-go` image build, which published a third-party project to this repository's registry.
 - Derived the website network filter from the catalog instead of a hard-coded option list.
