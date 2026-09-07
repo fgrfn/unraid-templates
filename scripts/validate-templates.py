@@ -15,6 +15,7 @@ from typing import Iterable
 import yaml
 
 BOOLEAN_VALUES = {"true", "false"}
+VISIBILITY_VALUES = {"public", "private"}
 DISPLAY_VALUES = {"always", "advanced"}
 TYPE_MODES = {
     "Port": {"tcp", "udp"},
@@ -191,6 +192,12 @@ def validate_repository(repo_root: Path, *, check_urls: bool = False) -> list[Fi
         if not path:
             findings.append(Finding(catalog_path, "ERROR", f"catalog entry {entry_id!r} has no path"))
         catalog_paths.append(path)
+        visibility = entry.get("visibility", "public")
+        if visibility not in VISIBILITY_VALUES:
+            # A typo here would silently downgrade the health check's findings.
+            findings.append(
+                Finding(catalog_path, "ERROR", f"catalog entry {entry_id!r} has invalid visibility {visibility!r}")
+            )
 
     actual_paths = sorted(
         str(path.relative_to(repo_root)).replace("\\", "/")

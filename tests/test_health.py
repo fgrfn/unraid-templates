@@ -82,3 +82,28 @@ def test_report_marks_healthy_and_unhealthy_entries():
 
 def test_report_is_clean_when_everything_resolves():
     assert "All 1 templates look healthy." in health.build_report([health.EntryReport(entry_id="fine")])
+
+
+def test_url_belongs_to_repository():
+    repo = ("fgrfn", "reddit-wsb-crawler")
+    assert health.url_belongs_to("https://github.com/fgrfn/reddit-wsb-crawler", repo)
+    assert health.url_belongs_to("https://github.com/fgrfn/reddit-wsb-crawler/issues", repo)
+    assert health.url_belongs_to("https://github.com/fgrfn/reddit-wsb-crawler#readme", repo)
+    assert health.url_belongs_to("https://raw.githubusercontent.com/fgrfn/reddit-wsb-crawler/main/logo.png", repo)
+
+
+def test_url_belongs_to_rejects_other_repositories():
+    repo = ("fgrfn", "reddit-wsb-crawler")
+    # A neighbouring repository whose name merely starts the same must not match.
+    assert not health.url_belongs_to("https://github.com/fgrfn/reddit-wsb-crawler-docs", repo)
+    assert not health.url_belongs_to("https://github.com/someone/reddit-wsb-crawler", repo)
+    assert not health.url_belongs_to("https://cdn.example.com/logo.png", repo)
+    assert not health.url_belongs_to("https://github.com/fgrfn/reddit-wsb-crawler", None)
+    assert not health.url_belongs_to("", repo)
+
+
+def test_repository_of_parses_project_urls():
+    assert health.repository_of("https://github.com/fgrfn/hashhive") == ("fgrfn", "hashhive")
+    assert health.repository_of("https://github.com/fgrfn/hashhive.git") == ("fgrfn", "hashhive")
+    assert health.repository_of("https://example.com/project") is None
+    assert health.repository_of("") is None

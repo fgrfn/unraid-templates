@@ -6,7 +6,10 @@ per catalog entry:
 
 * Is the application still there? The container image must resolve in its
   registry, the GitHub project must exist and not be archived, and every URL
-  the template hands to Unraid must respond.
+  the template hands to Unraid must respond. An entry marked
+  ``visibility: private`` is expected to be unreachable from outside, so
+  findings about that repository are reported as notes rather than problems.
+  Everything else about it, including URLs hosted elsewhere, is still checked.
 * Has an external project changed its Compose file? Drift is only meaningful
   for entries marked ``ownership: external``; a first-party Compose file is a
   development artifact, not a published contract, so comparing it produces
@@ -193,6 +196,22 @@ def github_project_status(project_url: str) -> tuple[str | None, str | None]:
     return None, f"last upstream push {days} days ago ({last_push.date()})"
 
 
+def repository_of(project_url: str) -> tuple[str, str] | None:
+    match = GITHUB_REPO_PATTERN.match(project_url or "")
+    if not match:
+        return None
+    return match.group(1), match.group(2).removesuffix(".git")
+
+
+def url_belongs_to(url: str, repository: tuple[str, str] | None) -> bool:
+    """True when the URL is served by the given GitHub repository."""
+    if not repository or not url:
+        return False
+    owner, repo = repository
+    pattern = rf"^https://(github\.com|raw\.githubusercontent\.com)/{re.escape(owner)}/{re.escape(repo)}([/#?]|$)"
+    return bool(re.match(pattern, url, re.IGNORECASE))
+
+
 def check_link(url: str) -> str | None:
     if not url:
         return None
@@ -278,6 +297,10 @@ def describe_drift(diff: dict[str, Any]) -> list[str]:
 def check_entry(entry: dict, repo_root: Path) -> EntryReport:
     report = EntryReport(entry_id=entry["id"])
     state = template_state(repo_root / entry["path"])
+    # A private project is unreachable from outside by design. Findings about
+    # that repository are expected, so they are recorded as notes; the image,
+    # the template URL and any link hosted elsewhere are still hard checks.
+    private_repository = repository_of(state["Project"]) if entry.get("visibility") == "private" else None
 
     problem, note = image_exists(state["image"])
     if problem:
@@ -287,13 +310,20 @@ def check_entry(entry: dict, repo_root: Path) -> EntryReport:
 
     problem, note = github_project_status(state["Project"])
     if problem:
-        report.problems.append(problem)
+        if private_repository:
+            report.notes.append(f"{problem} (expected: the catalog marks it private)")
+        else:
+            report.problems.append(problem)
     if note:
         report.notes.append(note)
 
     for link_field in LINK_FIELDS:
         if failure := check_link(state[link_field]):
-            report.problems.append(f"`<{link_field}>` is unreachable ({failure}): {state[link_field]}")
+            finding = f"`<{link_field}>` is unreachable ({failure}): {state[link_field]}"
+            if url_belongs_to(state[link_field], private_repository):
+                report.notes.append(f"{finding} (expected: the catalog marks the project private)")
+            else:
+                report.problems.append(finding)
 
     upstream = entry.get("upstream") or {}
     if entry.get("ownership") == "external" and upstream.get("enabled"):

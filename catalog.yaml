@@ -24,6 +24,7 @@ templates:
   - Monitoring
   - Finance
   ownership: first-party
+  visibility: private
   upstream:
     compose_url: https://raw.githubusercontent.com/fgrfn/reddit-wsb-crawler/main/docker-compose.yml
     service: ''
