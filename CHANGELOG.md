@@ -2,6 +2,7 @@
 
 ## Unreleased
 
+- Bumped `actions/setup-python` from v6 to v7 across all three workflows that use it.
 - Added `visibility: private` to catalog entries. The health check reports findings about a deliberately private project as notes rather than problems, while the image, the template URL and links hosted elsewhere stay hard checks.
 - Marked `reddit-wsb-crawler` private; its GitHub project is not public, so its project, support, readme and icon links cannot resolve.
 - Removed the TwitchDropsMiner template; its upstream repository no longer exists.
