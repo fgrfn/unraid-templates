@@ -44,7 +44,13 @@ def readme_text(catalog: dict, entries: list[dict]) -> str:
     ]
     if repo.get("notice"):
         lines += [f"> {repo['notice'].strip()}", ""]
+    pages_url = repo["pages_base_url"].rstrip("/") + "/"
     lines += [
+        "## Browse online",
+        "",
+        f"**[Template gallery]({pages_url})** — every template on one page, with search, category and network "
+        "filters, and a button that copies the installation URL to the clipboard.",
+        "",
         "## Available templates",
         "",
         "| Template | Description | Network | Web UI | Install |",
@@ -70,7 +76,7 @@ def readme_text(catalog: dict, entries: list[dict]) -> str:
         "",
         "### Install a single template",
         "",
-        "Open **Docker → Add Container → Template repositories** and paste the XML URL from the table above. Alternatively download the XML to `/boot/config/plugins/dockerMan/templates-user/`.",
+        f"Open **Docker → Add Container → Template repositories** and paste the XML URL from the table above or from the [template gallery]({pages_url}). Alternatively download the XML to `/boot/config/plugins/dockerMan/templates-user/`.",
         "",
         "## Development",
         "",

@@ -8,6 +8,10 @@ Curated Docker templates for Unraid. The catalog currently contains **3 template
 
 > **Personal learning project:** Built with the help of OpenAI Codex and Claude Code as a way to experiment, learn and create something useful.
 
+## Browse online
+
+**[Template gallery](https://fgrfn.github.io/unraid-templates/)** — every template on one page, with search, category and network filters, and a button that copies the installation URL to the clipboard.
+
 ## Available templates
 
 | Template | Description | Network | Web UI | Install |
@@ -28,7 +32,7 @@ https://github.com/fgrfn/unraid-templates
 
 ### Install a single template
 
-Open **Docker → Add Container → Template repositories** and paste the XML URL from the table above. Alternatively download the XML to `/boot/config/plugins/dockerMan/templates-user/`.
+Open **Docker → Add Container → Template repositories** and paste the XML URL from the table above or from the [template gallery](https://fgrfn.github.io/unraid-templates/). Alternatively download the XML to `/boot/config/plugins/dockerMan/templates-user/`.
 
 ## Development
 
