@@ -38,13 +38,3 @@ templates:
     compose_url: https://raw.githubusercontent.com/fgrfn/Scan2Target/main/docker-compose.yml
     service: ''
     enabled: true
-- id: twitch-drops-miner
-  path: templates/TwitchDropsMiner/my-TwitchDropsMiner.xml
-  tags:
-  - Twitch
-  - Automation
-  ownership: first-party
-  upstream:
-    compose_url: https://raw.githubusercontent.com/fgrfn/TwitchDropsMiner/main/docker-compose.yml
-    service: ''
-    enabled: true

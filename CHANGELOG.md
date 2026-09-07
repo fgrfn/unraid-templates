@@ -2,6 +2,7 @@
 
 ## Unreleased
 
+- Removed the TwitchDropsMiner template; its upstream repository no longer exists.
 - Replaced the upstream drift check with `scripts/check-health.py`, which verifies that each template's container image, GitHub project and outbound URLs still resolve, and reports Compose drift for external entries only.
 - Fixed Compose port and volume parsing: `${PORT:-8080}` was read as the container port `-8080}`.
 - Replaced the daily drift pull request with a weekly run that maintains one tracking issue and closes it once every template is healthy again.
