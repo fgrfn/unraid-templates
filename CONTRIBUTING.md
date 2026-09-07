@@ -25,6 +25,8 @@ Generated website files must not be committed. GitHub Pages is deployed from an 
 
 `scripts/check-health.py` runs weekly and is review-only; it never edits a template. It reports when a container image has disappeared from its registry, when a GitHub project is gone or archived, and when any URL a template hands to Unraid stops responding. Findings collect in a single tracking issue that closes itself once the next run is clean.
 
+An entry may set `visibility: private` when its GitHub project is deliberately not public. The check then reports findings about that repository as notes instead of problems, so the tracking issue does not stay open for something that is working as intended. Only findings about that repository are downgraded: the container image, the template URL and any link hosted elsewhere stay hard checks. Note that the project, support, readme and icon links remain unreachable for anyone installing the template.
+
 For entries marked `ownership: external` it additionally compares the upstream Compose service against the template and reports image, port, volume and environment differences. Review each one against the upstream documentation before editing a template. First-party entries are skipped deliberately: their Compose file is a development artifact rather than a published contract, so comparing it reports noise.
 
 Run it locally with:

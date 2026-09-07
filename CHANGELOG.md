@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+- Added `visibility: private` to catalog entries. The health check reports findings about a deliberately private project as notes rather than problems, while the image, the template URL and links hosted elsewhere stay hard checks.
+- Marked `reddit-wsb-crawler` private; its GitHub project is not public, so its project, support, readme and icon links cannot resolve.
 - Removed the TwitchDropsMiner template; its upstream repository no longer exists.
 - Replaced the upstream drift check with `scripts/check-health.py`, which verifies that each template's container image, GitHub project and outbound URLs still resolve, and reports Compose drift for external entries only.
 - Fixed Compose port and volume parsing: `${PORT:-8080}` was read as the container port `-8080}`.
