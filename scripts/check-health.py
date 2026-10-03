@@ -185,13 +185,19 @@ def github_project_status(project_url: str) -> tuple[str | None, str | None]:
         return f"project `{owner}/{repo}` no longer exists or is private", None
     if response.status_code >= 400:
         return f"GitHub API returned HTTP {response.status_code} for `{owner}/{repo}`", None
-    data = response.json()
+    try:
+        data = response.json()
+    except (requests.JSONDecodeError, ValueError) as exc:
+        return f"GitHub API returned invalid JSON for `{owner}/{repo}`: {exc}", None
     if data.get("archived"):
         return f"project `{owner}/{repo}` is archived upstream", None
     pushed_at = data.get("pushed_at")
     if not pushed_at:
         return None, None
-    last_push = dt.datetime.fromisoformat(pushed_at.replace("Z", "+00:00"))
+    try:
+        last_push = dt.datetime.fromisoformat(pushed_at.replace("Z", "+00:00"))
+    except (AttributeError, ValueError) as exc:
+        return f"GitHub API returned an invalid push date for `{owner}/{repo}`: {exc}", None
     days = (dt.datetime.now(dt.timezone.utc) - last_push).days
     return None, f"last upstream push {days} days ago ({last_push.date()})"
 
