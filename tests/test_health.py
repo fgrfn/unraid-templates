@@ -107,3 +107,35 @@ def test_repository_of_parses_project_urls():
     assert health.repository_of("https://github.com/fgrfn/hashhive.git") == ("fgrfn", "hashhive")
     assert health.repository_of("https://example.com/project") is None
     assert health.repository_of("") is None
+
+
+def test_github_project_status_reports_invalid_json(monkeypatch):
+    class Response:
+        status_code = 200
+
+        @staticmethod
+        def json():
+            raise ValueError("broken response")
+
+    monkeypatch.setattr(health.requests, "get", lambda *args, **kwargs: Response())
+
+    problem, note = health.github_project_status("https://github.com/fgrfn/hashhive")
+
+    assert "invalid JSON" in problem
+    assert note is None
+
+
+def test_github_project_status_reports_invalid_push_date(monkeypatch):
+    class Response:
+        status_code = 200
+
+        @staticmethod
+        def json():
+            return {"archived": False, "pushed_at": "not-a-date"}
+
+    monkeypatch.setattr(health.requests, "get", lambda *args, **kwargs: Response())
+
+    problem, note = health.github_project_status("https://github.com/fgrfn/hashhive")
+
+    assert "invalid push date" in problem
+    assert note is None
