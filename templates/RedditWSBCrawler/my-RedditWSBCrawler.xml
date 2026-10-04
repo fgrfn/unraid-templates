@@ -12,7 +12,7 @@
   <ReadMe>https://github.com/fgrfn/reddit-wsb-crawler#readme</ReadMe>
   <Overview>Early-warning crawler for stock-ticker activity on Reddit. It analyzes mention trends, enriches them with market and news data and can send Discord alerts for unusual activity.</Overview>
   <Category>Tools:</Category>
-  <WebUI />
+  <WebUI>http://[IP]:[PORT:8086]</WebUI>
   <TemplateURL>https://fgrfn.github.io/unraid-templates/templates/RedditWSBCrawler/my-RedditWSBCrawler.xml</TemplateURL>
   <Icon>https://github.com/fgrfn/reddit-wsb-crawler/raw/main/logo.png</Icon>
   <ExtraParams>--restart=unless-stopped</ExtraParams>
@@ -21,10 +21,10 @@
   <DateInstalled />
   <DonateText />
   <DonateLink />
-  <Requires />
+  <Requires>The dashboard has no authentication of its own, and WSB_HOST is 0.0.0.0 so that the mapped port reaches it at all. Set WSB_AUTH_TOKEN, or the dashboard is open to everyone on the network together with the Reddit credentials, the Discord and Telegram tokens and the API keys it stores. With a token set, every non-local request needs HTTP basic auth: any user name, the token as the password. Configuration is done in the dashboard; the environment variables below override the stored values and are only needed if you prefer to inject them.</Requires>
+  <Config Name="WebUI Port" Target="80" Default="8086" Mode="tcp" Description="Host port for the dashboard. The application listens on WSB_PORT inside the container, 80 by default." Type="Port" Display="always" Required="true" Mask="false">8086</Config>
   <Config Name="Data Volume" Target="/app/data" Default="/mnt/user/appdata/reddit-wsb-crawler/data" Mode="rw" Description="Persistent data, caches and crawl results." Type="Path" Display="always" Required="true" Mask="false">/mnt/user/appdata/reddit-wsb-crawler/data</Config>
   <Config Name="Logs Volume" Target="/app/logs" Default="/mnt/user/appdata/reddit-wsb-crawler/logs" Mode="rw" Description="Persistent logs." Type="Path" Display="always" Required="true" Mask="false">/mnt/user/appdata/reddit-wsb-crawler/logs</Config>
-  <Config Name="Config Volume" Target="/app/config" Default="/mnt/user/appdata/reddit-wsb-crawler/config" Mode="rw" Description="Configuration files." Type="Path" Display="always" Required="true" Mask="false">/mnt/user/appdata/reddit-wsb-crawler/config</Config>
   <Config Name="REDDIT_CLIENT_ID" Target="REDDIT_CLIENT_ID" Default="" Mode="env" Description="Reddit API client ID." Type="Variable" Display="always" Required="true" Mask="true" />
   <Config Name="REDDIT_CLIENT_SECRET" Target="REDDIT_CLIENT_SECRET" Default="" Mode="env" Description="Reddit API client secret." Type="Variable" Display="always" Required="true" Mask="true" />
   <Config Name="REDDIT_USER_AGENT" Target="REDDIT_USER_AGENT" Default="python:wsb-crawler:v1.0.0 (by /u/yourusername)" Mode="env" Description="Reddit user-agent string." Type="Variable" Display="always" Required="true" Mask="false">python:wsb-crawler:v1.0.0 (by /u/yourusername)</Config>
@@ -39,6 +39,8 @@
   <Config Name="ALERT_MIN_PRICE_MOVE" Target="ALERT_MIN_PRICE_MOVE" Default="5.0" Mode="env" Description="Minimum price move included in an alert." Type="Variable" Display="advanced" Required="false" Mask="false">5.0</Config>
   <Config Name="ALERT_MAX_PER_RUN" Target="ALERT_MAX_PER_RUN" Default="3" Mode="env" Description="Maximum alerts per crawl." Type="Variable" Display="advanced" Required="false" Mask="false">3</Config>
   <Config Name="ALERT_COOLDOWN_H" Target="ALERT_COOLDOWN_H" Default="4" Mode="env" Description="Cooldown before alerting the same ticker again." Type="Variable" Display="advanced" Required="false" Mask="false">4</Config>
+  <Config Name="PUID" Target="PUID" Default="99" Mode="env" Description="User that should own the volumes. On Unraid this is 99." Type="Variable" Display="advanced" Required="false" Mask="false">99</Config>
+  <Config Name="PGID" Target="PGID" Default="100" Mode="env" Description="Group that should own the volumes. On Unraid this is 100." Type="Variable" Display="advanced" Required="false" Mask="false">100</Config>
   <Config Name="TZ" Target="TZ" Default="Europe/Berlin" Mode="env" Description="Container timezone." Type="Variable" Display="always" Required="false" Mask="false">Europe/Berlin</Config>
   <Config Name="CRAWLER_LOOP_MODE" Target="CRAWLER_LOOP_MODE" Default="false" Mode="env" Description="Run continuously instead of a single crawl." Type="Variable" Display="advanced" Required="false" Mask="false">false</Config>
   <Config Name="CRAWL_INTERVAL_MINUTES" Target="CRAWL_INTERVAL_MINUTES" Default="30" Mode="env" Description="Continuous-mode crawl interval." Type="Variable" Display="advanced" Required="false" Mask="false">30</Config>
@@ -47,6 +49,6 @@
   <Config Name="WSB_PORT" Target="WSB_PORT" Default="80" Mode="env" Description="Internal HTTP port." Type="Variable" Display="advanced" Required="false" Mask="false">80</Config>
   <Config Name="WSB_HOST" Target="WSB_HOST" Default="0.0.0.0" Mode="env" Description="Internal bind address." Type="Variable" Display="advanced" Required="false" Mask="false">0.0.0.0</Config>
   <Config Name="WSB_DB_PATH" Target="WSB_DB_PATH" Default="/app/data/wsb_crawler.db" Mode="env" Description="Internal database path." Type="Variable" Display="advanced" Required="false" Mask="false">/app/data/wsb_crawler.db</Config>
-  <Config Name="WSB_AUTH_TOKEN" Target="WSB_AUTH_TOKEN" Default="" Mode="env" Description="Optional API authentication token." Type="Variable" Display="advanced" Required="false" Mask="true" />
+  <Config Name="WSB_AUTH_TOKEN" Target="WSB_AUTH_TOKEN" Default="" Mode="env" Description="Protects the dashboard with HTTP basic auth: any user name, this token as the password. The dashboard manages the Reddit credentials, the Discord and Telegram tokens and the API keys, and WSB_HOST is 0.0.0.0, so leaving this empty exposes all of them to everyone on the network." Type="Variable" Display="always" Required="false" Mask="true" />
   <TailscaleStateDir />
 </Container>

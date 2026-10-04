@@ -2,6 +2,9 @@
 
 ## Unreleased
 
+- Added the AdGuardHub template.
+- Added the AliExpressCoinCollector template, with its icon served from this repository because the application's own repository is private.
+- Fixed the RedditWSBCrawler template: it had no Port config and an empty `<WebUI>`, so the dashboard the application serves was unreachable. `WSB_AUTH_TOKEN` was hidden behind the advanced toggle although `WSB_HOST` is `0.0.0.0`, and the required `/app/config` volume is never used by the application.
 - Rewrote the Scan2Target `<Requires>` note. It claimed host networking was required; a custom network such as `br0` or `br0.20` works too, and is the way out of a port conflict on 8000. The note now names the three conditions that decide it.
 - Exposed four security-relevant Scan2Target settings the template did not offer: `SCAN2TARGET_JWT_SECRET` and `SCAN2TARGET_HA_API_KEY` (both masked), `SCAN2TARGET_ALLOW_PRIVATE_WEBHOOKS` and `SCAN2TARGET_CORS_ORIGINS`.
 - Added a log volume for `/var/log/scan2target`. The template already pointed `SCAN2TARGET_LOG_DIR` there but never mounted it, so logs were lost whenever the container was recreated.
