@@ -32,7 +32,17 @@ https://github.com/fgrfn/unraid-templates
 
 ### Install a single template
 
-Open **Docker → Add Container → Template repositories** and paste the XML URL from the table above or from the [template gallery](https://fgrfn.github.io/unraid-templates/). Alternatively download the XML to `/boot/config/plugins/dockerMan/templates-user/`.
+Open **Docker → Add Container → Template repositories** and paste the XML URL from the table above or from the [template gallery](https://fgrfn.github.io/unraid-templates/).
+
+### Install from the Unraid console
+
+One line per template, run on the Unraid server. The template then appears in the template list under **Docker → Add Container**:
+
+```bash
+mkdir -p /boot/config/plugins/dockerMan/templates-user && wget -O /boot/config/plugins/dockerMan/templates-user/my-HashHive.xml https://fgrfn.github.io/unraid-templates/templates/HashHive/my-HashHive.xml
+```
+
+The [template gallery](https://fgrfn.github.io/unraid-templates/) carries a ready-to-paste command for every template.
 
 ## Development
 
