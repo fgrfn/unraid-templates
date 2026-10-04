@@ -2,6 +2,10 @@
 
 ## Unreleased
 
+- Limited the gitleaks push trigger to `main`. A branch push, its pull request and the merge ran the scan three times per change, which is why it had 217 runs against validate's 93.
+- Added a concurrency group to gitleaks so quick successive pushes cancel each other instead of queueing.
+- Added `timeout-minutes` to the gitleaks and validate jobs; without it a hung job runs for the 360-minute default.
+- Restricted the `_site` preview artifact to pull requests. On `main` the deploy publishes the real site.
 - Added a ready-to-paste install command per template. The gallery shows it under "Install from the Unraid console" with a copy button, and the README documents the pattern. It writes the XML straight to `/boot/config/plugins/dockerMan/templates-user/`, so no manual file handling is needed.
 - Linked the published GitHub Pages gallery from the README again. The link was dropped in 8839f3a when the README moved to the generator, so the site went unreferenced while still being built and deployed.
 - Added `tests/test_generate.py`, covering the site link, the catalog listing and the rendered gallery.
