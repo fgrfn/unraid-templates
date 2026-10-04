@@ -147,6 +147,10 @@ def validate_template(xml_path: Path, *, check_urls: bool = False) -> list[Findi
         if SENSITIVE_PATTERN.search(target) and mask != "true":
             findings.append(Finding(xml_path, "ERROR", f"sensitive Config {target!r} must set Mask=true"))
 
+    icon = text(root, "Icon")
+    if icon and icon.rsplit("?", 1)[0].lower().endswith(".svg"):
+        findings.append(Finding(xml_path, "WARNING", "Icon is an SVG; Unraid renders template icons from raster formats such as PNG"))
+
     network = text(root, "Network")
     if network == "host" and any((c.get("Type") == "Port") for c in root.findall("Config")):
         findings.append(Finding(xml_path, "WARNING", "host-network template contains Port configs; Unraid does not publish ports in host mode"))

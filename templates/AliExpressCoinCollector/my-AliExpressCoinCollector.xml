@@ -12,17 +12,17 @@
   <ReadMe>https://github.com/fgrfn/aliexpress-coin-collector-v2#readme</ReadMe>
   <Overview>Collects the daily AliExpress coins on a schedule. It drives a headless mobile browser session to claim the check-in and the coin tasks, keeps the browser profile so the account is not treated as a new device, and offers a web dashboard for configuration plus a noVNC view for logins and captchas.</Overview>
   <Category>Tools:</Category>
-  <WebUI>http://[IP]:[PORT:7081]</WebUI>
+  <WebUI>http://[IP]:[PORT:80]</WebUI>
   <TemplateURL>https://fgrfn.github.io/unraid-templates/templates/AliExpressCoinCollector/my-AliExpressCoinCollector.xml</TemplateURL>
-  <Icon>https://fgrfn.github.io/unraid-templates/templates/AliExpressCoinCollector/icon.svg</Icon>
+  <Icon>https://fgrfn.github.io/unraid-templates/templates/AliExpressCoinCollector/icon.png</Icon>
   <ExtraParams>--restart=unless-stopped --init --shm-size=1g --stop-timeout=30 --security-opt seccomp=unconfined --security-opt no-new-privileges=true --cap-drop ALL</ExtraParams>
   <PostArgs>run</PostArgs>
   <CPUset />
   <DateInstalled />
   <DonateText />
   <DonateLink />
-  <Requires>Set a VNC password and a dashboard token before exposing this container. Without them both the noVNC view and the dashboard are open to everyone on the network, and the noVNC view is a live browser already signed in to the AliExpress account. Never forward either port to the internet; use a VPN or a reverse proxy. The container runs as UID and GID 1000 and does not honour PUID or PGID, so the appdata directory must be writable by 1000: run chown -R 1000:1000 on it once before the first start. Chromium needs the enlarged /dev/shm that --shm-size=1g provides; the Docker default of 64 MB crashes browser tabs. Do not delete the data volume: the browser profile in it is what keeps the account from looking like a new device.</Requires>
-  <Config Name="Dashboard Port" Target="7081" Default="7081" Mode="tcp" Description="Host port for the configuration dashboard." Type="Port" Display="always" Required="true" Mask="false">7081</Config>
+  <Requires>The host port is 80, which assumes this container gets its own address from a custom network such as br0. On the default bridge network Unraid's own web interface holds port 80, so change the WebUI Port below before starting it there. Set a VNC password and a dashboard token before exposing this container. Without them both the noVNC view and the dashboard are open to everyone on the network, and the noVNC view is a live browser already signed in to the AliExpress account. Never forward either port to the internet; use a VPN or a reverse proxy. The container runs as UID and GID 1000 and does not honour PUID or PGID, so the appdata directory must be writable by 1000: run chown -R 1000:1000 on it once before the first start. Chromium needs the enlarged /dev/shm that --shm-size=1g provides; the Docker default of 64 MB crashes browser tabs. Do not delete the data volume: the browser profile in it is what keeps the account from looking like a new device.</Requires>
+  <Config Name="Dashboard Port" Target="7081" Default="80" Mode="tcp" Description="Host port for the configuration dashboard." Type="Port" Display="always" Required="true" Mask="false">80</Config>
   <Config Name="noVNC Port" Target="7080" Default="7080" Mode="tcp" Description="Host port for the noVNC browser view, used for logins and captchas." Type="Port" Display="always" Required="true" Mask="false">7080</Config>
   <Config Name="Data Volume" Target="/app/data" Default="/mnt/user/appdata/aliexpress-coin-collector" Mode="rw" Description="Browser profile, fingerprint cache, SQLite database, recon data and screenshots. Must be writable by UID 1000. Deleting it makes the account look like a new device." Type="Path" Display="always" Required="true" Mask="false">/mnt/user/appdata/aliexpress-coin-collector</Config>
   <Config Name="VNC_PASSWORD" Target="VNC_PASSWORD" Default="" Mode="env" Description="Password for the noVNC view, 6 to 8 characters. Empty means anyone reaching the port controls a browser signed in to your AliExpress account." Type="Variable" Display="always" Required="false" Mask="true" />

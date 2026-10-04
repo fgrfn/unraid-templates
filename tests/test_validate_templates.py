@@ -82,3 +82,16 @@ def test_date_installed_must_be_empty(tmp_path):
     template_root.find("DateInstalled").text = "123456"
     tree.write(path, encoding="utf-8", xml_declaration=True)
     assert any("DateInstalled must be empty" in message for message in messages(validator.validate_template(path)))
+
+
+def test_svg_icon_is_warned_about(tmp_path):
+    '''Unraid renders template icons from raster formats; an SVG shows nothing.'''
+    path = tmp_path / "template.xml"
+    write_template(path)
+    tree = ET.parse(path)
+    tree.getroot().find("Icon").text = "https://example.com/logo.svg"
+    tree.write(path, encoding="utf-8", xml_declaration=True)
+    findings = validator.validate_template(path)
+    assert any(f.level == "WARNING" and "SVG" in f.message for f in findings)
+    # A warning, not an error: it must not fail the build.
+    assert not [f for f in findings if f.level == "ERROR"]
