@@ -21,7 +21,7 @@
   <DateInstalled />
   <DonateText />
   <DonateLink />
-  <Requires>Host networking is required for mDNS and scanner discovery. USB scanners also require access to /dev/bus/usb.</Requires>
+  <Requires>Scanner discovery uses mDNS/AirScan, which only reaches devices in the same broadcast domain. Host networking is the simplest way to get that, and it also lets the container deliver to shares on this server. A custom network such as br0 or br0.20 works as well, as long as three things hold: the scanners sit in that same VLAN, the Docker custom network type is macvlan and not ipvlan (ipvlan does not pass mDNS), and "Host access to custom networks" is enabled if you deliver to a share on this server. Host networking also binds port 8000 on the server itself, so a custom network is the way out of a port conflict. USB scanners additionally require access to /dev/bus/usb.</Requires>
   <Config Name="Data Volume" Target="/data" Default="/mnt/user/appdata/scan2target" Mode="rw" Description="Persistent database, configuration and scanned files." Type="Path" Display="always" Required="true" Mask="false">/mnt/user/appdata/scan2target</Config>
   <Config Name="USB Devices" Target="/dev/bus/usb" Default="/dev/bus/usb" Mode="rw" Description="USB device access for locally attached scanners." Type="Path" Display="always" Required="true" Mask="false">/dev/bus/usb</Config>
   <Config Name="Log Volume" Target="/var/log/scan2target" Default="/mnt/user/appdata/scan2target/logs" Mode="rw" Description="Persistent log directory. Without it the logs live inside the container and are lost whenever it is recreated." Type="Path" Display="advanced" Required="false" Mask="false">/mnt/user/appdata/scan2target/logs</Config>
