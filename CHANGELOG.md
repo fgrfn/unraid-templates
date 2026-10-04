@@ -2,6 +2,7 @@
 
 ## Unreleased
 
+- Completed the AdGuardHub host-port change to 80: the Port config's text value still read 8085, which failed validation and left `main` red, and the README was not regenerated. The `<Requires>` note said the host port differed from 80 because Unraid holds it, which the template no longer did.
 - Added the AdGuardHub template.
 - Added the AliExpressCoinCollector template, with its icon served from this repository because the application's own repository is private.
 - Fixed the RedditWSBCrawler template: it had no Port config and an empty `<WebUI>`, so the dashboard the application serves was unreachable. `WSB_AUTH_TOKEN` was hidden behind the advanced toggle although `WSB_HOST` is `0.0.0.0`, and the required `/app/config` volume is never used by the application.
