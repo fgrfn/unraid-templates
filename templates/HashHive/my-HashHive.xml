@@ -12,7 +12,7 @@
   <ReadMe>https://github.com/fgrfn/hashhive#readme</ReadMe>
   <Overview>Unified mining dashboard for NMMiner, Bitaxe and NerdAxe devices. It provides live statistics, device configuration, pool management, alerting and notifications through Telegram, Discord or Gotify.</Overview>
   <Category>Tools:</Category>
-  <WebUI>http://[IP]:[PORT:8000]</WebUI>
+  <WebUI>http://[IP]:[PORT:80]</WebUI>
   <TemplateURL>https://fgrfn.github.io/unraid-templates/templates/HashHive/my-HashHive.xml</TemplateURL>
   <Icon>https://raw.githubusercontent.com/fgrfn/hashhive/main/assets/icon.png</Icon>
   <ExtraParams>--restart=unless-stopped</ExtraParams>
@@ -21,8 +21,8 @@
   <DateInstalled />
   <DonateText />
   <DonateLink />
-  <Requires />
-  <Config Name="WebUI Port" Target="8000" Default="8000" Mode="tcp" Description="Host port for the HashHive web interface." Type="Port" Display="always" Required="true" Mask="false">8000</Config>
+  <Requires>The host port is 80, which assumes this container gets its own address from a custom network such as br0. On the default bridge network Unraid's own web interface holds port 80, so change the WebUI Port below before starting it there.</Requires>
+  <Config Name="WebUI Port" Target="8000" Default="80" Mode="tcp" Description="Host port for the HashHive web interface." Type="Port" Display="always" Required="true" Mask="false">80</Config>
   <Config Name="Data Volume" Target="/app/backend/data" Default="/mnt/user/appdata/hashhive/data" Mode="rw" Description="Persistent configuration, alerts, device state and logs." Type="Path" Display="always" Required="true" Mask="false">/mnt/user/appdata/hashhive/data</Config>
   <Config Name="HASHHIVE_DATA_DIR" Target="HASHHIVE_DATA_DIR" Default="/app/backend/data" Mode="env" Description="Internal data directory; normally unchanged." Type="Variable" Display="advanced" Required="false" Mask="false">/app/backend/data</Config>
   <Config Name="TZ" Target="TZ" Default="Europe/Berlin" Mode="env" Description="Container timezone." Type="Variable" Display="always" Required="false" Mask="false">Europe/Berlin</Config>

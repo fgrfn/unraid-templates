@@ -12,7 +12,7 @@
   <ReadMe>https://github.com/fgrfn/reddit-wsb-crawler#readme</ReadMe>
   <Overview>Early-warning crawler for stock-ticker activity on Reddit. It analyzes mention trends, enriches them with market and news data and can send Discord alerts for unusual activity.</Overview>
   <Category>Tools:</Category>
-  <WebUI>http://[IP]:[PORT:8086]</WebUI>
+  <WebUI>http://[IP]:[PORT:80]</WebUI>
   <TemplateURL>https://fgrfn.github.io/unraid-templates/templates/RedditWSBCrawler/my-RedditWSBCrawler.xml</TemplateURL>
   <Icon>https://github.com/fgrfn/reddit-wsb-crawler/raw/main/logo.png</Icon>
   <ExtraParams>--restart=unless-stopped</ExtraParams>
@@ -21,8 +21,8 @@
   <DateInstalled />
   <DonateText />
   <DonateLink />
-  <Requires>The dashboard has no authentication of its own, and WSB_HOST is 0.0.0.0 so that the mapped port reaches it at all. Set WSB_AUTH_TOKEN, or the dashboard is open to everyone on the network together with the Reddit credentials, the Discord and Telegram tokens and the API keys it stores. With a token set, every non-local request needs HTTP basic auth: any user name, the token as the password. Configuration is done in the dashboard; the environment variables below override the stored values and are only needed if you prefer to inject them.</Requires>
-  <Config Name="WebUI Port" Target="80" Default="8086" Mode="tcp" Description="Host port for the dashboard. The application listens on WSB_PORT inside the container, 80 by default." Type="Port" Display="always" Required="true" Mask="false">8086</Config>
+  <Requires>The host port is 80, which assumes this container gets its own address from a custom network such as br0. On the default bridge network Unraid's own web interface holds port 80, so change the WebUI Port below before starting it there. The dashboard has no authentication of its own, and WSB_HOST is 0.0.0.0 so that the mapped port reaches it at all. Set WSB_AUTH_TOKEN, or the dashboard is open to everyone on the network together with the Reddit credentials, the Discord and Telegram tokens and the API keys it stores. With a token set, every non-local request needs HTTP basic auth: any user name, the token as the password. Configuration is done in the dashboard; the environment variables below override the stored values and are only needed if you prefer to inject them.</Requires>
+  <Config Name="WebUI Port" Target="80" Default="80" Mode="tcp" Description="Host port for the dashboard. The application listens on WSB_PORT inside the container, 80 by default." Type="Port" Display="always" Required="true" Mask="false">80</Config>
   <Config Name="Data Volume" Target="/app/data" Default="/mnt/user/appdata/reddit-wsb-crawler/data" Mode="rw" Description="Persistent data, caches and crawl results." Type="Path" Display="always" Required="true" Mask="false">/mnt/user/appdata/reddit-wsb-crawler/data</Config>
   <Config Name="Logs Volume" Target="/app/logs" Default="/mnt/user/appdata/reddit-wsb-crawler/logs" Mode="rw" Description="Persistent logs." Type="Path" Display="always" Required="true" Mask="false">/mnt/user/appdata/reddit-wsb-crawler/logs</Config>
   <Config Name="REDDIT_CLIENT_ID" Target="REDDIT_CLIENT_ID" Default="" Mode="env" Description="Reddit API client ID." Type="Variable" Display="always" Required="true" Mask="true" />
