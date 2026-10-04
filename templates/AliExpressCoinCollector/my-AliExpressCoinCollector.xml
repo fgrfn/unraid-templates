@@ -14,7 +14,7 @@
   <Category>Tools:</Category>
   <WebUI>http://[IP]:[PORT:80]</WebUI>
   <TemplateURL>https://fgrfn.github.io/unraid-templates/templates/AliExpressCoinCollector/my-AliExpressCoinCollector.xml</TemplateURL>
-  <Icon>https://fgrfn.github.io/unraid-templates/templates/AliExpressCoinCollector/icon.svg</Icon>
+  <Icon>https://fgrfn.github.io/unraid-templates/templates/AliExpressCoinCollector/icon.png</Icon>
   <ExtraParams>--restart=unless-stopped --init --shm-size=1g --stop-timeout=30 --security-opt seccomp=unconfined --security-opt no-new-privileges=true --cap-drop ALL</ExtraParams>
   <PostArgs>run</PostArgs>
   <CPUset />

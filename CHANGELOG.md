@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+- Replaced the AdGuardHub and AliExpressCoinCollector icons with 256x256 PNGs served from this repository. Both pointed at SVGs, which Unraid does not render; the AliExpress one was introduced that way in the previous change.
+- `validate-templates.py` now warns when an `<Icon>` is an SVG.
 - Moved every template with a web interface to host port 80, mapped onto whatever port the container itself uses: AdGuardHub 80, RedditWSBCrawler 80, HashHive 8000, AliExpressCoinCollector 7081. Each container is expected to get its own address from a custom network, so port 80 is free per container.
 - Completed the AdGuardHub host-port change to 80: the Port config's text value still read 8085, which failed validation and left `main` red, and the README was not regenerated. The `<Requires>` note said the host port differed from 80 because Unraid holds it, which the template no longer did.
 - Added the AdGuardHub template.

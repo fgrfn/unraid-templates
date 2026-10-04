@@ -14,7 +14,7 @@
   <Category>Network:DNS Tools:</Category>
   <WebUI>http://[IP]:[PORT:80]</WebUI>
   <TemplateURL>https://fgrfn.github.io/unraid-templates/templates/AdGuardHub/my-AdGuardHub.xml</TemplateURL>
-  <Icon>https://raw.githubusercontent.com/fgrfn/AdGuardHub/main/logo.svg</Icon>
+  <Icon>https://fgrfn.github.io/unraid-templates/templates/AdGuardHub/icon.png</Icon>
   <ExtraParams>--restart=unless-stopped</ExtraParams>
   <PostArgs />
   <CPUset />
