@@ -2,6 +2,7 @@
 
 ## Unreleased
 
+- Added a ready-to-paste install command per template. The gallery shows it under "Install from the Unraid console" with a copy button, and the README documents the pattern. It writes the XML straight to `/boot/config/plugins/dockerMan/templates-user/`, so no manual file handling is needed.
 - Linked the published GitHub Pages gallery from the README again. The link was dropped in 8839f3a when the README moved to the generator, so the site went unreferenced while still being built and deployed.
 - Added `tests/test_generate.py`, covering the site link, the catalog listing and the rendered gallery.
 - Bumped `actions/setup-python` from v6 to v7 across all three workflows that use it.
