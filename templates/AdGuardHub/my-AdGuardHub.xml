@@ -12,7 +12,7 @@
   <ReadMe>https://github.com/fgrfn/AdGuardHub#readme</ReadMe>
   <Overview>One dashboard to manage several AdGuard Home instances as a single system. AdGuardHub holds the filtering rules, blocklist subscriptions and instance settings, and pushes every change to all connected instances at once, so two instances kept for DNS failover can no longer overwrite each other's whitelist.</Overview>
   <Category>Network:DNS Tools:</Category>
-  <WebUI>http://[IP]:[PORT:8085]</WebUI>
+  <WebUI>http://[IP]:[PORT:80]</WebUI>
   <TemplateURL>https://fgrfn.github.io/unraid-templates/templates/AdGuardHub/my-AdGuardHub.xml</TemplateURL>
   <Icon>https://raw.githubusercontent.com/fgrfn/AdGuardHub/main/logo.svg</Icon>
   <ExtraParams>--restart=unless-stopped</ExtraParams>
