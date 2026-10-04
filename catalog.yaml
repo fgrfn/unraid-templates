@@ -8,6 +8,27 @@ repository:
     **Personal learning project:** Built with the help of OpenAI Codex and Claude Code
     as a way to experiment, learn and create something useful.
 templates:
+- id: adguardhub
+  path: templates/AdGuardHub/my-AdGuardHub.xml
+  tags:
+  - Network
+  - DNS
+  ownership: first-party
+  upstream:
+    compose_url: https://raw.githubusercontent.com/fgrfn/AdGuardHub/main/docker-compose.yml
+    service: ''
+    enabled: true
+- id: aliexpress-coin-collector
+  path: templates/AliExpressCoinCollector/my-AliExpressCoinCollector.xml
+  tags:
+  - Automation
+  - Shopping
+  ownership: first-party
+  visibility: private
+  upstream:
+    compose_url: https://raw.githubusercontent.com/fgrfn/aliexpress-coin-collector-v2/main/compose.yaml
+    service: ''
+    enabled: true
 - id: hashhive
   path: templates/HashHive/my-HashHive.xml
   tags:

@@ -1,0 +1,40 @@
+<?xml version='1.0' encoding='utf-8'?>
+<Container version="2">
+  <Name>AliExpressCoinCollector</Name>
+  <Repository>ghcr.io/fgrfn/aliexpress-coin-collector-v2:latest</Repository>
+  <Registry>https://github.com/fgrfn/aliexpress-coin-collector-v2</Registry>
+  <Network>bridge</Network>
+  <MyIP />
+  <Shell>bash</Shell>
+  <Privileged>false</Privileged>
+  <Support>https://github.com/fgrfn/aliexpress-coin-collector-v2/issues</Support>
+  <Project>https://github.com/fgrfn/aliexpress-coin-collector-v2</Project>
+  <ReadMe>https://github.com/fgrfn/aliexpress-coin-collector-v2#readme</ReadMe>
+  <Overview>Collects the daily AliExpress coins on a schedule. It drives a headless mobile browser session to claim the check-in and the coin tasks, keeps the browser profile so the account is not treated as a new device, and offers a web dashboard for configuration plus a noVNC view for logins and captchas.</Overview>
+  <Category>Tools:</Category>
+  <WebUI>http://[IP]:[PORT:7081]</WebUI>
+  <TemplateURL>https://fgrfn.github.io/unraid-templates/templates/AliExpressCoinCollector/my-AliExpressCoinCollector.xml</TemplateURL>
+  <Icon>https://fgrfn.github.io/unraid-templates/templates/AliExpressCoinCollector/icon.svg</Icon>
+  <ExtraParams>--restart=unless-stopped --init --shm-size=1g --stop-timeout=30 --security-opt seccomp=unconfined --security-opt no-new-privileges=true --cap-drop ALL</ExtraParams>
+  <PostArgs>run</PostArgs>
+  <CPUset />
+  <DateInstalled />
+  <DonateText />
+  <DonateLink />
+  <Requires>Set a VNC password and a dashboard token before exposing this container. Without them both the noVNC view and the dashboard are open to everyone on the network, and the noVNC view is a live browser already signed in to the AliExpress account. Never forward either port to the internet; use a VPN or a reverse proxy. The container runs as UID and GID 1000 and does not honour PUID or PGID, so the appdata directory must be writable by 1000: run chown -R 1000:1000 on it once before the first start. Chromium needs the enlarged /dev/shm that --shm-size=1g provides; the Docker default of 64 MB crashes browser tabs. Do not delete the data volume: the browser profile in it is what keeps the account from looking like a new device.</Requires>
+  <Config Name="Dashboard Port" Target="7081" Default="7081" Mode="tcp" Description="Host port for the configuration dashboard." Type="Port" Display="always" Required="true" Mask="false">7081</Config>
+  <Config Name="noVNC Port" Target="7080" Default="7080" Mode="tcp" Description="Host port for the noVNC browser view, used for logins and captchas." Type="Port" Display="always" Required="true" Mask="false">7080</Config>
+  <Config Name="Data Volume" Target="/app/data" Default="/mnt/user/appdata/aliexpress-coin-collector" Mode="rw" Description="Browser profile, fingerprint cache, SQLite database, recon data and screenshots. Must be writable by UID 1000. Deleting it makes the account look like a new device." Type="Path" Display="always" Required="true" Mask="false">/mnt/user/appdata/aliexpress-coin-collector</Config>
+  <Config Name="VNC_PASSWORD" Target="VNC_PASSWORD" Default="" Mode="env" Description="Password for the noVNC view, 6 to 8 characters. Empty means anyone reaching the port controls a browser signed in to your AliExpress account." Type="Variable" Display="always" Required="false" Mask="true" />
+  <Config Name="DASHBOARD_TOKEN" Target="DASHBOARD_TOKEN" Default="" Mode="env" Description="Access token for the dashboard. Empty means the dashboard, including the stored credentials, is open to everyone who can reach the port." Type="Variable" Display="always" Required="false" Mask="true" />
+  <Config Name="AE_EMAIL" Target="AE_EMAIL" Default="" Mode="env" Description="AliExpress account e-mail. With e-mail and password set the bot signs in by itself; the e-mail code or a captcha is still handled through noVNC. Leave empty to sign in through noVNC only." Type="Variable" Display="always" Required="false" Mask="false" />
+  <Config Name="AE_PASSWORD" Target="AE_PASSWORD" Default="" Mode="env" Description="AliExpress account password, used only together with the e-mail above." Type="Variable" Display="always" Required="false" Mask="true" />
+  <Config Name="DRYRUN" Target="DRYRUN" Default="false" Mode="env" Description="true reads and reports without collecting anything. Useful for a first run." Type="Variable" Display="always" Required="false" Mask="false">false</Config>
+  <Config Name="BROWSER_LOCALE" Target="BROWSER_LOCALE" Default="de-DE" Mode="env" Description="Browser language of the emulated phone. Should match the account and its location." Type="Variable" Display="advanced" Required="false" Mask="false">de-DE</Config>
+  <Config Name="DATA_DIR" Target="DATA_DIR" Default="/app/data" Mode="env" Description="Internal data directory; must stay in step with the data volume above." Type="Variable" Display="advanced" Required="false" Mask="false">/app/data</Config>
+  <Config Name="DASHBOARD_PORT" Target="DASHBOARD_PORT" Default="7081" Mode="env" Description="Port the dashboard listens on inside the container; must match the dashboard port mapping." Type="Variable" Display="advanced" Required="false" Mask="false">7081</Config>
+  <Config Name="NOVNC_PORT" Target="NOVNC_PORT" Default="7080" Mode="env" Description="Port noVNC listens on inside the container; must match the noVNC port mapping." Type="Variable" Display="advanced" Required="false" Mask="false">7080</Config>
+  <Config Name="LOG_LEVEL" Target="LOG_LEVEL" Default="INFO" Mode="env" Description="Set to DEBUG while diagnosing a failing run." Type="Variable" Display="advanced" Required="false" Mask="false">INFO</Config>
+  <Config Name="TZ" Target="TZ" Default="Europe/Berlin" Mode="env" Description="Container timezone. The collection schedule follows local time." Type="Variable" Display="always" Required="false" Mask="false">Europe/Berlin</Config>
+  <TailscaleStateDir />
+</Container>

@@ -4,7 +4,7 @@
 [![Deploy Pages](https://github.com/fgrfn/unraid-templates/actions/workflows/deploy.yml/badge.svg)](https://github.com/fgrfn/unraid-templates/actions/workflows/deploy.yml)
 [![Template Health](https://github.com/fgrfn/unraid-templates/actions/workflows/template-health.yml/badge.svg)](https://github.com/fgrfn/unraid-templates/actions/workflows/template-health.yml)
 
-Curated Docker templates for Unraid. The catalog currently contains **3 templates**.
+Curated Docker templates for Unraid. The catalog currently contains **5 templates**.
 
 > **Personal learning project:** Built with the help of OpenAI Codex and Claude Code as a way to experiment, learn and create something useful.
 
@@ -16,8 +16,10 @@ Curated Docker templates for Unraid. The catalog currently contains **3 template
 
 | Template | Description | Network | Web UI | Install |
 |---|---|---|---|---|
+| [AdGuardHub](https://github.com/fgrfn/AdGuardHub) | One dashboard to manage several AdGuard Home instances as a single system. AdGuardHub holds the filtering rules, blocklist subscriptions and instance settings, and pushes every change to all connected instances at once, so two instances kept for DNS failover can no longer overwrite each other's whitelist. | `bridge` | `http://[IP]:[PORT:8085]` | [XML](https://fgrfn.github.io/unraid-templates/templates/AdGuardHub/my-AdGuardHub.xml) |
+| [AliExpressCoinCollector](https://github.com/fgrfn/aliexpress-coin-collector-v2) | Collects the daily AliExpress coins on a schedule. It drives a headless mobile browser session to claim the check-in and the coin tasks, keeps the browser profile so the account is not treated as a new device, and offers a web dashboard for configuration plus a noVNC view for logins and captchas. | `bridge` | `http://[IP]:[PORT:7081]` | [XML](https://fgrfn.github.io/unraid-templates/templates/AliExpressCoinCollector/my-AliExpressCoinCollector.xml) |
 | [HashHive](https://github.com/fgrfn/hashhive) | Unified mining dashboard for NMMiner, Bitaxe and NerdAxe devices. It provides live statistics, device configuration, pool management, alerting and notifications through Telegram, Discord or Gotify. | `bridge` | `http://[IP]:[PORT:8000]` | [XML](https://fgrfn.github.io/unraid-templates/templates/HashHive/my-HashHive.xml) |
-| [RedditWSBCrawler](https://github.com/fgrfn/reddit-wsb-crawler) | Early-warning crawler for stock-ticker activity on Reddit. It analyzes mention trends, enriches them with market and news data and can send Discord alerts for unusual activity. | `bridge` | `Headless` | [XML](https://fgrfn.github.io/unraid-templates/templates/RedditWSBCrawler/my-RedditWSBCrawler.xml) |
+| [RedditWSBCrawler](https://github.com/fgrfn/reddit-wsb-crawler) | Early-warning crawler for stock-ticker activity on Reddit. It analyzes mention trends, enriches them with market and news data and can send Discord alerts for unusual activity. | `bridge` | `http://[IP]:[PORT:8086]` | [XML](https://fgrfn.github.io/unraid-templates/templates/RedditWSBCrawler/my-RedditWSBCrawler.xml) |
 | [Scan2Target](https://github.com/fgrfn/Scan2Target) | Web-based scan server for USB and network scanners. Scan2Target discovers scanners and routes documents to file shares, mail, Paperless-ngx, webhooks and cloud providers. | `host` | `http://[IP]:8000` | [XML](https://fgrfn.github.io/unraid-templates/templates/Scan2Target/my-Scan2Target.xml) |
 
 ## Installation
@@ -39,7 +41,7 @@ Open **Docker → Add Container → Template repositories** and paste the XML UR
 One line per template, run on the Unraid server. The template then appears in the template list under **Docker → Add Container**:
 
 ```bash
-mkdir -p /boot/config/plugins/dockerMan/templates-user && wget -O /boot/config/plugins/dockerMan/templates-user/my-HashHive.xml https://fgrfn.github.io/unraid-templates/templates/HashHive/my-HashHive.xml
+mkdir -p /boot/config/plugins/dockerMan/templates-user && wget -O /boot/config/plugins/dockerMan/templates-user/my-AdGuardHub.xml https://fgrfn.github.io/unraid-templates/templates/AdGuardHub/my-AdGuardHub.xml
 ```
 
 The [template gallery](https://fgrfn.github.io/unraid-templates/) carries a ready-to-paste command for every template.

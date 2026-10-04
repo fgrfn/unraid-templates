@@ -1,0 +1,37 @@
+<?xml version='1.0' encoding='utf-8'?>
+<Container version="2">
+  <Name>AdGuardHub</Name>
+  <Repository>ghcr.io/fgrfn/adguardhub:latest</Repository>
+  <Registry>https://github.com/fgrfn/AdGuardHub</Registry>
+  <Network>bridge</Network>
+  <MyIP />
+  <Shell>bash</Shell>
+  <Privileged>false</Privileged>
+  <Support>https://github.com/fgrfn/AdGuardHub/issues</Support>
+  <Project>https://github.com/fgrfn/AdGuardHub</Project>
+  <ReadMe>https://github.com/fgrfn/AdGuardHub#readme</ReadMe>
+  <Overview>One dashboard to manage several AdGuard Home instances as a single system. AdGuardHub holds the filtering rules, blocklist subscriptions and instance settings, and pushes every change to all connected instances at once, so two instances kept for DNS failover can no longer overwrite each other's whitelist.</Overview>
+  <Category>Network:DNS Tools:</Category>
+  <WebUI>http://[IP]:[PORT:8085]</WebUI>
+  <TemplateURL>https://fgrfn.github.io/unraid-templates/templates/AdGuardHub/my-AdGuardHub.xml</TemplateURL>
+  <Icon>https://raw.githubusercontent.com/fgrfn/AdGuardHub/main/logo.svg</Icon>
+  <ExtraParams>--restart=unless-stopped</ExtraParams>
+  <PostArgs />
+  <CPUset />
+  <DateInstalled />
+  <DonateText />
+  <DonateLink />
+  <Requires>The container listens on port 80 internally, which is mapped to a different host port here because the Unraid web interface already uses 80. PUID and PGID must match the owner of the appdata directory; on Unraid that is 99 and 100, which is preset. Leaving ADGUARDHUB_SECRET_KEY empty is supported: the hub then generates a key on first start and keeps it in the data volume, so stored AdGuard credentials survive updates. Setting it puts the key outside the directory it protects, which is the better option.</Requires>
+  <Config Name="WebUI Port" Target="80" Default="8085" Mode="tcp" Description="Host port for the AdGuardHub web interface. The container always listens on 80 internally." Type="Port" Display="always" Required="true" Mask="false">8085</Config>
+  <Config Name="Data Volume" Target="/data" Default="/mnt/user/appdata/adguardhub" Mode="rw" Description="Persistent database, encrypted AdGuard credentials and the generated secret key." Type="Path" Display="always" Required="true" Mask="false">/mnt/user/appdata/adguardhub</Config>
+  <Config Name="ADGUARDHUB_SECRET_KEY" Target="ADGUARDHUB_SECRET_KEY" Default="" Mode="env" Description="Signs session cookies and derives the key that encrypts stored AdGuard credentials. Generate with openssl rand -base64 48. Leave empty to let the hub create one inside the data volume on first start." Type="Variable" Display="always" Required="false" Mask="true" />
+  <Config Name="ADGUARDHUB_ADMIN_USERNAME" Target="ADGUARDHUB_ADMIN_USERNAME" Default="" Mode="env" Description="Creates the admin account on first start. Leave empty to create it in the web interface on the first visit instead." Type="Variable" Display="always" Required="false" Mask="false" />
+  <Config Name="ADGUARDHUB_ADMIN_PASSWORD" Target="ADGUARDHUB_ADMIN_PASSWORD" Default="" Mode="env" Description="Password for the admin account created on first start. Only read together with the username above." Type="Variable" Display="always" Required="false" Mask="true" />
+  <Config Name="PUID" Target="PUID" Default="99" Mode="env" Description="User that should own the data volume. On Unraid this is 99." Type="Variable" Display="advanced" Required="false" Mask="false">99</Config>
+  <Config Name="PGID" Target="PGID" Default="100" Mode="env" Description="Group that should own the data volume. On Unraid this is 100." Type="Variable" Display="advanced" Required="false" Mask="false">100</Config>
+  <Config Name="ADGUARDHUB_RECONCILE_INTERVAL" Target="ADGUARDHUB_RECONCILE_INTERVAL" Default="900" Mode="env" Description="Seconds between full reconciliation runs against every instance." Type="Variable" Display="advanced" Required="false" Mask="false">900</Config>
+  <Config Name="ADGUARDHUB_RETRY_INTERVAL" Target="ADGUARDHUB_RETRY_INTERVAL" Default="30" Mode="env" Description="Seconds between retries for an instance that was unreachable." Type="Variable" Display="advanced" Required="false" Mask="false">30</Config>
+  <Config Name="ADGUARDHUB_LOG_LEVEL" Target="ADGUARDHUB_LOG_LEVEL" Default="INFO" Mode="env" Description="Set to DEBUG for per-instance diagnostics while chasing a misbehaving node." Type="Variable" Display="advanced" Required="false" Mask="false">INFO</Config>
+  <Config Name="TZ" Target="TZ" Default="Europe/Berlin" Mode="env" Description="Container timezone." Type="Variable" Display="always" Required="false" Mask="false">Europe/Berlin</Config>
+  <TailscaleStateDir />
+</Container>
