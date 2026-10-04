@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+- Exposed four security-relevant Scan2Target settings the template did not offer: `SCAN2TARGET_JWT_SECRET` and `SCAN2TARGET_HA_API_KEY` (both masked), `SCAN2TARGET_ALLOW_PRIVATE_WEBHOOKS` and `SCAN2TARGET_CORS_ORIGINS`.
+- Added a log volume for `/var/log/scan2target`. The template already pointed `SCAN2TARGET_LOG_DIR` there but never mounted it, so logs were lost whenever the container was recreated.
 - Limited the gitleaks push trigger to `main`. A branch push, its pull request and the merge ran the scan three times per change, which is why it had 217 runs against validate's 93.
 - Added a concurrency group to gitleaks so quick successive pushes cancel each other instead of queueing.
 - Added `timeout-minutes` to the gitleaks and validate jobs; without it a hung job runs for the 360-minute default.
