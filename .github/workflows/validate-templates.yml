@@ -3,7 +3,7 @@ name: Validate Templates
 on:
   pull_request:
   push:
-    branches: [main]
+    branches: [main, "nightly/**"]
   workflow_dispatch:
 
 permissions:

@@ -5,7 +5,7 @@ on:
   # Only main: a branch push plus its pull request plus the merge ran this
   # three times for one change.
   push:
-    branches: [main]
+    branches: [main, "nightly/**"]
   workflow_dispatch:
 
 permissions:
