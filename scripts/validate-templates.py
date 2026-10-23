@@ -158,9 +158,19 @@ def validate_template(xml_path: Path, *, check_urls: bool = False) -> list[Findi
     webui = text(root, "WebUI")
     if webui and "[PORT:" in webui:
         port_match = re.search(r"\[PORT:(\d+)\]", webui)
-        port_defaults = {c.get("Default") for c in root.findall("Config") if c.get("Type") == "Port"}
-        if port_match and port_match.group(1) not in port_defaults:
-            findings.append(Finding(xml_path, "ERROR", "WebUI references a port without a matching Port config"))
+        port_targets = {
+            (config.get("Target") or "").strip()
+            for config in root.findall("Config")
+            if config.get("Type") == "Port"
+        }
+        if port_match and port_match.group(1) not in port_targets:
+            findings.append(
+                Finding(
+                    xml_path,
+                    "ERROR",
+                    "WebUI references a container port without a matching Port target",
+                )
+            )
 
     return findings
 

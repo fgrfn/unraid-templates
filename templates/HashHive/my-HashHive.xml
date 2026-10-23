@@ -12,7 +12,7 @@
   <ReadMe>https://github.com/fgrfn/hashhive#readme</ReadMe>
   <Overview>Unified mining dashboard for NMMiner, Bitaxe and NerdAxe devices. It provides live statistics, device configuration, pool management, alerting and notifications through Telegram, Discord or Gotify.</Overview>
   <Category>Tools:</Category>
-  <WebUI>http://[IP]:[PORT:80]</WebUI>
+  <WebUI>http://[IP]:[PORT:8000]</WebUI>
   <TemplateURL>https://fgrfn.github.io/unraid-templates/templates/HashHive/my-HashHive.xml</TemplateURL>
   <Icon>https://raw.githubusercontent.com/fgrfn/hashhive/main/assets/icon.png</Icon>
   <ExtraParams>--restart=unless-stopped</ExtraParams>
