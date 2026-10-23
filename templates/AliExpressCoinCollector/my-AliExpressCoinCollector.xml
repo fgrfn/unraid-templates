@@ -12,7 +12,7 @@
   <ReadMe>https://github.com/fgrfn/aliexpress-coin-collector-v2#readme</ReadMe>
   <Overview>Collects the daily AliExpress coins on a schedule. It drives a headless mobile browser session to claim the check-in and the coin tasks, keeps the browser profile so the account is not treated as a new device, and offers a web dashboard for configuration plus a noVNC view for logins and captchas.</Overview>
   <Category>Tools:</Category>
-  <WebUI>http://[IP]:[PORT:80]</WebUI>
+  <WebUI>http://[IP]:[PORT:7081]</WebUI>
   <TemplateURL>https://fgrfn.github.io/unraid-templates/templates/AliExpressCoinCollector/my-AliExpressCoinCollector.xml</TemplateURL>
   <Icon>https://fgrfn.github.io/unraid-templates/templates/AliExpressCoinCollector/icon.png</Icon>
   <ExtraParams>--restart=unless-stopped --init --shm-size=1g --stop-timeout=30 --security-opt seccomp=unconfined --security-opt no-new-privileges=true --cap-drop ALL</ExtraParams>
