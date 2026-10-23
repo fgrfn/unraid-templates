@@ -84,6 +84,43 @@ def test_date_installed_must_be_empty(tmp_path):
     assert any("DateInstalled must be empty" in message for message in messages(validator.validate_template(path)))
 
 
+def set_webui_port(path: Path, *, webui_port: str, target: str, default: str) -> None:
+    tree = ET.parse(path)
+    template_root = tree.getroot()
+    template_root.find("WebUI").text = f"http://[IP]:[PORT:{webui_port}]"
+    template_root.append(
+        ET.fromstring(
+            f'<Config Name="Web UI" Target="{target}" Default="{default}" '
+            'Mode="tcp" Description="Web UI" Type="Port" Display="always" '
+            f'Required="true" Mask="false">{default}</Config>'
+        )
+    )
+    tree.write(path, encoding="utf-8", xml_declaration=True)
+
+
+def test_webui_port_matches_container_target(tmp_path):
+    path = tmp_path / "template.xml"
+    write_template(path)
+    set_webui_port(path, webui_port="8080", target="8080", default="18080")
+
+    assert not [
+        message
+        for message in messages(validator.validate_template(path))
+        if "WebUI references" in message
+    ]
+
+
+def test_webui_port_rejects_host_default(tmp_path):
+    path = tmp_path / "template.xml"
+    write_template(path)
+    set_webui_port(path, webui_port="18080", target="8080", default="18080")
+
+    assert any(
+        "container port without a matching Port target" in message
+        for message in messages(validator.validate_template(path))
+    )
+
+
 def test_svg_icon_is_warned_about(tmp_path):
     '''Unraid renders template icons from raster formats; an SVG shows nothing.'''
     path = tmp_path / "template.xml"
