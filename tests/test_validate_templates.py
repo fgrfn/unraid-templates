@@ -121,6 +121,28 @@ def test_webui_port_rejects_host_default(tmp_path):
     )
 
 
+def test_port_target_must_be_a_valid_port_number(tmp_path):
+    path = tmp_path / "template.xml"
+    write_template(path)
+    set_webui_port(path, webui_port="70000", target="70000", default="8080")
+
+    assert any(
+        "Port Target must be between 1 and 65535" in message
+        for message in messages(validator.validate_template(path))
+    )
+
+
+def test_port_default_must_be_a_valid_port_number(tmp_path):
+    path = tmp_path / "template.xml"
+    write_template(path)
+    set_webui_port(path, webui_port="8080", target="8080", default="not-a-port")
+
+    assert any(
+        "Port Default must be between 1 and 65535" in message
+        for message in messages(validator.validate_template(path))
+    )
+
+
 def test_svg_icon_is_warned_about(tmp_path):
     '''Unraid renders template icons from raster formats; an SVG shows nothing.'''
     path = tmp_path / "template.xml"
