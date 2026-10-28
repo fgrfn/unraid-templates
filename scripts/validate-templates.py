@@ -36,6 +36,11 @@ SENSITIVE_PATTERN = re.compile(
 PLACEHOLDER_PATTERN = re.compile(r"\{\d+\}|TODO|CHANGEME", re.IGNORECASE)
 
 
+def valid_port(value: str) -> bool:
+    """Return whether *value* is a single valid TCP/UDP port number."""
+    return value.isascii() and value.isdigit() and 1 <= int(value) <= 65535
+
+
 @dataclass(frozen=True)
 class Finding:
     path: Path
@@ -147,6 +152,12 @@ def validate_template(xml_path: Path, *, check_urls: bool = False) -> list[Findi
             findings.append(Finding(xml_path, "ERROR", f"{prefix} has unsupported Type={config_type!r}"))
         elif mode not in TYPE_MODES[config_type]:
             findings.append(Finding(xml_path, "ERROR", f"{prefix} Type={config_type} is incompatible with Mode={mode!r}"))
+
+        if config_type == "Port":
+            if target and not valid_port(target):
+                findings.append(Finding(xml_path, "ERROR", f"{prefix} Port Target must be between 1 and 65535"))
+            if default and not valid_port(default):
+                findings.append(Finding(xml_path, "ERROR", f"{prefix} Port Default must be between 1 and 65535"))
 
         if default is not None and value != default:
             findings.append(Finding(xml_path, "ERROR", f"{prefix} text value {value!r} does not match Default {default!r}"))
