@@ -6,6 +6,7 @@ from __future__ import annotations
 import argparse
 import re
 import sys
+import urllib.error
 import urllib.request
 import xml.etree.ElementTree as ET
 from dataclasses import dataclass
@@ -50,11 +51,26 @@ def text(root: ET.Element, tag: str) -> str:
 
 
 def validate_url(url: str, timeout: int = 8) -> str | None:
-    request = urllib.request.Request(url, method="HEAD", headers={"User-Agent": "unraid-template-validator/1"})
+    headers = {"User-Agent": "unraid-template-validator/1"}
+    request = urllib.request.Request(url, method="HEAD", headers=headers)
     try:
         with urllib.request.urlopen(request, timeout=timeout) as response:
             if response.status >= 400:
                 return f"HTTP {response.status}"
+    except urllib.error.HTTPError as exc:
+        if exc.code not in {403, 405, 501}:
+            return f"HTTP {exc.code}"
+        # Some otherwise healthy endpoints deliberately reject HEAD requests.
+        # Retry those with GET before reporting a broken template link.
+        fallback = urllib.request.Request(url, method="GET", headers=headers)
+        try:
+            with urllib.request.urlopen(fallback, timeout=timeout) as response:
+                if response.status >= 400:
+                    return f"HTTP {response.status}"
+        except urllib.error.HTTPError as fallback_exc:
+            return f"HTTP {fallback_exc.code}"
+        except Exception as fallback_exc:
+            return str(fallback_exc)
     except Exception as exc:
         return str(exc)
     return None

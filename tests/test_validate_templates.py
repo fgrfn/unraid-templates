@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import importlib.util
 import sys
+import urllib.error
 import xml.etree.ElementTree as ET
 from pathlib import Path
 
@@ -132,3 +133,36 @@ def test_svg_icon_is_warned_about(tmp_path):
     assert any(f.level == "WARNING" and "SVG" in f.message for f in findings)
     # A warning, not an error: it must not fail the build.
     assert not [f for f in findings if f.level == "ERROR"]
+
+
+def test_url_validation_falls_back_to_get_when_head_is_rejected(monkeypatch):
+    methods = []
+
+    class Response:
+        status = 200
+
+        def __enter__(self):
+            return self
+
+        def __exit__(self, *args):
+            return None
+
+    def urlopen(request, **_kwargs):
+        methods.append(request.get_method())
+        if request.get_method() == "HEAD":
+            raise urllib.error.HTTPError(request.full_url, 405, "Method Not Allowed", {}, None)
+        return Response()
+
+    monkeypatch.setattr(validator.urllib.request, "urlopen", urlopen)
+
+    assert validator.validate_url("https://example.com/template.xml") is None
+    assert methods == ["HEAD", "GET"]
+
+
+def test_url_validation_keeps_real_http_errors(monkeypatch):
+    def urlopen(request, **_kwargs):
+        raise urllib.error.HTTPError(request.full_url, 404, "Not Found", {}, None)
+
+    monkeypatch.setattr(validator.urllib.request, "urlopen", urlopen)
+
+    assert validator.validate_url("https://example.com/missing.xml") == "HTTP 404"
