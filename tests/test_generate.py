@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import html
 import importlib.util
+import shlex
 import sys
 from pathlib import Path
 
@@ -60,6 +61,24 @@ def test_install_command_targets_the_unraid_template_directory():
         assert f"{generate.UNRAID_TEMPLATE_DIR}/{filename}" in command
         assert command.endswith(entry["TemplateURL"])
         assert filename.startswith("my-") and filename.endswith(".xml")
+
+
+def test_install_command_quotes_shell_metacharacters():
+    entry = {
+        "path": "templates/Test/my-Test Template.xml",
+        "TemplateURL": "https://example.com/template.xml?channel=stable&format=xml",
+    }
+
+    command = generate.install_command(entry)
+    mkdir_command, wget_command = command.split(" && ")
+
+    assert shlex.split(mkdir_command) == ["mkdir", "-p", generate.UNRAID_TEMPLATE_DIR]
+    assert shlex.split(wget_command) == [
+        "wget",
+        "-O",
+        f"{generate.UNRAID_TEMPLATE_DIR}/my-Test Template.xml",
+        entry["TemplateURL"],
+    ]
 
 
 def test_website_offers_an_install_command_per_template():
