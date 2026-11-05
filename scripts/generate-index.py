@@ -6,6 +6,7 @@ from __future__ import annotations
 import argparse
 import base64
 import html
+import shlex
 import shutil
 import sys
 import xml.etree.ElementTree as ET
@@ -128,7 +129,10 @@ UNRAID_TEMPLATE_DIR = "/boot/config/plugins/dockerMan/templates-user"
 def install_command(entry: dict) -> str:
     """A single console line that installs the template on an Unraid server."""
     destination = f"{UNRAID_TEMPLATE_DIR}/{Path(entry['path']).name}"
-    return f"mkdir -p {UNRAID_TEMPLATE_DIR} && wget -O {destination} {entry['TemplateURL']}"
+    return (
+        f"mkdir -p {shlex.quote(UNRAID_TEMPLATE_DIR)}"
+        f" && wget -O {shlex.quote(destination)} {shlex.quote(entry['TemplateURL'])}"
+    )
 
 
 def initials_data_uri(name: str) -> str:
