@@ -75,6 +75,20 @@ def test_duplicate_config_target_is_rejected(tmp_path):
     assert any("duplicate Config target" in message for message in messages(validator.validate_template(path)))
 
 
+def test_config_description_must_not_be_empty(tmp_path):
+    path = tmp_path / "template.xml"
+    write_template(path)
+    tree = ET.parse(path)
+    config = tree.getroot().find("Config")
+    config.attrib["Description"] = "   "
+    tree.write(path, encoding="utf-8", xml_declaration=True)
+
+    assert any(
+        "empty Description" in message
+        for message in messages(validator.validate_template(path))
+    )
+
+
 def test_date_installed_must_be_empty(tmp_path):
     path = tmp_path / "template.xml"
     write_template(path)

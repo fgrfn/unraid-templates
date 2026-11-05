@@ -127,6 +127,7 @@ def validate_template(xml_path: Path, *, check_urls: bool = False) -> list[Findi
         target = (config.get("Target") or "").strip()
         default = config.get("Default")
         mode = (config.get("Mode") or "").strip()
+        description = (config.get("Description") or "").strip()
         config_type = (config.get("Type") or "").strip()
         display = (config.get("Display") or "").strip()
         required = (config.get("Required") or "").strip()
@@ -135,7 +136,8 @@ def validate_template(xml_path: Path, *, check_urls: bool = False) -> list[Findi
 
         for attr, attr_value in (
             ("Name", name), ("Target", target), ("Default", default),
-            ("Mode", mode), ("Type", config_type), ("Display", display),
+            ("Mode", mode), ("Description", description),
+            ("Type", config_type), ("Display", display),
             ("Required", required), ("Mask", mask),
         ):
             if attr_value is None or attr_value == "":
