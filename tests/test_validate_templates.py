@@ -1,10 +1,13 @@
 from __future__ import annotations
 
 import importlib.util
+import shutil
 import sys
 import urllib.error
 import xml.etree.ElementTree as ET
 from pathlib import Path
+
+import yaml
 
 ROOT = Path(__file__).resolve().parents[1]
 SPEC = importlib.util.spec_from_file_location("validator", ROOT / "scripts" / "validate-templates.py")
@@ -46,6 +49,22 @@ def messages(findings):
 def test_repository_templates_are_valid():
     findings = validator.validate_repository(ROOT)
     assert not [finding for finding in findings if finding.level == "ERROR"]
+
+
+def test_duplicate_catalog_path_is_rejected(tmp_path):
+    shutil.copytree(ROOT / "templates", tmp_path / "templates")
+    catalog = yaml.safe_load((ROOT / "catalog.yaml").read_text(encoding="utf-8"))
+    duplicate = dict(catalog["templates"][0])
+    duplicate["id"] = "duplicate-entry"
+    catalog["templates"].append(duplicate)
+    (tmp_path / "catalog.yaml").write_text(
+        yaml.safe_dump(catalog, sort_keys=False),
+        encoding="utf-8",
+    )
+
+    errors = messages(validator.validate_repository(tmp_path))
+
+    assert any("duplicate catalog path" in message for message in errors)
 
 
 def test_sensitive_variable_requires_mask(tmp_path):
