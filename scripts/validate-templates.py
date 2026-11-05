@@ -221,6 +221,7 @@ def validate_repository(repo_root: Path, *, check_urls: bool = False) -> list[Fi
         return [Finding(catalog_path, "ERROR", f"catalog could not be loaded: {exc}")]
 
     catalog_paths: list[str] = []
+    seen_paths: set[str] = set()
     ids: set[str] = set()
     for entry in catalog["templates"]:
         entry_id = str(entry.get("id", "")).strip()
@@ -232,6 +233,9 @@ def validate_repository(repo_root: Path, *, check_urls: bool = False) -> list[Fi
         ids.add(entry_id)
         if not path:
             findings.append(Finding(catalog_path, "ERROR", f"catalog entry {entry_id!r} has no path"))
+        elif path in seen_paths:
+            findings.append(Finding(catalog_path, "ERROR", f"duplicate catalog path {path!r}"))
+        seen_paths.add(path)
         catalog_paths.append(path)
         visibility = entry.get("visibility", "public")
         if visibility not in VISIBILITY_VALUES:
